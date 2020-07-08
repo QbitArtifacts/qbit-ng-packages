@@ -1,0 +1,20 @@
+<div class="hotkey-dialog-header" style="display: flex; align-items: center;padding: 10px 15px">
+    <h4 class="no-margin no-padding hotkeys-dialog-title">{{'SHORTCUTS:HELP'|translate}}</h4>
+    <input color="primary" style="margin: 0 15px" class="search-input" (input)="filter()" [(ngModel)]="search"
+        placeholder="{{'SEARCH'|translate}}">
+</div>
+<hr>
+<table class="hotkey-dialog-table">
+    <tbody>
+        <tr class="hotkey-row" *ngFor="let keys of dataSource" style="height: 35px">
+            <td>
+                <span style="font-size: 12px; color: #666" class="row-desc">{{ keys[1] }}</span>
+            </td>
+            <td class="text-right">
+                <ng-template ngFor let-key [ngForOf]="keys[0]">
+                    <kbd class="light">{{key}}</kbd>
+                </ng-template>
+            </td>
+        </tr>
+    </tbody>
+</table>

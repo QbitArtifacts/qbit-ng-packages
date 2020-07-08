@@ -1,0 +1,21 @@
+{
+  "name": "@QbitArtifacts/qbit-kit-ng",
+  "version": "0.0.4",
+  "peerDependencies": {
+    "@angular/common": "^8.2.14",
+    "@angular/core": "^8.2.14"
+  },
+  "scripts": {
+    "add-badges": "node ../../scripts/coverage-badges.js ./coverage/coverage-summary.json ./README.md",
+    "test": "ng test qbit-kit-ng",
+    "test-with-coverage": "ng test qbit-kit-ng --codeCoverage --noWatch --browsers ChromeHeadless && add-badges"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com/QbitArtifacts/qbit-ng-packages.git",
+    "directory": "packages/qbit-kit-ng"
+  }
+}

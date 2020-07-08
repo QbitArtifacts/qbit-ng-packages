@@ -1,0 +1,23 @@
+{
+  "name": "@QbitArtifacts/qbit-hotkeys",
+  "version": "0.0.12",
+  "peerDependencies": {
+    "@angular/common": "^8.2.14",
+    "@angular/core": "^8.2.14",
+    "@ngx-translate/core": "^12.1.2",
+    "@ngx-translate/http-loader": "^4.0.0"
+  },
+  "scripts": {
+    "add-badges": "node ../../scripts/coverage-badges.js ./coverage/coverage-summary.json ./README.md",
+    "test": "ng test qbit-hotkeys",
+    "test-with-coverage": "ng test qbit-hotkeys --codeCoverage --noWatch --browsers ChromeHeadless && add-badges"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com/QbitArtifacts/qbit-ng-packages.git",
+    "directory": "packages/qbit-hotkeys"
+  }
+}

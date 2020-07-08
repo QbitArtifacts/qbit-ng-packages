@@ -17,7 +17,15 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "qbit-hotkeys": [
+        "dist/qbit-hotkeys"
+      ],
+      "qbit-hotkeys/*": [
+        "dist/qbit-hotkeys/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
