@@ -179,6 +179,78 @@
           }
         }
       }
+    },
+    "qbit-auth": {
+      "projectType": "library",
+      "root": "projects/qbit-auth",
+      "sourceRoot": "projects/qbit-auth/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/qbit-auth/tsconfig.lib.json",
+            "project": "projects/qbit-auth/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/qbit-auth/src/test.ts",
+            "tsConfig": "projects/qbit-auth/tsconfig.spec.json",
+            "karmaConfig": "projects/qbit-auth/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/qbit-auth/tsconfig.lib.json",
+              "projects/qbit-auth/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "qbit-debug-screen": {
+      "projectType": "library",
+      "root": "projects/qbit-debug-screen",
+      "sourceRoot": "projects/qbit-debug-screen/src",
+      "prefix": "ds",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/qbit-debug-screen/tsconfig.lib.json",
+            "project": "projects/qbit-debug-screen/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/qbit-debug-screen/src/test.ts",
+            "tsConfig": "projects/qbit-debug-screen/tsconfig.spec.json",
+            "karmaConfig": "projects/qbit-debug-screen/karma.conf.js",
+            "codeCoverage": true
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/qbit-debug-screen/tsconfig.lib.json",
+              "projects/qbit-debug-screen/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
     }
   },
   "defaultProject": "qbit-ng-packages"

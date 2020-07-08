@@ -1,5 +1,5 @@
 {
-  "name": "@QbitArtifacts/qbit-hotkeys",
+  "name": "@qbitartifacts/qbit-hotkeys",
   "version": "0.0.12",
   "peerDependencies": {
     "@angular/common": "^8.2.14",
