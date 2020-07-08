@@ -1,0 +1,21 @@
+{
+  "name": "@qbitartifacts/qbit-debug-screen",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^8.2.14",
+    "@angular/core": "^8.2.14"
+  },
+  "scripts": {
+    "add-badges": "node ../../scripts/coverage-badges.js ./coverage/coverage-summary.json ./README.md",
+    "test": "ng test qbit-debug-screen",
+    "test-with-coverage": "ng test qbit-debug-screen --codeCoverage --noWatch --browsers ChromeHeadless && add-badges"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com/QbitArtifacts/qbit-ng-packages.git",
+    "directory": "packages/qbit-debug-screen"
+  }
+}
