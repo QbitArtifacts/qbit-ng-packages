@@ -7,7 +7,7 @@ import { HotkeysDialogComponent } from './hotkeys-dialog/hotkeys-dialog.componen
 
 @NgModule({
   declarations: [HotkeysDialogComponent],
-  exports: [FormsModule],
+  exports: [FormsModule, HotkeysDialogComponent],
   imports: [BrowserModule, FormsModule, TranslateModule],
   providers: [HotkeysService],
   entryComponents: [HotkeysDialogComponent],
