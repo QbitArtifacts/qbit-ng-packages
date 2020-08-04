@@ -1,16 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
+import {
+  QbitAuthModule,
+  QBIT_AUTH_CONFIG,
+} from 'projects/qbit-auth/src/public-api';
 
 @NgModule({
-  declarations: [
-    AppComponent
+  declarations: [AppComponent],
+  imports: [BrowserModule, QbitAuthModule],
+  providers: [
+    {
+      provide: QBIT_AUTH_CONFIG,
+      useValue: {
+        realm: 'default',
+        url: 'https://api.caste.qbitartifacts.com',
+      },
+    },
   ],
-  imports: [
-    BrowserModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

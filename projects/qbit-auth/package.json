@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^8.2.14",
-    "@angular/core": "^8.2.14"
+    "@angular/core": "^8.2.14",
+    "jwt-decode": "^2.2.0"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
@@ -11,6 +12,6 @@
   "repository": {
     "type": "git",
     "url": "ssh://git@github.com/QbitArtifacts/trading-bots-panel.git",
-    "directory": "packages/qbitkit-ng"
+    "directory": "packages/qbit-auth"
   }
 }

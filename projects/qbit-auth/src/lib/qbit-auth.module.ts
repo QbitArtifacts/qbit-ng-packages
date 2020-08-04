@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
-import { QbitAuthComponent } from './qbit-auth.component';
-
-
+import { QbitAuthService } from './qbit-auth.service';
+import { HttpClientModule } from '@angular/common/http';
+import { QbitManagementService } from './qbit-management.service';
 
 @NgModule({
-  declarations: [QbitAuthComponent],
-  imports: [
-  ],
-  exports: [QbitAuthComponent]
+  imports: [HttpClientModule],
+  providers: [QbitAuthService, QbitManagementService],
 })
-export class QbitAuthModule { }
+export class QbitAuthModule {}
