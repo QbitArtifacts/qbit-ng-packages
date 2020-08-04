@@ -8,15 +8,15 @@ import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/internal/operators/map';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { throwError } from 'rxjs/internal/observable/throwError';
-import { AppConfig } from './qbit-auth.config';
+import { QbitAuthConfig } from './qbit-auth.config';
 import { ApiError } from './interfaces/api_error.interface';
 
 @Injectable()
 export abstract class BaseService {
-  private opts: AppConfig;
+  private opts: QbitAuthConfig;
   private http: HttpClient;
 
-  constructor(http: HttpClient, private config: AppConfig) {
+  constructor(http: HttpClient, config: QbitAuthConfig) {
     this.opts = config;
     this.http = http;
   }
