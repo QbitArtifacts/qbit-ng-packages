@@ -4,6 +4,7 @@ export interface QbitAuthConfig {
   realm: string;
   url: string;
   baseHeaders?: { [key: string]: string };
+  tokenStorageKey?: string;
 }
 
 export const QBIT_AUTH_CONFIG = new InjectionToken<QbitAuthConfig>(
@@ -16,4 +17,5 @@ export const DEFAULT_CONFIG: QbitAuthConfig = {
     accept: 'application/json',
     'content-type': 'application/json',
   },
+  tokenStorageKey: 'qbit:auth:token',
 };

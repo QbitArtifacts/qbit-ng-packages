@@ -13,7 +13,7 @@ import { ApiError } from './interfaces/api_error.interface';
 
 @Injectable()
 export abstract class BaseService {
-  private opts: QbitAuthConfig;
+  protected opts: QbitAuthConfig;
   private http: HttpClient;
 
   constructor(http: HttpClient, config: QbitAuthConfig) {

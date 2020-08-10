@@ -21,7 +21,7 @@ export class QbitManagementService extends BaseService {
   }
 
   protected getToken(): string {
-    return localStorage.getItem('token');
+    return localStorage.getItem(this.opts.tokenStorageKey);
   }
 
   public createApplication(applicationData: ApplicationData) {

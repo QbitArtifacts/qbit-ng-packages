@@ -16,12 +16,11 @@ To get started add this to your projects AppModule
 // app.module.ts
 import {
   QbitAuthModule,
-  QbitAuthConfig,
   QBIT_AUTH_CONFIG,
 } from '@qbitartifacts/qbit-auth';
 
 // Provide QBitAuth config
-const qbitAuthConfigProvider: QbitAuthConfig = {
+const qbitAuthConfigProvider = {
     provide: QBIT_AUTH_CONFIG,
     useValue: {
         realm: 'default',
