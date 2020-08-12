@@ -10,7 +10,7 @@ export interface QbitAuthConfig {
 export const QBIT_AUTH_CONFIG = new InjectionToken<QbitAuthConfig>(
   'app.config'
 );
-export const DEFAULT_CONFIG: QbitAuthConfig = {
+export const DEFAULT_CONFIG: any = {
   realm: 'default',
   url: 'https://api.caste.qbitartifacts.com',
   baseHeaders: {

@@ -8,15 +8,17 @@ import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/internal/operators/map';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { throwError } from 'rxjs/internal/observable/throwError';
-import { QbitAuthConfig } from './qbit-auth.config';
+import { QbitAuthConfig, DEFAULT_CONFIG } from './qbit-auth.config';
 import { ApiError } from './interfaces/api_error.interface';
 
-@Injectable()
-export abstract class BaseService {
-  protected opts: QbitAuthConfig;
+export type CombinedConfig<T = {}> = QbitAuthConfig & T;
+
+/** @dynamic */
+export abstract class BaseService<T = {}> {
+  protected opts: CombinedConfig<T> = DEFAULT_CONFIG;
   private http: HttpClient;
 
-  constructor(http: HttpClient, config: QbitAuthConfig) {
+  constructor(http: HttpClient, config: CombinedConfig<T>) {
     this.opts = config;
     this.http = http;
   }
@@ -182,7 +184,7 @@ export abstract class BaseService {
     data: any,
     content_type: string = 'application/json',
     overwriteHeaders: any = {}
-  ): Observable<T> | Observable<ApiError> {
+  ): Observable<T> {
     const headers = this.getHeaders({
       'content-type': content_type,
       ...overwriteHeaders,

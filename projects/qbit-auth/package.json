@@ -1,7 +1,8 @@
 {
   "name": "@qbitartifacts/qbit-auth",
-  "version": "0.0.4",
+  "version": "0.0.7",
   "peerDependencies": {
+    "rxjs": "~6.4.0",
     "@angular/common": "^8.2.14",
     "@angular/core": "^8.2.14",
     "jwt-decode": "^2.2.0"
