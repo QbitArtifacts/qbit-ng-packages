@@ -1,11 +1,11 @@
 import { Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {
-  BaseService,
   QBIT_AUTH_CONFIG,
   QbitAuthConfig,
   DEFAULT_CONFIG,
-} from 'dist/qbit-auth/public-api';
+} from './qbit-auth.config';
+import { BaseService } from './base.service';
 
 export abstract class CasteCrudBase<T, R> extends BaseService {
   public abstract endpoint: string;
