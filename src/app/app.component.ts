@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import {
   QbitAuthService,
-  QbitManagementService,
 } from 'projects/qbit-auth/src/public-api';
 import { ApiError } from 'projects/qbit-auth/src/lib/interfaces/api_error.interface';
 
