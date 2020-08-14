@@ -15,7 +15,7 @@ export class CasteAccountsService extends CasteCrudBase<
   Account,
   AccountResponse
 > {
-  public endpoint = 'accounts';
+  protected endpoint = 'accounts';
   constructor(
     @Inject(CASTE_AUTH_CONFIG) config: CasteAuthConfig,
     http: HttpClient

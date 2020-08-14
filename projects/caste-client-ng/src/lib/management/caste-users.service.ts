@@ -16,7 +16,7 @@ export class CasteUsersService extends CasteCrudBase<
   User,
   UserResponse
 > {
-  public endpoint = 'users';
+  protected endpoint = 'users';
   constructor(
     @Inject(CASTE_AUTH_CONFIG) config: CasteAuthConfig,
     http: HttpClient

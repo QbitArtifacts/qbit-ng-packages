@@ -16,7 +16,7 @@ export class CastePermissionsService extends CasteCrudBase<
   Permission,
   PermissionResponse
 > {
-  public endpoint = 'permissions';
+  protected endpoint = 'permissions';
 
   constructor(
     @Inject(CASTE_AUTH_CONFIG) config: CasteAuthConfig,
