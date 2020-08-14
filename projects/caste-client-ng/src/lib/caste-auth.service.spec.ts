@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-
-import { QbitAuthService } from './qbit-auth.service';
+import { QbitAuthService } from 'dist/qbit-auth/public-api';
 
 describe('QbitAuthService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

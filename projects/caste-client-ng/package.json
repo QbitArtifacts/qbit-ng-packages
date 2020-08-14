@@ -1,6 +1,6 @@
 {
-  "name": "@qbitartifacts/qbit-auth",
-  "version": "0.0.8",
+  "name": "@qbitartifacts/caste-client-ng",
+  "version": "0.0.1",
   "peerDependencies": {
     "rxjs": "~6.4.0",
     "@angular/common": "^8.2.14",
@@ -13,6 +13,6 @@
   "repository": {
     "type": "git",
     "url": "ssh://git@github.com/QbitArtifacts/qbit-ng-packages.git",
-    "directory": "packages/qbit-auth"
+    "directory": "packages/caste-client-ng"
   }
 }

@@ -1,17 +1,17 @@
 import { Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {
-  QBIT_AUTH_CONFIG,
-  QbitAuthConfig,
-  DEFAULT_CONFIG,
-} from './qbit-auth.config';
 import { BaseService } from './base.service';
+import {
+  CASTE_AUTH_CONFIG,
+  CasteAuthConfig,
+  DEFAULT_CONFIG,
+} from './caste-auth.config';
 
 export abstract class CasteCrudBase<T, R> extends BaseService {
   public abstract endpoint: string;
 
   constructor(
-    @Inject(QBIT_AUTH_CONFIG) config: QbitAuthConfig,
+    @Inject(CASTE_AUTH_CONFIG) config: CasteAuthConfig,
     http: HttpClient
   ) {
     super(http, { ...DEFAULT_CONFIG, ...config });

@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import {
   QbitAuthModule,
   QBIT_AUTH_CONFIG,
-} from 'projects/qbit-auth/src/public-api';
+} from 'projects/caste-client-ng/src/public-api';
 
 @NgModule({
   declarations: [AppComponent],

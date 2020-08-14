@@ -1,9 +1,9 @@
 import { Injectable, Inject } from '@angular/core';
 import {
-  QBIT_AUTH_CONFIG,
-  QbitAuthConfig,
+  CASTE_AUTH_CONFIG,
   DEFAULT_CONFIG,
-} from '../qbit-auth.config';
+  CasteAuthConfig,
+} from '../caste-auth.config';
 import { HttpClient } from '@angular/common/http';
 import { Permission } from '../interfaces/permission.interface';
 import { PermissionResponse } from '../interfaces/permission_response.interface';
@@ -19,7 +19,7 @@ export class CastePermissionsService extends CasteCrudBase<
   public endpoint = 'permissions';
 
   constructor(
-    @Inject(QBIT_AUTH_CONFIG) config: QbitAuthConfig,
+    @Inject(CASTE_AUTH_CONFIG) config: CasteAuthConfig,
     http: HttpClient
   ) {
     super({ ...DEFAULT_CONFIG, ...config }, http);

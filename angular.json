@@ -180,33 +180,33 @@
         }
       }
     },
-    "qbit-auth": {
+    "caste-client-ng": {
       "projectType": "library",
-      "root": "projects/qbit-auth",
-      "sourceRoot": "projects/qbit-auth/src",
+      "root": "projects/caste-client-ng",
+      "sourceRoot": "projects/caste-client-ng/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/qbit-auth/tsconfig.lib.json",
-            "project": "projects/qbit-auth/ng-package.json"
+            "tsConfig": "projects/caste-client-ng/tsconfig.lib.json",
+            "project": "projects/caste-client-ng/ng-package.json"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/qbit-auth/src/test.ts",
-            "tsConfig": "projects/qbit-auth/tsconfig.spec.json",
-            "karmaConfig": "projects/qbit-auth/karma.conf.js"
+            "main": "projects/caste-client-ng/src/test.ts",
+            "tsConfig": "projects/caste-client-ng/tsconfig.spec.json",
+            "karmaConfig": "projects/caste-client-ng/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/qbit-auth/tsconfig.lib.json",
-              "projects/qbit-auth/tsconfig.spec.json"
+              "projects/caste-client-ng/tsconfig.lib.json",
+              "projects/caste-client-ng/tsconfig.spec.json"
             ],
             "exclude": ["**/node_modules/**"]
           }

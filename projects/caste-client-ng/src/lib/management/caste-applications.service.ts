@@ -1,13 +1,13 @@
 import { Injectable, Inject } from '@angular/core';
-import {
-  QBIT_AUTH_CONFIG,
-  QbitAuthConfig,
-  DEFAULT_CONFIG,
-} from '../qbit-auth.config';
 import { HttpClient } from '@angular/common/http';
 import { ApplicationResponse } from '../interfaces/applications_response.interface';
 import { ApplicationData } from '../interfaces/application_data.interface';
 import { CasteCrudBase } from '../base.crud.service';
+import {
+  CASTE_AUTH_CONFIG,
+  DEFAULT_CONFIG,
+  CasteAuthConfig,
+} from '../caste-auth.config';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +18,7 @@ export class CasteApplicationService extends CasteCrudBase<
 > {
   public endpoint = 'applications';
   constructor(
-    @Inject(QBIT_AUTH_CONFIG) config: QbitAuthConfig,
+    @Inject(CASTE_AUTH_CONFIG) config: CasteAuthConfig,
     http: HttpClient
   ) {
     super({ ...DEFAULT_CONFIG, ...config }, http);

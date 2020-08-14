@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import {
   QbitAuthService,
-} from 'projects/qbit-auth/src/public-api';
-import { ApiError } from 'projects/qbit-auth/src/lib/interfaces/api_error.interface';
+} from 'projects/caste-client-ng/src/public-api';
+import { ApiError } from 'projects/caste-client-ng/src/lib/interfaces/api_error.interface';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +14,6 @@ export class AppComponent {
 
   constructor(
     public qbitAuth: QbitAuthService,
-    public qbitManagement: QbitManagementService
   ) {
     this.signIn();
     // this.handleResponse(this.qbitManagement.getApplicationsList());

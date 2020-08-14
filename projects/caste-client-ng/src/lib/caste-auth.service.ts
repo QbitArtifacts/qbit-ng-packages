@@ -1,23 +1,19 @@
 import { Injectable, Inject } from '@angular/core';
 import { BaseService } from './base.service';
-import {
-  QBIT_AUTH_CONFIG,
-  QbitAuthConfig,
-  DEFAULT_CONFIG,
-} from './qbit-auth.config';
 import { HttpClient } from '@angular/common/http';
 import { SignUpDataInterface } from './interfaces/signup_data.interface';
 import { SignupResponse } from './interfaces/signup_response.interface';
 import { LoginDataInterface } from './interfaces/login_data.interface';
 import { LoginResponse } from './interfaces/login_response.interface';
 import { mapJwtTokenAndAttach, decodeJwt } from './jwt/jwt-decode';
+import { CASTE_AUTH_CONFIG, CasteAuthConfig, DEFAULT_CONFIG } from './caste-auth.config';
 
 @Injectable({
   providedIn: 'root',
 })
-export class QbitAuthService extends BaseService {
+export class CasteAuthService extends BaseService {
   constructor(
-    @Inject(QBIT_AUTH_CONFIG) config: QbitAuthConfig,
+    @Inject(CASTE_AUTH_CONFIG) config: CasteAuthConfig,
     http: HttpClient
   ) {
     super(http, { ...DEFAULT_CONFIG, ...config });
@@ -36,9 +32,9 @@ export class QbitAuthService extends BaseService {
 
   static isTokenValid(token: string): boolean {
     const hasToken = token !== null;
-    const tokenData = QbitAuthService.decodeToken(token);
+    const tokenData = CasteAuthService.decodeToken(token);
     if (hasToken && tokenData) {
-      const isExpired = QbitAuthService.isTokenExpired(tokenData);
+      const isExpired = CasteAuthService.isTokenExpired(tokenData);
       return !isExpired;
     }
 

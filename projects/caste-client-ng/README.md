@@ -17,7 +17,7 @@ To get started add this to your projects AppModule
 import {
   QbitAuthModule,
   QBIT_AUTH_CONFIG,
-} from '@qbitartifacts/qbit-auth';
+} from '@qbitartifacts/caste-client-ng';
 
 // Provide QBitAuth config
 const qbitAuthConfigProvider = {
@@ -39,7 +39,7 @@ Using auth service:
 ```typescript
 import {
   QbitAuthService,
-} from '@qbitartifacts/qbit-auth';
+} from '@qbitartifacts/caste-client-ng';
 
 @Component(...)
 export class AppComponent {

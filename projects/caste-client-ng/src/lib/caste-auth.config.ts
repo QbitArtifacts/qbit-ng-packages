@@ -1,13 +1,13 @@
 import { InjectionToken } from '@angular/core';
 
-export interface QbitAuthConfig {
+export interface CasteAuthConfig {
   realm: string;
   url: string;
   baseHeaders?: { [key: string]: string };
   tokenStorageKey?: string;
 }
 
-export const QBIT_AUTH_CONFIG = new InjectionToken<QbitAuthConfig>(
+export const CASTE_AUTH_CONFIG = new InjectionToken<CasteAuthConfig>(
   'app.config'
 );
 export const DEFAULT_CONFIG: any = {
