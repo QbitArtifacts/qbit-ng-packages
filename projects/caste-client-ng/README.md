@@ -1,12 +1,12 @@
-# QbitAuth
+# Caste Client (Angular)
 
-This project will hold all clases, services, components for QBit Authentication
+This project is an Angular client for [Caste](https://github.com/QbitArtifacts/caste)
 
 > This is a work in progress
 
 ## Usage
 
-For a full example see: [example project]()
+For a full example see: [example project](../../src)
 
 ### Basic Usage
 
@@ -15,13 +15,13 @@ To get started add this to your projects AppModule
 ```typescript
 // app.module.ts
 import {
-  QbitAuthModule,
-  QBIT_AUTH_CONFIG,
+  CasteAuthModule,
+  CASTE_AUTH_CONFIG,
 } from '@qbitartifacts/caste-client-ng';
 
-// Provide QBitAuth config
-const qbitAuthConfigProvider = {
-    provide: QBIT_AUTH_CONFIG,
+// Provide Caste config
+const qbitCasteConfigProvider = {
+    provide: CASTE_AUTH_CONFIG,
     useValue: {
         realm: 'default',
         url: 'https://api.caste.qbitartifacts.com',
@@ -29,22 +29,22 @@ const qbitAuthConfigProvider = {
 };
 
 @NgModule({
-    imports: [QbitAuthModule],
-    providers: [qbitAuthConfigProvider]
+    imports: [CasteAuthModule, /* and other modules */],
+    providers: [qbitCasteConfigProvider]
 });
 ```
 
-Using auth service:
+#### Using auth service:
 
 ```typescript
 import {
-  QbitAuthService,
+  CasteAuthService,
 } from '@qbitartifacts/caste-client-ng';
 
 @Component(...)
 export class AppComponent {
     constructor(
-        public qbitAuth: QbitAuthService,
+        public qbitAuth: CasteAuthService,
     ) {
         const signInReq = this.qbitAuth.signIn({
             username: 'username',
@@ -60,6 +60,57 @@ export class AppComponent {
         );
     }
 }
+```
+
+#### Exported Modules
+
+##### CasteAuthModule
+
+Import this module if you need auth.
+
+```ts
+import { CasteAuthModule } from '@qbitartifacts/caste-client-ng';
+```
+
+##### CasteManagementModule
+
+Import this module if you need management.
+
+```ts
+import { CasteManagementModule } from '@qbitartifacts/caste-client-ng';
+```
+
+#### Exported Services
+
+##### CasteAuthService
+This service offers authentication methods, ie: login, signup, etc.
+
+```ts
+import { CasteAuthService } from '@qbitartifacts/caste-client-ng';
+```
+
+##### CasteUsersService
+
+```ts
+import { CasteUsersService } from '@qbitartifacts/caste-client-ng';
+```
+
+##### CasteAccountsService
+
+```ts
+import { CasteAccountsService } from '@qbitartifacts/caste-client-ng';
+```
+
+##### CasteApplicationsService
+
+```ts
+import { CasteApplicationsService } from '@qbitartifacts/caste-client-ng';
+```
+
+##### CastePermissionsService
+
+```ts
+import { CastePermissionsService } from '@qbitartifacts/caste-client-ng';
 ```
 
 ## Status
