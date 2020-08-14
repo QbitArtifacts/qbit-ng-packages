@@ -1,14 +1,30 @@
-# Caste Client (Angular)
+# Caste Client (Angular) <!-- omit in toc -->
 
 This project is an Angular client for [Caste](https://github.com/QbitArtifacts/caste)
 
 > This is a work in progress
 
+## Table Of Contents <!-- omit in toc -->
+
+- [Usage](#usage)
+- [Setup AppModule](#setup-appmodule)
+- [Using CasteAuthService](#using-casteauthservice)
+- [Exported Modules](#exported-modules)
+  - [CasteAuthModule](#casteauthmodule)
+  - [CasteManagementModule](#castemanagementmodule)
+- [Exported Services](#exported-services)
+  - [CasteAuthService](#casteauthservice)
+  - [CasteUsersService](#casteusersservice)
+  - [CasteAccountsService](#casteaccountsservice)
+  - [CasteApplicationsService](#casteapplicationsservice)
+  - [CastePermissionsService](#castepermissionsservice)
+- [Status](#status)
+
 ## Usage
 
 For a full example see: [example project](../../src)
 
-### Basic Usage
+## Setup AppModule
 
 To get started add this to your projects AppModule
 
@@ -34,7 +50,7 @@ const qbitCasteConfigProvider = {
 });
 ```
 
-#### Using auth service:
+## Using CasteAuthService
 
 ```typescript
 import {
@@ -62,9 +78,9 @@ export class AppComponent {
 }
 ```
 
-#### Exported Modules
+## Exported Modules
 
-##### CasteAuthModule
+### CasteAuthModule
 
 Import this module if you need auth.
 
@@ -72,7 +88,7 @@ Import this module if you need auth.
 import { CasteAuthModule } from '@qbitartifacts/caste-client-ng';
 ```
 
-##### CasteManagementModule
+### CasteManagementModule
 
 Import this module if you need management.
 
@@ -80,34 +96,35 @@ Import this module if you need management.
 import { CasteManagementModule } from '@qbitartifacts/caste-client-ng';
 ```
 
-#### Exported Services
+## Exported Services
 
-##### CasteAuthService
+### CasteAuthService
+
 This service offers authentication methods, ie: login, signup, etc.
 
 ```ts
 import { CasteAuthService } from '@qbitartifacts/caste-client-ng';
 ```
 
-##### CasteUsersService
+### CasteUsersService
 
 ```ts
 import { CasteUsersService } from '@qbitartifacts/caste-client-ng';
 ```
 
-##### CasteAccountsService
+### CasteAccountsService
 
 ```ts
 import { CasteAccountsService } from '@qbitartifacts/caste-client-ng';
 ```
 
-##### CasteApplicationsService
+### CasteApplicationsService
 
 ```ts
 import { CasteApplicationsService } from '@qbitartifacts/caste-client-ng';
 ```
 
-##### CastePermissionsService
+### CastePermissionsService
 
 ```ts
 import { CastePermissionsService } from '@qbitartifacts/caste-client-ng';
