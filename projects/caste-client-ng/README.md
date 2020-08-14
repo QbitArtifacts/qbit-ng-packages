@@ -27,6 +27,8 @@ This project is an Angular client for [Caste](https://github.com/QbitArtifacts/c
 
 ### Install
 
+> You can follow the instructions [here](https://github.com/QbitArtifacts/qbit-ng-packages/packages/357576)
+
 First, you will need to authenticate against Github npm packages to be able to install package, see [this][gh-npm-install]
 
 You can either add a dependency to your package.json, change to the latest version.
