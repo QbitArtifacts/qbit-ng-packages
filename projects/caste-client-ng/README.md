@@ -7,8 +7,8 @@ This project is an Angular client for [Caste](https://github.com/QbitArtifacts/c
 ## Table Of Contents <!-- omit in toc -->
 
 - [Usage](#usage)
-- [Setup AppModule](#setup-appmodule)
-- [Using CasteAuthService](#using-casteauthservice)
+  - [Setup AppModule](#setup-appmodule)
+  - [Using CasteAuthService](#using-casteauthservice)
 - [Exported Modules](#exported-modules)
   - [CasteAuthModule](#casteauthmodule)
   - [CasteManagementModule](#castemanagementmodule)
@@ -24,7 +24,7 @@ This project is an Angular client for [Caste](https://github.com/QbitArtifacts/c
 
 For a full example see: [example project](../../src)
 
-## Setup AppModule
+### Setup AppModule
 
 To get started add this to your projects AppModule
 
@@ -50,7 +50,7 @@ const qbitCasteConfigProvider = {
 });
 ```
 
-## Using CasteAuthService
+### Using CasteAuthService
 
 ```typescript
 import {
