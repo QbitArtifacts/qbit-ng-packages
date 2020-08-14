@@ -6,15 +6,19 @@ import {
   CasteAuthConfig,
   DEFAULT_CONFIG,
 } from './caste-auth.config';
+import { CasteHttpClient } from './caste-http-client';
 
-export abstract class CasteCrudBase<T, R> extends BaseService {
-  public abstract endpoint: string;
+export abstract class CasteCrudBase<T, R> {
+  protected abstract endpoint: string;
+  private http: CasteHttpClient;
+  private opts: CasteAuthConfig = DEFAULT_CONFIG;
 
   constructor(
     @Inject(CASTE_AUTH_CONFIG) config: CasteAuthConfig,
     http: HttpClient
   ) {
-    super(http, { ...DEFAULT_CONFIG, ...config });
+    this.opts = config;
+    this.http = new CasteHttpClient(http, config);
   }
 
   protected getToken(): string {
@@ -22,22 +26,22 @@ export abstract class CasteCrudBase<T, R> extends BaseService {
   }
 
   public create(data: T) {
-    return this.post<R>(`/${this.endpoint}`, data);
+    return this.http.post<R>(`/${this.endpoint}`, data);
   }
 
   public listAll() {
-    return this.get<R[]>(`/${this.endpoint}`);
+    return this.http.get<R[]>(`/${this.endpoint}`);
   }
 
   public getOne(id: string) {
-    return this.get<R>(`/${this.endpoint}/${id}`);
+    return this.http.get<R>(`/${this.endpoint}/${id}`);
   }
 
   public update(id: string, data: T) {
-    return this.put<R>(`/${this.endpoint}/${id}`, data);
+    return this.http.put<R>(`/${this.endpoint}/${id}`, data);
   }
 
   public remove(id: string) {
-    return this.delete(`/${this.endpoint}/${id}`);
+    return this.http.delete(`/${this.endpoint}/${id}`);
   }
 }

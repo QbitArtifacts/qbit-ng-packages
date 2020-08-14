@@ -3,17 +3,16 @@ import {
   HttpHeaders,
   HttpParams,
 } from '@angular/common/http';
-import { Observable } from 'rxjs/internal/Observable';
+import {
+  DEFAULT_CONFIG,
+  CombinedConfig,
+  ApiError,
+} from 'dist/caste-client-ng/public-api';
+import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/internal/operators/map';
 import { catchError } from 'rxjs/internal/operators/catchError';
-import { throwError } from 'rxjs/internal/observable/throwError';
-import { ApiError } from './interfaces/api_error.interface';
-import { DEFAULT_CONFIG, CasteAuthConfig } from '../public-api';
 
-export type CombinedConfig<T = {}> = CasteAuthConfig & T;
-
-/** @dynamic */
-export abstract class BaseService<T = {}> {
+export class CasteHttpClient<T = {}> {
   protected opts: CombinedConfig<T> = DEFAULT_CONFIG;
   private http: HttpClient;
 
@@ -40,8 +39,9 @@ export abstract class BaseService<T = {}> {
     return [this.opts.url, ...url].join('');
   }
 
-  protected abstract getToken();
-
+  protected getToken(): string {
+    return localStorage.getItem(this.opts.tokenStorageKey);
+  }
   private getHeaders(overwriteHeaders: any = {}): HttpHeaders {
     const headers = new HttpHeaders({
       authorization: 'Bearer ' + this.getToken(),
@@ -51,7 +51,7 @@ export abstract class BaseService<T = {}> {
     return headers;
   }
 
-  protected get<T = any>(
+  public get<T = any>(
     url?: string | string[],
     params?: any,
     overwriteHeaders: any = {},
@@ -60,7 +60,7 @@ export abstract class BaseService<T = {}> {
     const headers = this.getHeaders(overwriteHeaders);
     let searchParams: HttpParams = new HttpParams();
 
-    BaseService.cleanObject(params);
+    CasteHttpClient.cleanObject(params);
 
     if (params instanceof Array) {
       for (const param of params) {
@@ -95,7 +95,7 @@ export abstract class BaseService<T = {}> {
       );
   }
 
-  protected delete<T = any>(
+  public delete<T = any>(
     url: string | string[],
     data: any = {},
     overwriteHeaders: any = {}
@@ -114,7 +114,7 @@ export abstract class BaseService<T = {}> {
       );
   }
 
-  protected post<T = any>(
+  public post<T = any>(
     url: string | string[],
     data: any,
     content_type: string = 'application/json',
@@ -126,7 +126,7 @@ export abstract class BaseService<T = {}> {
     });
     const options = { headers };
 
-    BaseService.cleanObject(data);
+    CasteHttpClient.cleanObject(data);
 
     let params = data;
     if (content_type === 'application/x-www-form-urlencoded') {
@@ -160,7 +160,7 @@ export abstract class BaseService<T = {}> {
       );
   }
 
-  protected patch<T = any>(
+  public patch<T = any>(
     url: string | string[],
     data: any,
     overwriteHeaders: any = {}
@@ -168,7 +168,7 @@ export abstract class BaseService<T = {}> {
     const headers = this.getHeaders(overwriteHeaders);
     const options = { headers };
 
-    BaseService.cleanObject(data);
+    CasteHttpClient.cleanObject(data);
 
     return this.http
       .patch(this.getUrl(url), data, options)
@@ -178,7 +178,7 @@ export abstract class BaseService<T = {}> {
       );
   }
 
-  protected put<T = any>(
+  public put<T = any>(
     url: string | string[],
     data: any,
     content_type: string = 'application/json',
@@ -190,7 +190,7 @@ export abstract class BaseService<T = {}> {
     });
     const options = { headers };
 
-    BaseService.cleanObject(data);
+    CasteHttpClient.cleanObject(data);
 
     return this.http
       .put(this.getUrl(url), data, options)
