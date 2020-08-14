@@ -4,7 +4,7 @@ export * from './lib/caste-auth.config';
 export * from './lib/caste-auth.module';
 
 // Management
-export * from './lib/caste-auth.module';
+export * from './lib/caste-management.module';
 export * from './lib/management/caste-applications.service';
 export * from './lib/management/caste-permissions.service';
 export * from './lib/management/caste-accounts.service';
