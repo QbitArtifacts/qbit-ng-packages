@@ -74,6 +74,8 @@ const qbitCasteConfigProvider = {
 });
 ```
 
+* The **realm** is the identifier of your application.
+
 ### Basic Usage
 
 ```typescript
