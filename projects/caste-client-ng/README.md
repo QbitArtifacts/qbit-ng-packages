@@ -6,9 +6,10 @@ This project is an Angular client for [Caste](https://github.com/QbitArtifacts/c
 
 ## Table Of Contents <!-- omit in toc -->
 
-- [Usage](#usage)
-  - [Setup AppModule](#setup-appmodule)
-  - [Using CasteAuthService](#using-casteauthservice)
+- [Getting Started](#getting-started)
+  - [Install](#install)
+  - [Setup](#setup)
+  - [Basic Usage](#basic-usage)
 - [Exported Modules](#exported-modules)
   - [CasteAuthModule](#casteauthmodule)
   - [CasteManagementModule](#castemanagementmodule)
@@ -20,11 +21,32 @@ This project is an Angular client for [Caste](https://github.com/QbitArtifacts/c
   - [CastePermissionsService](#castepermissionsservice)
 - [Status](#status)
 
-## Usage
+## Getting Started
 
-For a full example see: [example project](../../src)
+> _For a full example see: [example project](../../src)_
 
-### Setup AppModule
+### Install
+
+First, you will need to authenticate against Github npm packages to be able to install package, see [this][gh-npm-install]
+
+You can either add a dependency to your package.json, change to the latest version.
+
+```json
+{
+    "dependencies": {
+        ...
+        "@qbitartifacts/caste-client-ng": "<latest_version>"
+    }
+}
+```
+
+Or install from cmd:
+
+```
+$ npm install @qbitartifacts/caste-client-ng
+```
+
+### Setup
 
 To get started add this to your projects AppModule
 
@@ -50,7 +72,7 @@ const qbitCasteConfigProvider = {
 });
 ```
 
-### Using CasteAuthService
+### Basic Usage
 
 ```typescript
 import {
@@ -139,3 +161,8 @@ Coverage reports:
 <!-- BADGES_END -->
 
 > This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.14.
+
+<!-- Links -->
+
+[gh-npm-auth]: https://docs.github.com/en/packages/using-github-packages-with-your-projects-ecosystem/configuring-npm-for-use-with-github-packages#authenticating-to-github-packages
+[gh-npm-install]: https://docs.github.com/en/packages/using-github-packages-with-your-projects-ecosystem/configuring-npm-for-use-with-github-packages#installing-a-package
