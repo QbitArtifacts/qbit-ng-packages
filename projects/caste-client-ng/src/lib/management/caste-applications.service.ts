@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ApplicationResponse } from '../interfaces/applications_response.interface';
+import { ApplicationResponse } from '../interfaces/application_response.interface';
 import { ApplicationData } from '../interfaces/application_data.interface';
 import { CasteCrudBase } from '../base.crud.service';
 import {

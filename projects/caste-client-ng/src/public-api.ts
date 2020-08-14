@@ -12,3 +12,4 @@ export * from './lib/management/caste-users.service';
 
 // Other stuff
 export * from './lib/base.service';
+export * from './lib/interfaces';
