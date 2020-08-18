@@ -1,16 +1,16 @@
 import { AppPage } from './app.po';
 import { browser, logging } from 'protractor';
 
-describe('workspace-project App', () => {
+describe('App', () => {
   let page: AppPage;
 
   beforeEach(() => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should load login page', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('qbit-ng-packages app is running!');
+    expect(page.getTitle()).toEqual('Login | Trading Bots');
   });
 
   afterEach(async () => {

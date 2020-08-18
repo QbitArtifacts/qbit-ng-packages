@@ -44,11 +44,15 @@ export abstract class BaseService<T = {}> {
   protected abstract getToken();
 
   private getHeaders(overwriteHeaders: any = {}): HttpHeaders {
+    const token = this.getToken();
     const headers = new HttpHeaders({
-      authorization: 'Bearer ' + this.getToken(),
       ...this.opts.baseHeaders,
       ...overwriteHeaders,
     });
+
+    if (token) {
+      headers.set('Authorization', `Bearer ${token}`);
+    }
     return headers;
   }
 
