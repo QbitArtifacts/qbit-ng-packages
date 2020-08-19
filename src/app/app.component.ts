@@ -1,3 +1,4 @@
+import { CasteAccountsService } from './../../projects/caste-client-ng/src/lib/management/caste-accounts.service';
 import { Component } from '@angular/core';
 import {
   CasteAuthService,
@@ -15,7 +16,8 @@ export class AppComponent {
 
   constructor(
     public casteAuth: CasteAuthService,
-    public users: CasteUsersService
+    public users: CasteUsersService,
+    public account: CasteAccountsService
   ) {
     this.signIn().subscribe((resp) => {
       console.log(resp);

@@ -8,7 +8,7 @@ import {
 } from './caste-auth.config';
 
 export abstract class CasteCrudBase<T, R> extends BaseService {
-  public abstract endpoint: string;
+  protected abstract endpoint: string;
 
   constructor(
     @Inject(CASTE_AUTH_CONFIG) config: CasteAuthConfig,
@@ -19,7 +19,6 @@ export abstract class CasteCrudBase<T, R> extends BaseService {
 
   protected getToken(): string {
     const token = localStorage.getItem(this.opts.tokenStorageKey);
-    console.log({ token });
     return token;
   }
 
