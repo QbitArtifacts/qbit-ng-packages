@@ -4,3 +4,7 @@ export interface Account {
   created_at?: string;
   updated_at?: string;
 }
+
+export interface NewAccount {
+  name: string;
+}
