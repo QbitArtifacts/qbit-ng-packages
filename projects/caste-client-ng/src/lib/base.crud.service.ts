@@ -18,7 +18,9 @@ export abstract class CasteCrudBase<T, R> extends BaseService {
   }
 
   protected getToken(): string {
-    return localStorage.getItem(this.opts.tokenStorageKey);
+    const token = localStorage.getItem(this.opts.tokenStorageKey);
+    console.log({ token });
+    return token;
   }
 
   public create(data: T) {

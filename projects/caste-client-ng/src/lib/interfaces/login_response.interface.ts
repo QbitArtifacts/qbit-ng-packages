@@ -12,5 +12,6 @@ export interface LoginResponse {
   username: string;
   application: Application;
   ip: string;
+  id: string;
   permissions: any;
 }

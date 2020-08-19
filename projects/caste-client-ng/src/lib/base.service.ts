@@ -1,4 +1,3 @@
-import { Injectable } from '@angular/core';
 import {
   HttpClient,
   HttpHeaders,
@@ -45,15 +44,15 @@ export abstract class BaseService<T = {}> {
 
   private getHeaders(overwriteHeaders: any = {}): HttpHeaders {
     const token = this.getToken();
-    const headers = new HttpHeaders({
+    const headersObj = {
       ...this.opts.baseHeaders,
       ...overwriteHeaders,
-    });
+    };
 
     if (token) {
-      headers.set('Authorization', `Bearer ${token}`);
+      headersObj.Authorization = `Bearer ${token}`;
     }
-    return headers;
+    return new HttpHeaders(headersObj);
   }
 
   protected get<T = any>(
