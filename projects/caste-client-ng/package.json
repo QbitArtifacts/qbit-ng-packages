@@ -1,6 +1,6 @@
 {
   "name": "@qbitartifacts/caste-client-ng",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "peerDependencies": {
     "rxjs": "~6.4.0",
     "@angular/common": "^8.2.14",
