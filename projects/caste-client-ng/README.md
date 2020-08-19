@@ -15,6 +15,7 @@ This project is an Angular client for [Caste](https://github.com/QbitArtifacts/c
   - [CasteManagementModule](#castemanagementmodule)
 - [Exported Services](#exported-services)
   - [CasteAuthService](#casteauthservice)
+  - [CasteUserService](#casteuserservice)
   - [CasteUsersService](#casteusersservice)
   - [CasteAccountsService](#casteaccountsservice)
   - [CasteApplicationsService](#casteapplicationsservice)
@@ -74,7 +75,7 @@ const qbitCasteConfigProvider = {
 });
 ```
 
-* The **realm** is the identifier of your application.
+- The **realm** is the identifier of your application.
 
 ### Basic Usage
 
@@ -130,6 +131,14 @@ This service offers authentication methods, ie: login, signup, etc.
 
 ```ts
 import { CasteAuthService } from '@qbitartifacts/caste-client-ng';
+```
+
+### CasteUserService
+
+This service manages calls for authentcated user
+
+```ts
+import { CasteUserService } from '@qbitartifacts/caste-client-ng';
 ```
 
 ### CasteUsersService
