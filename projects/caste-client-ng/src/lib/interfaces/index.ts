@@ -15,4 +15,6 @@ export * from './permission_response.interface';
 
 export * from './application.interface';
 export * from './application_response.interface';
+
 export * from './api_error.interface';
+export * from './give_permissions.interface';

@@ -9,6 +9,7 @@ export * from './lib/management/caste-applications.service';
 export * from './lib/management/caste-permissions.service';
 export * from './lib/management/caste-accounts.service';
 export * from './lib/management/caste-users.service';
+export * from './lib/management/caste-user.service';
 
 // Other stuff
 export * from './lib/base.service';
