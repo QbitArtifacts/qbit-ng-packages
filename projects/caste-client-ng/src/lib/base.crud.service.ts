@@ -26,8 +26,8 @@ export abstract class CasteCrudBase<T, R> extends BaseService {
     return this.post<R>(`/${this.endpoint}`, data);
   }
 
-  public listAll() {
-    return this.get<R[]>(`/${this.endpoint}`);
+  public listAll(params?: { [key: string]: string }) {
+    return this.get<R[]>(`/${this.endpoint}`, params);
   }
 
   public getOne(id: string) {

@@ -22,7 +22,11 @@ export class AppComponent {
     this.signIn().subscribe((resp) => {
       console.log(resp);
       casteAuth.saveToken(resp.token);
-      this.handleResponse(users.getOne(resp.id));
+      this.handleResponse(
+        users.listAll({
+          username: 'manolo',
+        })
+      );
     });
   }
 
@@ -36,8 +40,8 @@ export class AppComponent {
 
   public signIn() {
     return this.casteAuth.signIn({
-      username: 'manolo',
-      password: 'test123',
+      username: 'manolo_sa2',
+      password: 'AkxED2Ap8e6a',
       realm: 'default',
     });
   }
