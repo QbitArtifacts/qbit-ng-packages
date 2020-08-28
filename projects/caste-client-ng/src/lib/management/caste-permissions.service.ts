@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 import { Permission } from '../interfaces/permission.interface';
 import { PermissionResponse } from '../interfaces/permission_response.interface';
 import { CasteCrudBase } from '../base.crud.service';
+import { GivePermissions } from '../interfaces/give_permissions.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -23,5 +24,12 @@ export class CastePermissionsService extends CasteCrudBase<
     http: HttpClient
   ) {
     super({ ...DEFAULT_CONFIG, ...config }, http);
+  }
+
+  givePermissionByUsername(data: GivePermissions) {
+    return this.post<PermissionResponse>(
+      `/user/${this.endpoint}`,
+      data
+    );
   }
 }

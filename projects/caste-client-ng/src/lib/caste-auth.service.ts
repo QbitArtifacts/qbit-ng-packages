@@ -6,7 +6,11 @@ import { SignupResponse } from './interfaces/signup_response.interface';
 import { LoginDataInterface } from './interfaces/login_data.interface';
 import { LoginResponse } from './interfaces/login_response.interface';
 import { mapJwtTokenAndAttach, decodeJwt } from './jwt/jwt-decode';
-import { CASTE_AUTH_CONFIG, CasteAuthConfig, DEFAULT_CONFIG } from './caste-auth.config';
+import {
+  CASTE_AUTH_CONFIG,
+  CasteAuthConfig,
+  DEFAULT_CONFIG,
+} from './caste-auth.config';
 
 @Injectable({
   providedIn: 'root',
@@ -50,14 +54,14 @@ export class CasteAuthService extends BaseService {
   }
 
   public signUp(signupData: SignUpDataInterface) {
-    return this.post<SignupResponse>('/app/sign_up', {
+    return this.post<SignupResponse>('/public/users', {
       realm: this.opts.realm,
       ...signupData,
     });
   }
 
   public signIn(loginData: LoginDataInterface) {
-    return this.post<LoginResponse>('/app/token', {
+    return this.post<LoginResponse>('/public/token', {
       realm: this.opts.realm,
       ...loginData,
     }).pipe(mapJwtTokenAndAttach);

@@ -4,7 +4,7 @@ import { Application } from './application.interface';
 export interface UserResponse {
   username: string;
   roles: string[];
-  application: string;
+  application: Application;
   permissions: Permission[];
   applications: Application[];
   id?: string;
