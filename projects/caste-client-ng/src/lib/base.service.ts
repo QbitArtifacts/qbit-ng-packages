@@ -1,8 +1,4 @@
-import {
-  HttpClient,
-  HttpHeaders,
-  HttpParams,
-} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/internal/operators/map';
 import { catchError } from 'rxjs/internal/operators/catchError';
@@ -11,6 +7,7 @@ import { ApiError } from './interfaces/api_error.interface';
 import { CasteAuthConfig, DEFAULT_CONFIG } from './caste-auth.config';
 
 export type CombinedConfig<T = {}> = CasteAuthConfig & T;
+export type ValidConfigKeys<T = any> = keyof CombinedConfig<T>;
 
 /** @dynamic */
 export abstract class BaseService<T = {}> {
@@ -20,6 +17,14 @@ export abstract class BaseService<T = {}> {
   constructor(http: HttpClient, config: CombinedConfig<T>) {
     this.opts = config;
     this.http = http;
+  }
+
+  public setConfig(config: CombinedConfig<T>) {
+    this.opts = config;
+  }
+
+  public addConfig(key: ValidConfigKeys<T>, value: any) {
+    this.opts[key] = value;
   }
 
   private static cleanObject(obj: object) {
@@ -59,7 +64,7 @@ export abstract class BaseService<T = {}> {
     url?: string | string[],
     params?: any,
     overwriteHeaders: any = {},
-    overwriteOptions: any = {}
+    overwriteOptions: any = {},
   ): Observable<T> {
     const headers = this.getHeaders(overwriteHeaders);
     let searchParams: HttpParams = new HttpParams();
@@ -93,17 +98,10 @@ export abstract class BaseService<T = {}> {
 
     return this.http
       .get(this.getUrl(url), options)
-      .pipe(
-        map(this.extractData),
-        catchError(this.handleError.bind(this))
-      );
+      .pipe(map(this.extractData), catchError(this.handleError.bind(this)));
   }
 
-  protected delete<T = any>(
-    url: string | string[],
-    data: any = {},
-    overwriteHeaders: any = {}
-  ): Observable<T> {
+  protected delete<T = any>(url: string | string[], data: any = {}, overwriteHeaders: any = {}): Observable<T> {
     const headers = this.getHeaders(overwriteHeaders);
     const options = {
       body: data,
@@ -112,17 +110,14 @@ export abstract class BaseService<T = {}> {
 
     return this.http
       .delete(this.getUrl(url), options)
-      .pipe(
-        map(this.extractData),
-        catchError(this.handleError.bind(this))
-      );
+      .pipe(map(this.extractData), catchError(this.handleError.bind(this)));
   }
 
   protected post<T = any>(
     url: string | string[],
     data: any,
     content_type: string = 'application/json',
-    overwriteHeaders: any = {}
+    overwriteHeaders: any = {},
   ): Observable<T> {
     const headers = this.getHeaders({
       'Content-Type': content_type,
@@ -158,17 +153,10 @@ export abstract class BaseService<T = {}> {
 
     return this.http
       .post(this.getUrl(url), params, options)
-      .pipe(
-        map(this.extractData),
-        catchError(this.handleError.bind(this))
-      );
+      .pipe(map(this.extractData), catchError(this.handleError.bind(this)));
   }
 
-  protected patch<T = any>(
-    url: string | string[],
-    data: any,
-    overwriteHeaders: any = {}
-  ): Observable<T> {
+  protected patch<T = any>(url: string | string[], data: any, overwriteHeaders: any = {}): Observable<T> {
     const headers = this.getHeaders(overwriteHeaders);
     const options = { headers };
 
@@ -176,17 +164,14 @@ export abstract class BaseService<T = {}> {
 
     return this.http
       .patch(this.getUrl(url), data, options)
-      .pipe(
-        map(this.extractData),
-        catchError(this.handleError.bind(this))
-      );
+      .pipe(map(this.extractData), catchError(this.handleError.bind(this)));
   }
 
   protected put<T = any>(
     url: string | string[],
     data: any,
     content_type: string = 'application/json',
-    overwriteHeaders: any = {}
+    overwriteHeaders: any = {},
   ): Observable<T> {
     const headers = this.getHeaders({
       'content-type': content_type,
@@ -198,10 +183,7 @@ export abstract class BaseService<T = {}> {
 
     return this.http
       .put(this.getUrl(url), data, options)
-      .pipe(
-        map(this.extractData),
-        catchError(this.handleError.bind(this))
-      );
+      .pipe(map(this.extractData), catchError(this.handleError.bind(this)));
   }
 
   private extractData(res: any) {
