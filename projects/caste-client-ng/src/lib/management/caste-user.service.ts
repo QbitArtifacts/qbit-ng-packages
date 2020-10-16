@@ -1,10 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {
-  CASTE_AUTH_CONFIG,
-  DEFAULT_CONFIG,
-  CasteAuthConfig,
-} from '../caste-auth.config';
+import { CASTE_AUTH_CONFIG, DEFAULT_CONFIG, CasteAuthConfig } from '../caste-auth.config';
 import { BaseService } from '../base.service';
 import { NewAccount } from '../interfaces/account.interface';
 import { GivePermissions } from '../interfaces/give_permissions.interface';
@@ -16,15 +12,19 @@ import { GivePermissions } from '../interfaces/give_permissions.interface';
   providedIn: 'root',
 })
 export class CasteUserService extends BaseService {
-  constructor(
-    @Inject(CASTE_AUTH_CONFIG) config: CasteAuthConfig,
-    http: HttpClient
-  ) {
+  constructor(@Inject(CASTE_AUTH_CONFIG) config: CasteAuthConfig, http: HttpClient) {
     super(http, { ...DEFAULT_CONFIG, ...config });
   }
 
   public getToken(): string {
     return localStorage.getItem(this.opts.tokenStorageKey);
+  }
+
+  public verifyEmail(userId: string, token: string) {
+    return this.post(`/public/users/${userId}/verify`, {
+      realm: this.opts.realm,
+      code: token,
+    });
   }
 
   public createNewAccount(data: NewAccount) {

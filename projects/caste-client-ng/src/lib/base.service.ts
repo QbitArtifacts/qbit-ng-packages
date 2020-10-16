@@ -186,13 +186,27 @@ export abstract class BaseService<T = {}> {
       .pipe(map(this.extractData), catchError(this.handleError.bind(this)));
   }
 
-  private extractData(res: any) {
-    return res;
+  public extractData(res: any) {
+    if (res && res['hydra:member']) {
+      const data = res['hydra:member'].map((el) => {
+        el.id = el['@id'].split('/').pop();
+        return el;
+      });
+
+      return {
+        data,
+        total: res['hydra:totalItems'],
+      };
+    }
   }
 
-  private handleError(error: Response | any): Observable<ApiError> {
+  public handleError(error: Response | any): Observable<ApiError> {
+    // Handle hydra errors
+    if (error.originalError) return throwError(error.originalError);
+
+    // Other errors
     let cleanError = error;
-    const errStr = error.error || error;
+    const errStr = error.originalError || error.error || error;
 
     if (typeof errStr === 'string') {
       try {
