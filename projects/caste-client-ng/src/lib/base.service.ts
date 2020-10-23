@@ -12,7 +12,7 @@ export type ValidConfigKeys<T = any> = keyof CombinedConfig<T>;
 /** @dynamic */
 export abstract class BaseService<T = {}> {
   protected opts: CombinedConfig<T> = DEFAULT_CONFIG;
-  private http: HttpClient;
+  public http: HttpClient;
 
   constructor(http: HttpClient, config: CombinedConfig<T>) {
     this.opts = config;
@@ -188,40 +188,34 @@ export abstract class BaseService<T = {}> {
 
   public extractData(res: any) {
     if (res && res['hydra:member']) {
-      const data = res['hydra:member'].map((el) => {
-        el.id = el['@id'].split('/').pop();
+      const data = res['hydra:member'];
+      const mapping = res['hydra:search']['hydra:mapping'].map((el) => {
+        if (el.variable.includes('order')) {
+          el.type = 'order';
+        } else if (!el.variable.includes('[]')) {
+          el.type = 'search';
+        }
         return el;
       });
 
       return {
         data,
+        search: mapping.filter((el) => el.type === 'search'),
+        order: mapping.filter((el) => el.type === 'order'),
         total: res['hydra:totalItems'],
       };
     }
+
+    return res;
   }
 
-  public handleError(error: Response | any): Observable<ApiError> {
-    // Handle hydra errors
-    if (error.originalError) return throwError(error.originalError);
+  public handleError(err) {
+    const error = err.originalError || err.error || err;
 
-    // Other errors
-    let cleanError = error;
-    const errStr = error.originalError || error.error || error;
-
-    if (typeof errStr === 'string') {
-      try {
-        cleanError = JSON.parse(errStr);
-      } catch (error) {
-        cleanError = errStr;
-      }
+    if (error['hydra:description']) {
+      error.message = error['hydra:description'];
     }
 
-    const errorWithStatus = {
-      ...cleanError.error,
-      status: cleanError.status,
-      originalError: cleanError,
-    };
-
-    return throwError(errorWithStatus);
+    return throwError(error);
   }
 }

@@ -1,7 +1,7 @@
-import { QEventsService } from './services/events.service';
 import { NgModule } from '@angular/core';
+import { TableHeaderComponent } from './components/table-header/table-header.component';
 
 @NgModule({
-  providers: [QEventsService],
+  declarations: [TableHeaderComponent],
 })
 export class QbitkitNgModule {}

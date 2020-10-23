@@ -3,4 +3,4 @@
  */
 
 export * from './lib/qbitkit-ng.module';
-export * from './lib/services/events.service';
+export * from './lib/components/table-header/table-header.component';
