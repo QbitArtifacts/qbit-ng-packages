@@ -7,6 +7,8 @@ import { LoginDataInterface } from './interfaces/login_data.interface';
 import { LoginResponse } from './interfaces/login_response.interface';
 import { mapJwtTokenAndAttach, decodeJwt } from './jwt/jwt-decode';
 import { CASTE_AUTH_CONFIG, CasteAuthConfig, DEFAULT_CONFIG } from './caste-auth.config';
+import { catchError } from 'rxjs/internal/operators/catchError';
+import { map } from 'rxjs/internal/operators/map';
 
 @Injectable({
   providedIn: 'root',
@@ -47,16 +49,18 @@ export class CasteAuthService extends BaseService {
   }
 
   public signUp(signupData: SignUpDataInterface) {
-    return this.http.post<SignupResponse>(
-      `${this.opts.url}/public/users`,
-      {
-        realm: this.opts.realm,
-        ...signupData,
-      },
-      {
-        headers: this.opts.baseHeaders,
-      },
-    );
+    return this.http
+      .post<SignupResponse>(
+        `${this.opts.url}/public/users`,
+        {
+          realm: this.opts.realm,
+          ...signupData,
+        },
+        {
+          headers: this.opts.baseHeaders,
+        },
+      )
+      .pipe(map(this.extractData), catchError(this.handleError.bind(this)));
   }
 
   public signIn(loginData: LoginDataInterface) {
@@ -71,6 +75,6 @@ export class CasteAuthService extends BaseService {
           headers: this.opts.baseHeaders,
         },
       )
-      .pipe(mapJwtTokenAndAttach);
+      .pipe(mapJwtTokenAndAttach, catchError(this.handleError.bind(this)));
   }
 }
