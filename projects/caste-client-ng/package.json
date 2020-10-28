@@ -1,11 +1,11 @@
 {
   "name": "@qbitartifacts/caste-client-ng",
-  "version": "0.3.16",
+  "version": "1.0.2",
   "peerDependencies": {
-    "rxjs": "~6.4.0",
-    "@angular/common": "^8.2.14",
-    "@angular/core": "^8.2.14",
-    "jwt-decode": "^2.2.0"
+    "rxjs": "~6.6.3",
+    "@angular/common": "~10.2.0",
+    "@angular/core": "~10.2.0",
+    "jwt-decode": "^3.0.0"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
