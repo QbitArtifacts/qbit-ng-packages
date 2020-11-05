@@ -41,7 +41,7 @@ export class CasteUserService extends BaseService {
     return this.httpClient
       .post(
         `${this.opts.url}/public/users/recover`,
-        { username },
+        { username, realm: this.opts.realm },
         {
           headers: this.opts.baseHeaders,
         },
@@ -53,7 +53,7 @@ export class CasteUserService extends BaseService {
     return this.httpClient
       .put(
         `${this.opts.url}/public/users/${userId}/recover`,
-        { code, password },
+        { code, password, realm: this.opts.realm },
         {
           headers: this.opts.baseHeaders,
         },
