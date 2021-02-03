@@ -6,14 +6,18 @@ describe('DebugScreenComponent', () => {
   let component: DebugScreenComponent;
   let fixture: ComponentFixture<DebugScreenComponent>;
 
-  beforeEach(async(() => {
+  afterEach(() => {
+    TestBed.resetTestingModule();
+  }); beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ DebugScreenComponent ]
     })
     .compileComponents();
   }));
 
-  beforeEach(() => {
+  afterEach(() => {
+    TestBed.resetTestingModule();
+  }); beforeEach(() => {
     fixture = TestBed.createComponent(DebugScreenComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

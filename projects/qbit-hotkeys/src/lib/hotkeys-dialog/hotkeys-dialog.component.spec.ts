@@ -16,7 +16,9 @@ describe('HotkeysDialogComponent', () => {
   let component: HotkeysDialogComponent;
   let fixture: ComponentFixture<HotkeysDialogComponent>;
 
-  beforeEach(async(() => {
+  afterEach(() => {
+    TestBed.resetTestingModule();
+  }); beforeEach(async(() => {
     TestBed.configureTestingModule({
       providers: [
         {
@@ -30,7 +32,9 @@ describe('HotkeysDialogComponent', () => {
     }).compileComponents();
   }));
 
-  beforeEach(() => {
+  afterEach(() => {
+    TestBed.resetTestingModule();
+  }); beforeEach(() => {
     fixture = TestBed.createComponent(HotkeysDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

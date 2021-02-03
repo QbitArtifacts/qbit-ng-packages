@@ -3,7 +3,9 @@ import { CasteUsersService } from './caste-users.service';
 
 
 describe('CasteUsersService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  afterEach(() => {
+    TestBed.resetTestingModule();
+  }); beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
     const service: CasteUsersService = TestBed.get(CasteUsersService);

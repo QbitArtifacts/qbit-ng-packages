@@ -14,7 +14,9 @@ const SHORTCUTS = {
 };
 
 describe('HotkeysService', () => {
-  beforeEach(() =>
+  afterEach(() => {
+    TestBed.resetTestingModule();
+  }); beforeEach(() =>
     TestBed.configureTestingModule({
       providers: [HotkeysService],
     })

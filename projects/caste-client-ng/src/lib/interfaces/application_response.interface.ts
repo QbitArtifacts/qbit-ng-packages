@@ -4,4 +4,6 @@ export interface ApplicationResponse {
   name: string;
   realm: string;
   updated_at: string;
+  grants: string[];
+  default_grants: string[];
 }

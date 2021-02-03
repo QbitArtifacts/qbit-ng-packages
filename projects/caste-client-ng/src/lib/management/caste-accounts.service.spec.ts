@@ -3,7 +3,9 @@ import { CasteAccountsService } from './caste-accounts.service';
 
 
 describe('CasteAccountsService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  afterEach(() => {
+    TestBed.resetTestingModule();
+  }); beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
     const service: CasteAccountsService = TestBed.get(CasteAccountsService);

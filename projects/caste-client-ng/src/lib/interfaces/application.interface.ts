@@ -1,4 +1,9 @@
 export interface Application {
-  name: string;
-  realm: string;
+  id?: string;
+  name?: string;
+  realm?: string;
+  created_at?: string;
+  updated_at?: string;
+  grants?: string[];
+  default_grants?: string[];
 }
