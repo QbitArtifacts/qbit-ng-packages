@@ -14,4 +14,5 @@ export class Permission implements IPermission {
   iri: string;
   created_at: string;
   updated_at: string;
+  
 }
