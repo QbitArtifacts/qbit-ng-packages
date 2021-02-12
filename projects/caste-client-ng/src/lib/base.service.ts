@@ -3,7 +3,6 @@ import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/internal/operators/map';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { throwError } from 'rxjs/internal/observable/throwError';
-import { ApiError } from './interfaces/api_error.interface';
 import { CasteAuthConfig, DEFAULT_CONFIG } from './caste-auth.config';
 
 export type CombinedConfig<T = {}> = CasteAuthConfig & T;
