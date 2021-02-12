@@ -20,6 +20,7 @@ export class Account implements IAccount {
   static fromJson(obj: any): Account {
     const account = new Account();
     account.id = obj.id;
+    account.iri = obj['@id'];
     account.name = obj.name;
     account.application = obj.application;
     account.permissions =
