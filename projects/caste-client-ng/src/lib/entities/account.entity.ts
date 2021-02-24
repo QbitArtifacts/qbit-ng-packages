@@ -5,7 +5,7 @@ import { IBaseEntity } from './base.entity';
 export interface IAccount extends IBaseEntity {
   permissions?: string[];
   name: string;
-  application: Application;
+  application: Application | string;
 }
 
 export class Account implements IAccount {

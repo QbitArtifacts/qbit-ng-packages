@@ -1,0 +1,13 @@
+<div class="centered">
+    <button mat-button [matMenuTriggerFor]="menu" [disabled]="disabled" aria-label="Menu for permissions">
+        <span>{{'PERMISSIONS'|translate}} ({{grantSelection?.selectedOptions.selected.length}})</span>
+    </button>
+    <mat-menu #menu="matMenu" (closed)="emitChanges()">
+        <mat-selection-list #grantSelection (selectionChange)="selectionChanged  = true">
+            <mat-list-option [selected]="grant.selected" (click)="$event.stopPropagation()" *ngFor="let grant of grants"
+                [value]="grant">
+                {{grant.name}}
+            </mat-list-option>
+        </mat-selection-list>
+    </mat-menu>
+</div>

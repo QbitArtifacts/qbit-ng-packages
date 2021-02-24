@@ -1,0 +1,3 @@
+<app-account-selector [disabled]="app$.isImpersonating" *ngIf="account" [accounts]="accounts" [account]="account"
+    (selected)="selectAccount($event)">
+</app-account-selector>
