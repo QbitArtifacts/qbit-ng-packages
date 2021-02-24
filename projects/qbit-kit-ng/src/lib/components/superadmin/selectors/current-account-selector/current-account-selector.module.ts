@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { SaCurrentAccountSelectorComponent } from './current-account-selector.component';
-import { SaCommonModule } from './../../../../common.module';
+import { QCommonModule } from './../../../../common.module';
 
 @NgModule({
-  imports: [SaCommonModule],
+  imports: [QCommonModule],
   declarations: [SaCurrentAccountSelectorComponent],
   exports: [SaCurrentAccountSelectorComponent],
 })

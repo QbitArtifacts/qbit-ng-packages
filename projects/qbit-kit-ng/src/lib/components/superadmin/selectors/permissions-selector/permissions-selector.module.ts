@@ -1,9 +1,9 @@
 import { SaPermissionsSelectorComponent } from './permissions-selector.component';
-import { SaCommonModule } from '../../../../common.module';
+import { QCommonModule } from '../../../../common.module';
 import { NgModule } from '@angular/core';
 
 @NgModule({
-  imports: [SaCommonModule],
+  imports: [QCommonModule],
   declarations: [SaPermissionsSelectorComponent],
   exports: [SaPermissionsSelectorComponent],
 })

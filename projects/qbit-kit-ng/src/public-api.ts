@@ -8,10 +8,12 @@ export * from './lib/components/superadmin/selectors/current-account-selector/cu
 export * from './lib/components/superadmin/selectors/permissions-selector/permissions-selector.module';
 
 // Qbit components
-export * from './lib/components/qbit/navigation/breadcrumbs/breadcrumbs-selector.module';
+export * from './lib/breadcrumbs.module';
 
 // Services
 export * from './lib/services/events.service';
 export * from './lib/services/breadcrumbs.service';
 export * from './lib/services/snackbar.service';
+export * from './lib/services/sidemenu.service';
 export * from './lib/snackbar.module';
+export * from './lib/sidemenu.module';

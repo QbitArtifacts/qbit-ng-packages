@@ -1,10 +1,10 @@
-import { SaCommonModule } from '../../../../common.module';
+import { QCommonModule } from './common.module';
 import { NgModule } from '@angular/core';
-import { QBreadcrumbsComponent } from './breadcrumbs.component';
+import { QBreadcrumbsComponent } from './components/qbit/navigation/breadcrumbs/breadcrumbs.component';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
-  imports: [SaCommonModule, RouterModule],
+  imports: [QCommonModule, RouterModule],
   declarations: [QBreadcrumbsComponent],
   exports: [QBreadcrumbsComponent],
 })
