@@ -1,6 +1,6 @@
-# @QbitArtifacts/QBitKit
+# @qbitartifacts/qbit-kit-ng
 
-This library holds a set of standard classes.
+This library holds a variety of components, services, directives, and other stuff used by @QbitArtifacts in most Angular 8+ projects.
 
 ## Getting Started
 
@@ -14,7 +14,7 @@ You can either add a dependency to your package.json, change to the latest versi
 {
     "dependencies": {
         ...
-        "@qbitartifacts/qbitkit-ng": "^0.0.8"
+        "@qbitartifacts/qbit-kit-ng": "<latest_version>"
     }
 }
 ```
@@ -22,35 +22,12 @@ You can either add a dependency to your package.json, change to the latest versi
 Or install from cmd:
 
 ```
-$ npm install @qbitartifacts/qbitkit-ng@latest
+$ npm install @qbitartifacts/qbit-kit-ng
 ```
 
 ### Usage
 
-#### QEventsService
-
-This service is used as a pub-sub internally, with some extra functionality.
-
-**Usage:**
-
-```ts
-import { QEventsService } from '@qbitkit-ng/public-api';
-
-class MyComponent {
-  constructor(public events$: EventsService) {
-    this.events.on('event-name').subscribe(action);
-
-    // You can find a specific event as well
-    this.events.find('event-name').subscribe(action);
-
-    // Fire event
-    this.events.fire('event-name', { data: 'goes here' });
-
-    // Remove listener
-    this.events.off('event-name');
-  }
-}
-```
+Check out the [Wiki][wiki] for docs on how to use the package.
 
 ## Publishing
 To publish a new package version, please follow these simple steps:
@@ -60,17 +37,6 @@ To publish a new package version, please follow these simple steps:
 1. Increase version
 2. Run `ng build qbitkit-ng`
 3. Go to `../../dist/qbitkit-ng`
-4. Publish `npm publish`
-
-## Publishing
-
-To publish a new package version, please follow these simple steps:
-
-> You must be [Authenticated to GitHub Packages][gh-npm-auth]
-
-1. Increase version
-2. Run `ng build hotkeys`
-3. Go to `../../dist/hotkeys`
 4. Publish `npm publish`
 
 ## Status
@@ -90,3 +56,4 @@ Coverage reports:
 <!-- BADGES_END -->
 
 [gh-npm-auth]: https://docs.github.com/en/packages/using-github-packages-with-your-projects-ecosystem/configuring-npm-for-use-with-github-packages#authenticating-to-github-packages
+[wiki]: https://github.com/QbitArtifacts/qbit-ng-packages/wiki/qbit-kit-ng

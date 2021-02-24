@@ -12,7 +12,7 @@ import { MatSelectionList } from '@angular/material/list';
     `,
   ],
 })
-export class PermissionsSelector {
+export class SaPermissionsSelectorComponent {
   @Input() selectedGrants: string[] = [];
   @Input() permission: any;
   @Input() disabled: boolean = false;

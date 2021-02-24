@@ -7,7 +7,7 @@ This repo will hold angular packages for QBitArtifacts Front End development.
 ## Packages
 
 - [Caste Client](./projects/caste-client-ng)
-- [QBitKit](./projects/qbitkit-ng)
+- [QBitKit](./projects/qbit-kit-ng)
 - [Hotkeys](./projects/qbit-hotkeys)
 - [DebugScreen](./projects/qbit-debug-screen)
 

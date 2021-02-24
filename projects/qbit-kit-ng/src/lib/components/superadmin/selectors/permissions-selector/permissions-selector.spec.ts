@@ -1,8 +1,8 @@
-import { PermissionsSelector } from './permissions-selector.component';
+import { SaPermissionsSelectorComponent } from './permissions-selector.component';
 import { TestBed } from '@angular/core/testing';
 import { AppModule } from 'src/app/app.module';
 
-describe('PermissionsSelector', () => {
+describe('SaPermissionsSelectorComponent', () => {
   afterEach(() => {
     TestBed.resetTestingModule();
   });
@@ -13,7 +13,7 @@ describe('PermissionsSelector', () => {
   });
 
   it('should create', () => {
-    const fixture = TestBed.createComponent(PermissionsSelector);
+    const fixture = TestBed.createComponent(SaPermissionsSelectorComponent);
     expect(fixture.componentInstance).toBeTruthy();
   });
 });
