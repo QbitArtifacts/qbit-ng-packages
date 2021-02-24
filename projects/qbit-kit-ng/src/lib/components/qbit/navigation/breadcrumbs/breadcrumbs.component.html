@@ -1,0 +1,20 @@
+<mat-chip-list class="example-chip">
+    <mat-chip class="example-box" routerLink="/">
+        <mat-icon class="mat-icon material-icons mat-icon-small marg-right-10">home</mat-icon>
+        <span class="text-small">{{'HOME' | translate}}</span>
+    </mat-chip>
+
+    <mat-icon class="mat-icon material-icons mat-icon-small" *ngIf="breadcrumbs.list.length > 0">arrow_right</mat-icon>
+
+    <ng-template ngFor let-crumb [ngForOf]="breadcrumbs.list" let-i="index">
+        <mat-chip class="example-box" [disabled]="i == breadcrumbs.list.length - 1" [routerLink]="crumb.url"
+            [queryParams]="crumb.query">
+            <mat-icon *ngIf="crumb.icon" class="mat-icon material-icons mat-icon-small marg-right-10">{{crumb.icon}}
+            </mat-icon>
+            <span class="text-small">{{crumb.label | translate}}</span>
+        </mat-chip>
+
+        <mat-icon *ngIf="i < breadcrumbs.list.length - 1" class="mat-icon material-icons mat-icon-small">arrow_right
+        </mat-icon>
+    </ng-template>
+</mat-chip-list>
