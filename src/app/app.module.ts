@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { CasteAuthModule, CASTE_AUTH_CONFIG } from 'projects/caste-client-ng/src/public-api';
@@ -17,6 +18,7 @@ import { HomeComponent } from './home/home.component';
     QBreadcrumbsModule,
     QSnackBarModule,
     TranslateModule.forRoot(),
+    BrowserAnimationsModule,
     RouterModule.forRoot([
       {
         path: 'home',

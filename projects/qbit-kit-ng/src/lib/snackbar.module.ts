@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
+import { MatSnackBarModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 import { QSnackBar } from './services/snackbar.service';
 
 @NgModule({
   providers: [QSnackBar],
-  imports: [TranslateModule],
+  imports: [TranslateModule, MatSnackBarModule],
   exports: [],
 })
 export class QSnackBarModule {}
