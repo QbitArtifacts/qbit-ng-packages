@@ -1,14 +1,29 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import {
-  CasteAuthModule,
-  CASTE_AUTH_CONFIG,
-} from 'projects/caste-client-ng/src/public-api';
+import { CasteAuthModule, CASTE_AUTH_CONFIG } from 'projects/caste-client-ng/src/public-api';
+import { QBreadcrumbsModule, QSnackBarModule } from 'projects/qbit-kit-ng/src/public-api';
+import { TranslateModule } from '@ngx-translate/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule, CasteAuthModule],
+  declarations: [AppComponent, HomeComponent],
+  imports: [
+    CommonModule,
+    BrowserModule,
+    CasteAuthModule,
+    QBreadcrumbsModule,
+    QSnackBarModule,
+    TranslateModule.forRoot(),
+    RouterModule.forRoot([
+      {
+        path: 'home',
+        component: HomeComponent,
+      },
+    ]),
+  ],
   providers: [
     {
       provide: CASTE_AUTH_CONFIG,
