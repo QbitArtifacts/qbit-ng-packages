@@ -11,4 +11,6 @@ This repo will hold angular packages for QBitArtifacts Front End development.
 - [Hotkeys](./projects/qbit-hotkeys)
 - [DebugScreen](./projects/qbit-debug-screen)
 
-> This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.23.
+## Wiki
+
+There is also a wiki set up [here](https://github.com/QbitArtifacts/qbit-ng-packages/wiki)
