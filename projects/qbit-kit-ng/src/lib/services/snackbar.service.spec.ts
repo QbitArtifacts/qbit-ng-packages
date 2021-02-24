@@ -1,6 +1,6 @@
 import { AppModule } from 'src/app/app.module';
 import { TestBed } from '@angular/core/testing';
-import { QSnackBar } from './mysnackbar.service';
+import { QSnackBar } from './snackbar.service';
 
 describe('QSnackBar', () => {
   afterEach(() => {
