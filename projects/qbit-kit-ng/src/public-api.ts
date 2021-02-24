@@ -13,3 +13,4 @@ export * from './lib/components/qbit/navigation/breadcrumbs/breadcrumbs-selector
 // Services
 export * from './lib/services/events.service';
 export * from './lib/services/breadcrumbs.service';
+export * from './lib/services/snackbar.service';

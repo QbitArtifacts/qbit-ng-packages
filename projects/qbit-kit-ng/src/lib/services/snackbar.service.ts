@@ -1,7 +1,6 @@
-import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarConfig, MatSnackBarRef, SimpleSnackBar } from '@angular/material/snack-bar';
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { zip } from 'rxjs/internal/observable/zip';
 
 @Injectable()
 export class QSnackBar {
@@ -10,12 +9,8 @@ export class QSnackBar {
   };
   constructor(private snackbar: MatSnackBar, private translate: TranslateService) {}
 
-  /* istanbul ignore next */
-  public open(message: string, action: string = 'OK', options?: MatSnackBarConfig) {
+  public open(message: string, action: string = 'OK', options?: MatSnackBarConfig): MatSnackBarRef<SimpleSnackBar> {
     options = { ...options, ...QSnackBar.DEFAULT_OPTS };
-    return zip(this.translate.get(message), this.translate.get(action)).subscribe((resp) => {
-      const [msg, okMsg] = resp;
-      this.snackbar.open(msg, okMsg, options);
-    });
+    return this.snackbar.open(this.translate.instant(message), this.translate.instant(action), options);
   }
 }
