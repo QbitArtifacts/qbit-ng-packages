@@ -14,4 +14,7 @@ export * from './lib/management/caste-user.service';
 // Other stuff
 export * from './lib/base.service';
 export * from './lib/base.crud.service';
+export * from './lib/entities';
 export * from './lib/interfaces';
+export * from './lib/roles';
+export * from './lib/permissions';
