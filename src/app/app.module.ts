@@ -9,6 +9,7 @@ import {
   QCommonModule,
   QSidemenuModule,
   QSnackBarModule,
+  SaComponentsModule,
 } from 'projects/qbit-kit-ng/src/public-api';
 import { TranslateModule } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
@@ -16,8 +17,7 @@ import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { QSidemenuItem } from 'projects/qbit-kit-ng/src/lib/components/qbit/navigation/sidemenu/sidemenu-item.interface';
 import { CasteUserService, PermissionUser } from '@qbitartifacts/caste-client-ng';
-import { MatToolbarModule } from '@angular/material';
-import { UserPermission } from 'projects/caste-client-ng/src/lib/permissions/user.permission';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
@@ -26,6 +26,7 @@ import { UserPermission } from 'projects/caste-client-ng/src/lib/permissions/use
     QCommonModule,
     BrowserModule,
     CasteAuthModule,
+    SaComponentsModule,
     QBreadcrumbsModule,
     QSnackBarModule,
     QSidemenuModule,
