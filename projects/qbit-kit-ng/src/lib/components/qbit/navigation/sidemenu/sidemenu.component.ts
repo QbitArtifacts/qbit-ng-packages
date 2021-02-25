@@ -9,40 +9,20 @@ import { QEventsService } from './../../../../services/events.service';
   styleUrls: ['./sidemenu.component.scss'],
 })
 export class QSidemenuComponent implements OnInit, OnDestroy {
-  static EVT_TOGGLE_SIDEMENU = 'toggle:sidemenu';
-  public toggleEvent: EventEmitter<boolean>;
-  public opened = true;
-
   @ViewChild('drawer', { static: true }) drawer: MatDrawer;
 
-  constructor(public events: QEventsService, public sidemenuService: QSidemenuService) {
-    this.recoverStateFromStorage();
-    this.toggleEvent = events.on<boolean>(QSidemenuComponent.EVT_TOGGLE_SIDEMENU);
-  }
-
-  /* istanbul ignore next */
-  saveStateToStorage() {
-    localStorage.setItem(QSidemenuComponent.EVT_TOGGLE_SIDEMENU, String(this.drawer.opened));
-  }
-
-  /* istanbul ignore next */
-  recoverStateFromStorage() {
-    const saved = localStorage.getItem(QSidemenuComponent.EVT_TOGGLE_SIDEMENU);
-    if (saved !== null) {
-      this.opened = saved === 'true';
-    }
-  }
+  constructor(public sidemenuService: QSidemenuService) {}
 
   ngOnDestroy() {
-    this.toggleEvent.unsubscribe();
-    this.events.off(QSidemenuComponent.EVT_TOGGLE_SIDEMENU);
+    this.sidemenuService.destroy();
   }
 
   /* istanbul ignore next */
   ngOnInit() {
-    this.toggleEvent.subscribe(() => {
+    console.log('iteaslkjd', this.sidemenuService.items);
+    this.sidemenuService.toggleEvent.subscribe(() => {
       this.drawer.toggle();
-      this.saveStateToStorage();
+      this.sidemenuService.setOpened(this.drawer.opened);
     });
   }
 }

@@ -1,6 +1,6 @@
 <mat-drawer-container class="sidemenu-container">
-    <mat-drawer #drawer class="sidemenu-sidenav mat-elevation-z1" mode="side" [opened]="opened">
-        <ng-content></ng-content>
+    <mat-drawer #drawer class="sidemenu-sidenav mat-elevation-z1" mode="side" [opened]="sidemenuService.opened">
+        <ng-content select="[header]"></ng-content>
         <ng-template ngFor let-item [ngForOf]="sidemenuService.items">
             <div *ngIf="!item.separator && !item.isExternal && !item.keyValue">
                 <button routerLinkActive="active text-dark" class="sidemenu-item row center text-mid"
@@ -42,6 +42,6 @@
     </mat-drawer>
 
     <div class="padd-h-40 padd-v-30">
-        <ng-content></ng-content>
+        <ng-content select="router-outlet"></ng-content>
     </div>
 </mat-drawer-container>

@@ -23,7 +23,7 @@
     "@angular/router": "~8.2.14",
     "@ngx-translate/core": "^12.1.2",
     "@ngx-translate/http-loader": "^4.0.0",
-    "@qbitartifacts/caste-client-ng": "^1.1.2",
+    "@qbitartifacts/caste-client-ng": "^1.2.0",
     "jwt-decode": "^2.2.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",

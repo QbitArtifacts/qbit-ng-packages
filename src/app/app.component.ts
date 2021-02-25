@@ -1,3 +1,4 @@
+import { PermissionUser } from './../../projects/caste-client-ng/src/public-api';
 import { CasteAccountsService } from './../../projects/caste-client-ng/src/lib/management/caste-accounts.service';
 import { Component } from '@angular/core';
 import {
@@ -5,6 +6,8 @@ import {
   CasteUsersService,
 } from 'projects/caste-client-ng/src/public-api';
 import { ApiError } from 'projects/caste-client-ng/src/lib/interfaces/api_error.interface';
+import { QSidemenuService } from 'projects/qbit-kit-ng/src/public-api';
+import { CasteUserService } from '@qbitartifacts/caste-client-ng';
 
 @Component({
   selector: 'app-root',
@@ -13,21 +16,22 @@ import { ApiError } from 'projects/caste-client-ng/src/lib/interfaces/api_error.
 })
 export class AppComponent {
   title = 'qbit-ng-packages';
+  permission = PermissionUser;
 
   constructor(
     public casteAuth: CasteAuthService,
     public users: CasteUsersService,
-    public account: CasteAccountsService
+    public account: CasteAccountsService,
+    public sidemenu: QSidemenuService,
+    public user: CasteUserService,
   ) {
     this.signIn().subscribe((resp) => {
       console.log(resp);
       casteAuth.saveToken(resp.token);
-      this.handleResponse(
-        users.listAll({
-          username: 'manolo',
-        })
-      );
+      this.user.setUserFromTokenData(resp);
     });
+
+    this.sidemenu.open();
   }
 
   public validateAuth() {

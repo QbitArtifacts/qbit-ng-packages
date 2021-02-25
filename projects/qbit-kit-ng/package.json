@@ -1,13 +1,13 @@
 {
   "name": "@qbitartifacts/qbit-kit-ng",
-  "version": "0.0.4",
+  "version": "0.0.7",
   "peerDependencies": {
     "@angular/common": "^8.2.14",
     "@angular/router": "^8.2.14",
     "@angular/core": "^8.2.14",
     "@angular/material": "^8.2.14",
     "@angular/cdk": "~8.2.14",
-    "@qbitartifacts/caste-client-ng": "^1.1.2"
+    "@qbitartifacts/caste-client-ng": "^1.2.0"
   },
   "scripts": {
     "add-badges": "node ../../scripts/coverage-badges.js ./coverage/coverage-summary.json ./README.md",

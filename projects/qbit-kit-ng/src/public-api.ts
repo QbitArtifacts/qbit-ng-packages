@@ -17,3 +17,5 @@ export * from './lib/services/snackbar.service';
 export * from './lib/services/sidemenu.service';
 export * from './lib/snackbar.module';
 export * from './lib/sidemenu.module';
+
+export * from './lib/components/qbit/navigation/sidemenu/sidemenu-item.interface';

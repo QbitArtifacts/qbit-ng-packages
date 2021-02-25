@@ -6,6 +6,7 @@ import { CasteAuthModule, CASTE_AUTH_CONFIG } from 'projects/caste-client-ng/src
 import {
   QBIT_SIDEMENU_ITEMS,
   QBreadcrumbsModule,
+  QCommonModule,
   QSidemenuModule,
   QSnackBarModule,
 } from 'projects/qbit-kit-ng/src/public-api';
@@ -14,12 +15,15 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { QSidemenuItem } from 'projects/qbit-kit-ng/src/lib/components/qbit/navigation/sidemenu/sidemenu-item.interface';
-import { CasteUserService } from '@qbitartifacts/caste-client-ng';
+import { CasteUserService, PermissionUser } from '@qbitartifacts/caste-client-ng';
+import { MatToolbarModule } from '@angular/material';
+import { UserPermission } from 'projects/caste-client-ng/src/lib/permissions/user.permission';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
   imports: [
     CommonModule,
+    QCommonModule,
     BrowserModule,
     CasteAuthModule,
     QBreadcrumbsModule,
@@ -33,6 +37,7 @@ import { CasteUserService } from '@qbitartifacts/caste-client-ng';
         component: HomeComponent,
       },
     ]),
+    MatToolbarModule,
   ],
   providers: [
     CasteUserService,
@@ -48,9 +53,17 @@ import { CasteUserService } from '@qbitartifacts/caste-client-ng';
       useValue: [
         {
           name: 'dashboard',
+          icon: 'home',
+          label: 'HOME',
+          route: '/home',
+          permission: PermissionUser,
+        } as QSidemenuItem,
+        {
+          name: 'start',
           icon: 'dashboard',
-          label: 'DASHBOARD',
-          route: '/dashboard',
+          label: 'start',
+          route: '/',
+          permission: PermissionUser,
         } as QSidemenuItem,
       ],
     },

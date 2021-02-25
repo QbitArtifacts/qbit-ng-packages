@@ -1,9 +1,9 @@
-import { QCommonModule } from './../../../../common.module';
 import { NgModule } from '@angular/core';
+import { SaCommonModule } from '../../../../sa-common.module';
 import { SaAdminAccountSelectorComponent } from './admin-account-selector.component';
 
 @NgModule({
-  imports: [QCommonModule],
+  imports: [SaCommonModule],
   declarations: [SaAdminAccountSelectorComponent],
   exports: [SaAdminAccountSelectorComponent],
 })
