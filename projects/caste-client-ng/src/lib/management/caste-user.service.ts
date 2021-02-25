@@ -1,25 +1,15 @@
-import { Injectable, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { CASTE_AUTH_CONFIG, DEFAULT_CONFIG, CasteAuthConfig } from '../caste-auth.config';
-import { BaseService } from '../base.service';
-import { GivePermissions } from '../interfaces/give_permissions.interface';
-import { catchError } from 'rxjs/internal/operators/catchError';
-import { map } from 'rxjs/internal/operators/map';
+import { Injectable } from '@angular/core';
 import { Application } from '../entities/application.entity';
 import { User } from '../entities/user.entity';
 import { Role } from '../entities/role.entity';
 import { Account } from '../entities/account.entity';
 import { LoginResponse } from '../interfaces/login_response.interface';
 import { castRoles, ROLES } from '../roles';
-import { NewAccount } from '../interfaces/new_account.interface';
 
-/**
- * This service handles calls for authenticated user
- */
 @Injectable({
   providedIn: 'root',
 })
-export class CasteUserService extends BaseService {
+export class CasteUserService {
   public user: User;
   public selectedAccount: Account;
   public application: Application;
@@ -79,9 +69,5 @@ export class CasteUserService extends BaseService {
 
   public hasUser(): boolean {
     return !!this.user;
-  }
-
-  public getToken(): string {
-    return localStorage.getItem(this.opts.tokenStorageKey);
   }
 }
