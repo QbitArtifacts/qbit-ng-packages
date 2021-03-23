@@ -25,6 +25,7 @@
     "@ngx-translate/http-loader": "^6.0.0",
     "@qbitartifacts/caste-client-ng": "^1.2.0",
     "jwt-decode": "^2.2.0",
+    "karma-coverage": "^2.0.3",
     "rxjs": "~6.6.3",
     "tslib": "^1.10.0",
     "zone.js": "~0.11.2"

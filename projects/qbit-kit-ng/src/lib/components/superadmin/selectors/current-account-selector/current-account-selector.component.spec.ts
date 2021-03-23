@@ -1,26 +1,27 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MUserUser } from 'projects/caste-client-ng/src/testing/users.mock';
 import { AppModule } from 'src/app/app.module';
-import { MUserUser } from 'src/app/testing/mocks/users.mock';
+import { SaCurrentAccountSelectorComponent } from './current-account-selector.component';
 
-import { CurrentAccountSelectorComponent } from './current-account-selector.component';
-
-describe('CurrentAccountSelectorComponent', () => {
-  let component: CurrentAccountSelectorComponent;
-  let fixture: ComponentFixture<CurrentAccountSelectorComponent>;
+describe('SaCurrentAccountSelectorComponent', () => {
+  let component: SaCurrentAccountSelectorComponent;
+  let fixture: ComponentFixture<SaCurrentAccountSelectorComponent>;
 
   afterEach(() => {
     TestBed.resetTestingModule();
-  }); beforeEach((() => {
+  });
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [AppModule],
+      imports: [AppModule, HttpClientTestingModule],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CurrentAccountSelectorComponent);
+    fixture = TestBed.createComponent(SaCurrentAccountSelectorComponent);
     component = fixture.componentInstance;
-    component.accounts = [];
     component.user$.setUser(MUserUser);
+    component.user$.user.accounts = [];
     fixture.detectChanges();
-  }));
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();

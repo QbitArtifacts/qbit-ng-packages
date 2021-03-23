@@ -1,3 +1,4 @@
+import { QSearchableSelectorModule } from './components/qbit/components/searchable-selector/searchable-selector.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -9,7 +10,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { TranslateModule } from '@ngx-translate/core';
 import { QCommonModule } from './common.module';
-import { SaAccountSelectorModule } from './components/superadmin/selectors/account-selector/account-selector.module';
+import { QSelectorModule } from './components/qbit/components/selector/selector.module';
 import { QEventsService } from './services/events.service';
 
 const modules = [
@@ -23,7 +24,8 @@ const modules = [
   FormsModule,
   CommonModule,
   QCommonModule,
-  SaAccountSelectorModule,
+  QSelectorModule,
+  QSearchableSelectorModule,
 ];
 
 @NgModule({

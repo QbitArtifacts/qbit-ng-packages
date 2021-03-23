@@ -1,6 +1,7 @@
 import { SaPermissionsSelectorComponent } from './permissions-selector.component';
 import { TestBed } from '@angular/core/testing';
 import { AppModule } from 'src/app/app.module';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('SaPermissionsSelectorComponent', () => {
   afterEach(() => {
@@ -8,7 +9,7 @@ describe('SaPermissionsSelectorComponent', () => {
   });
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [AppModule],
+      imports: [AppModule, HttpClientTestingModule],
     }).compileComponents();
   });
 

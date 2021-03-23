@@ -1,29 +1,27 @@
+import { QEventsService } from './../../../../services/events.service';
 import { AppModule } from 'src/app/app.module';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { QSidemenuComponent } from './sidemenu.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-import { SidemenuComponent } from './sidemenu.component';
-import { QEventsService } from 'src/app/services/events.service';
-import { MUserUser } from 'src/app/testing/mocks/users.mock';
-
-describe('SidemenuComponent', () => {
-  let component: SidemenuComponent;
-  let fixture: ComponentFixture<SidemenuComponent>;
+describe('QSidemenuComponent', () => {
+  let component: QSidemenuComponent;
+  let fixture: ComponentFixture<QSidemenuComponent>;
 
   afterEach(() => {
     TestBed.resetTestingModule();
-  }); 
-  
-  beforeEach((() => {
+  });
+
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [AppModule],
+      imports: [AppModule, HttpClientTestingModule],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SidemenuComponent);
+    fixture = TestBed.createComponent(QSidemenuComponent);
     component = fixture.componentInstance;
-    component.user$.setUser(MUserUser);
     localStorage.clear();
     fixture.detectChanges();
-  }));
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -34,7 +32,7 @@ describe('SidemenuComponent', () => {
     const events$: QEventsService = TestBed.inject(QEventsService);
     fixture.detectChanges();
 
-    // events$.fire(SidemenuComponent.EVT_TOGGLE_SIDEMENU);
-    expect(component.opened).toEqual(true);
+    // events$.fire(QSidemenuComponent.EVT_TOGGLE_SIDEMENU);
+    expect(component.sidemenuService.opened).toEqual(true);
   });
 });

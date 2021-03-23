@@ -1,6 +1,6 @@
+import { QSnackBar } from './../services/snackbar.service';
 import { CreateDialogStatus } from './../enums/create-dialog-status';
 import { QEventsService } from './../services/events.service';
-import { QSnackBar } from 'projects/qbit-kit-ng/src/public-api';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
@@ -34,6 +34,8 @@ export abstract class QTableBase<T = any> implements OnInit {
   @Input() public listType;
   @Input() public createType;
   @Input() public deleteType;
+  @Input() public searchFilters = {};
+  @Input() public showBreadcrumbs = true;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -69,16 +71,16 @@ export abstract class QTableBase<T = any> implements OnInit {
     if (!this.deleteType) this.deleteType = this.userType;
 
     this.route.queryParams.subscribe((params) => {
-      if (params.pageIndex !== null) {
+      if (params.pageIndex != null) {
         this.pageIndex = Number(params.pageIndex);
       }
-      if (params.pageSize !== null) {
+      if (params.pageSize != null) {
         this.pageSize = Number(params.pageSize);
       }
-      if (params.sortDir !== null) {
+      if (params.sortDir != null) {
         this.sortDir = params.sortDir;
       }
-      if (params.sortId !== null) {
+      if (params.sortId != null) {
         this.sortId = params.sortId;
       }
 

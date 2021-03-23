@@ -1,11 +1,11 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { SaUserSelectorComponent } from './user-selector.component';
 import { AppModule } from 'src/app/app.module';
-import { SaAdminAccountSelectorComponent } from './admin-account-selector.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-describe('SaAdminAccountSelectorComponent', () => {
-  let component: SaAdminAccountSelectorComponent;
-  let fixture: ComponentFixture<SaAdminAccountSelectorComponent>;
+describe('SaUserSelectorComponent', () => {
+  let component: SaUserSelectorComponent;
+  let fixture: ComponentFixture<SaUserSelectorComponent>;
 
   afterEach(() => {
     TestBed.resetTestingModule();
@@ -14,10 +14,14 @@ describe('SaAdminAccountSelectorComponent', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, HttpClientTestingModule],
     }).compileComponents();
+  });
 
-    fixture = TestBed.createComponent(SaAdminAccountSelectorComponent);
+  afterEach(() => {
+    TestBed.resetTestingModule();
+  });
+  beforeEach(() => {
+    fixture = TestBed.createComponent(SaUserSelectorComponent);
     component = fixture.componentInstance;
-    component.items = [];
     fixture.detectChanges();
   });
 

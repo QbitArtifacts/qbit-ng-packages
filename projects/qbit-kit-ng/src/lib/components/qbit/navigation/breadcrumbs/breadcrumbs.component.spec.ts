@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppModule } from 'src/app/app.module';
 
-import { BreadcrumbsComponent } from './breadcrumbs.component';
+import { QBreadcrumbsComponent } from './breadcrumbs.component';
 
-describe('BreadcrumbsComponent', () => {
-  let component: BreadcrumbsComponent;
-  let fixture: ComponentFixture<BreadcrumbsComponent>;
+describe('QBreadcrumbsComponent', () => {
+  let component: QBreadcrumbsComponent;
+  let fixture: ComponentFixture<QBreadcrumbsComponent>;
 
   afterEach(() => {
     TestBed.resetTestingModule();
@@ -14,7 +14,7 @@ describe('BreadcrumbsComponent', () => {
     TestBed.configureTestingModule({
       imports: [AppModule],
     }).compileComponents();
-    fixture = TestBed.createComponent(BreadcrumbsComponent);
+    fixture = TestBed.createComponent(QBreadcrumbsComponent);
     component = fixture.componentInstance;
   });
   

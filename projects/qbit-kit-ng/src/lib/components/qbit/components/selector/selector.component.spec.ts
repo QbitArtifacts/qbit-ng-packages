@@ -1,11 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppModule } from 'src/app/app.module';
 
-import { SaAccountSelectorComponent } from './account-selector.component';
+import { QSelectorComponent } from './selector.component';
 
-describe('SaAccountSelectorComponent', () => {
-  let component: SaAccountSelectorComponent;
-  let fixture: ComponentFixture<SaAccountSelectorComponent>;
+describe('QSelectorComponent', () => {
+  let component: QSelectorComponent;
+  let fixture: ComponentFixture<QSelectorComponent>;
 
   afterEach(() => {
     TestBed.resetTestingModule();
@@ -15,9 +15,9 @@ describe('SaAccountSelectorComponent', () => {
       imports: [AppModule],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SaAccountSelectorComponent);
+    fixture = TestBed.createComponent(QSelectorComponent);
     component = fixture.componentInstance;
-    component.accounts = [];
+    component.items = [];
     fixture.detectChanges();
   });
 
@@ -30,7 +30,7 @@ describe('SaAccountSelectorComponent', () => {
     const spy = spyOn(spyer, 'fn');
 
     await component.selected.subscribe(spyer.fn);
-    component.selectAccount(null);
+    component.select(null);
 
     expect(spyer.fn).toHaveBeenCalled();
   }));

@@ -1,6 +1,8 @@
 <mat-drawer-container class="sidemenu-container">
     <mat-drawer #drawer class="sidemenu-sidenav mat-elevation-z1" mode="side" [opened]="sidemenuService.opened">
         <ng-content select="[header]"></ng-content>
+
+        <!-- Renders a sidemenu item, foreach item in sidemenuService.items -->
         <ng-template ngFor let-item [ngForOf]="sidemenuService.items">
             <div *ngIf="!item.separator && !item.isExternal && !item.keyValue">
                 <button routerLinkActive="active text-dark" class="sidemenu-item row center text-mid"
@@ -17,8 +19,8 @@
                 <a routerLinkActive="active text-dark" class="sidemenu-item row center text-mid"
                     *appPermissions="item.permission" href="{{item.route}}" target="_blank" mat-menu-item>
                     <mat-icon class="mat-icon-small">{{item.icon}}</mat-icon>
-                    <span *ngIf="item.badge" [matBadge]="item.badge"
-                        matBadgeOverlap="false">{{item.label | translate}}</span>
+                    <span *ngIf="item.badge" [matBadge]="item.badge" matBadgeOverlap="false">{{item.label |
+                        translate}}</span>
                     <span *ngIf="!item.badge">{{item.label | translate}}</span>
 
                     <mat-icon class="mat-icon-small marg-left-10">launch</mat-icon>
@@ -39,6 +41,7 @@
                 </h4>
             </div>
         </ng-template>
+
     </mat-drawer>
 
     <div class="padd-h-40 padd-v-30">

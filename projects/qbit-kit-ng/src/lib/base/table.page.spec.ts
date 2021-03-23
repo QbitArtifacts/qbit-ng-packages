@@ -1,9 +1,11 @@
 import { AppModule } from 'src/app/app.module';
-import { async, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { QTableBase } from './table.page';
 import { Observable } from 'rxjs';
 import { MatDialogRef } from '@angular/material/dialog';
+import { of } from 'rxjs/internal/observable/of';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 @Component({
   template: '',
@@ -12,55 +14,52 @@ class TestPage extends QTableBase<any> {
   getRemoveItemDialog(id: string): MatDialogRef<any, any> {
     throw new Error('Method not implemented.');
   }
+
   getOwner(): string {
-    throw new Error('Method not implemented.');
+    return null;
   }
+
   getRemoveItemObservable(id: string, userType?: string): Observable<any> {
-    throw new Error('Method not implemented.');
+    return of({});
   }
 
   getSearchObservable(queryParams: { [key: string]: string }, userType?: string): Observable<any> {
-    throw new Error('Method not implemented.');
+    return of({});
   }
 
   displayedColumns: string[];
-
-  /* public onSearch(): void {
-    throw new Error('Method not implemented.');
-  }*/
 }
 
 describe('PageBaseComponent', () => {
-  beforeEach(async(() => {
+  let fixture: ComponentFixture<TestPage>;
+  let component: TestPage;
+
+  afterEach(() => {
+    TestBed.resetTestingModule();
+  });
+
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [AppModule],
+      imports: [AppModule, HttpClientTestingModule],
       declarations: [TestPage],
     }).compileComponents();
-  }));
+
+    fixture = TestBed.createComponent(TestPage);
+    component = fixture.componentInstance;
+  });
 
   it('should create', () => {
-    const fixture = TestBed.createComponent(TestPage);
     fixture.detectChanges();
-
-    const component = fixture.componentInstance;
-
     expect(component).toBeTruthy();
   });
 
   it('setIsLoading', () => {
-    const fixture = TestBed.createComponent(TestPage);
-    const component = fixture.componentInstance;
-
     component.setIsLoading(true);
-
     expect(component.isLoading).toEqual(true);
   });
 
   it('setData', () => {
-    const fixture = TestBed.createComponent(TestPage);
-    const component = fixture.componentInstance;
     component.setData([]);
-
     expect(component.dataSource.data).toEqual([]);
   });
 });
