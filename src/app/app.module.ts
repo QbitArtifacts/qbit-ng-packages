@@ -19,6 +19,9 @@ import { HomeComponent } from './home/home.component';
 import { QSidemenuItem } from 'projects/qbit-kit-ng/src/lib/components/qbit/navigation/sidemenu/sidemenu-item.interface';
 import { CasteUserService, PermissionUser } from '@qbitartifacts/caste-client-ng';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
@@ -32,6 +35,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     QSnackBarModule,
     QSidemenuModule,
     QTableHeaderModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatSortModule,
     TranslateModule.forRoot(),
     BrowserAnimationsModule,
     RouterModule.forRoot([

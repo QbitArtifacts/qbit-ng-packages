@@ -25,6 +25,7 @@ export * from './lib/services/breadcrumbs.service';
 export * from './lib/services/snackbar.service';
 export * from './lib/services/sidemenu.service';
 
+// modules
 export * from './lib/snackbar.module';
 export * from './lib/sidemenu.module';
 export * from './lib/breadcrumbs.module';
@@ -33,4 +34,12 @@ export * from './lib/table-header.module';
 export * from './lib/sa-common.module';
 export * from './lib/sa-components.module';
 
+// enums
+export * from './lib/enums/create-dialog-status';
+export * from './lib/enums/delete-dialog-status';
+
+// base
+export * from './lib/base/table.page';
+
+// interfaces
 export * from './lib/components/qbit/navigation/sidemenu/sidemenu-item.interface';
