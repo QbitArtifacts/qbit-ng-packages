@@ -9,6 +9,7 @@ import {
   QCommonModule,
   QSidemenuModule,
   QSnackBarModule,
+  QTableHeaderModule,
   SaComponentsModule,
 } from 'projects/qbit-kit-ng/src/public-api';
 import { TranslateModule } from '@ngx-translate/core';
@@ -30,6 +31,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     QBreadcrumbsModule,
     QSnackBarModule,
     QSidemenuModule,
+    QTableHeaderModule,
     TranslateModule.forRoot(),
     BrowserAnimationsModule,
     RouterModule.forRoot([
