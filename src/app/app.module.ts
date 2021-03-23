@@ -22,6 +22,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { QbitKitBaseModule } from 'projects/qbit-kit-ng/src/lib/qbit-kit-base.module';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
@@ -38,6 +39,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatPaginatorModule,
     MatTableModule,
     MatSortModule,
+    QbitKitBaseModule,
     TranslateModule.forRoot(),
     BrowserAnimationsModule,
     RouterModule.forRoot([

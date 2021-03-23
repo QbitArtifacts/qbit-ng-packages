@@ -1,7 +1,6 @@
 import { CreateDialogStatus } from './../enums/create-dialog-status';
 import { QEventsService } from './../services/events.service';
 import { QSnackBar } from 'projects/qbit-kit-ng/src/public-api';
-import { environment } from 'src/environments/environment';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
@@ -28,7 +27,6 @@ export abstract class QTableBase<T = any> implements OnInit {
     input: true,
     searchBy: true,
   };
-  public env = environment;
 
   @Input() public filterByOwner = false;
   @Input() public owner = null;

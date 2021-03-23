@@ -30,6 +30,7 @@ export * from './lib/snackbar.module';
 export * from './lib/sidemenu.module';
 export * from './lib/breadcrumbs.module';
 export * from './lib/table-header.module';
+export * from './lib/qbit-kit-base.module';
 
 export * from './lib/sa-common.module';
 export * from './lib/sa-components.module';
