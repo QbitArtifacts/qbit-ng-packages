@@ -9,6 +9,7 @@ export interface TableListHeaderOptions {
   input?: boolean;
   refresh?: boolean;
   search?: boolean;
+  searchBy?: false;
   newItem?: boolean;
   showOptions?: boolean;
   deepLinkQuery?: boolean;
@@ -17,6 +18,7 @@ export interface TableListHeaderOptions {
 const defaultOptions: TableListHeaderOptions = {
   input: true,
   search: false,
+  searchBy: false,
   refresh: true,
   newItem: false,
   showOptions: false,
@@ -24,10 +26,10 @@ const defaultOptions: TableListHeaderOptions = {
 };
 
 @Component({
-  selector: 'app-table-header',
+  selector: 'qbit-table-header',
   templateUrl: './table-header.html',
 })
-export class TableHeaderComponent implements OnInit {
+export class QTableHeaderComponent implements OnInit {
   @Input() public options: TableListHeaderOptions = {};
   @Input() public title = 'TableList';
   @Input() public query = '';
@@ -37,8 +39,11 @@ export class TableHeaderComponent implements OnInit {
   @Input() public newItemText = '';
   @Input() public newItemIcon = 'fa-plus';
   @Input() public searching = false;
+  @Input() public showBreadcrumbs = true;
+  @Input() public doInitialSearch = true;
 
   @Input() public searchMapping = [];
+  @Input() public defaultSearchName = '';
 
   @Output() public onSearch: EventEmitter<any>;
   @Output() public queryChange: EventEmitter<any>;
@@ -57,6 +62,16 @@ export class TableHeaderComponent implements OnInit {
     };
   }
 
+  /* istanbul ignore next */
+  public ngOnChanges() {
+    if (this.defaultSearchName) {
+      const defaultMapping = this.searchMapping.find((el) => el.property === this.defaultSearchName);
+      if (defaultMapping && !this.queryId) {
+        this.queryId = defaultMapping;
+      }
+    }
+  }
+
   public ngOnInit() {
     // Setup debound and params
     setTimeout(() => {
@@ -64,10 +79,11 @@ export class TableHeaderComponent implements OnInit {
         this.setupDebouncedSearch(this.searchElement.nativeElement);
       }
 
-      this.search();
+      if (this.doInitialSearch) this.search();
     });
   }
 
+  /* istanbul ignore next */
   public search() {
     this.queryChange.emit(this.query || '');
     if (this.queryId && this.query) {
@@ -84,11 +100,13 @@ export class TableHeaderComponent implements OnInit {
     this.search();
   }
 
+  /* istanbul ignore next */
   public queryTypeChanged($event) {
     this.queryId = $event;
     this.search();
   }
 
+  /* istanbul ignore next */
   public setupDebouncedSearch(element) {
     fromEvent(element, 'keyup')
       .pipe(

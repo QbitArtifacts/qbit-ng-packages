@@ -7,12 +7,11 @@ export interface IPermission extends IBaseEntity {
 }
 
 export class Permission implements IPermission {
+  id?: string;
+  iri?: string;
+  created_at?: string;
+  updated_at?: string;
   user: string;
   account: string;
   grants: string[];
-  id: string;
-  iri: string;
-  created_at: string;
-  updated_at: string;
-  
 }

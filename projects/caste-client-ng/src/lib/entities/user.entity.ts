@@ -87,6 +87,7 @@ export class User implements IUser {
   public fromJson(data: IUser): User {
     const user = new User();
     user.username = data.username;
+    user.iri = data['@id'];
     user.id = data.id;
     user.created_at = data.created_at;
     user.updated_at = data.updated_at;

@@ -5,7 +5,7 @@ import { IBaseEntity } from './base.entity';
 export interface IAccount extends IBaseEntity {
   permissions?: string[];
   name: string;
-  application: Application;
+  application: Application | string;
 }
 
 export class Account implements IAccount {
@@ -20,6 +20,7 @@ export class Account implements IAccount {
   static fromJson(obj: any): Account {
     const account = new Account();
     account.id = obj.id;
+    account.iri = obj['@id'];
     account.name = obj.name;
     account.application = obj.application;
     account.permissions =
