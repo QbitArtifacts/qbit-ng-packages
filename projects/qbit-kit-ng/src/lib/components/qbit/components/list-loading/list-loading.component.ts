@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'caste-list-loading',
+  selector: 'qbit-list-loading',
   templateUrl: './list-loading.component.html',
-  styleUrls: ['./list-loading.component.scss'],
 })
-export class ListLoadingComponent {}
+export class QListLoadingComponent {}

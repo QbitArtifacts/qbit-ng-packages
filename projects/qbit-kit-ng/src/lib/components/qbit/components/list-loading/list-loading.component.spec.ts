@@ -1,24 +1,20 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ListLoadingComponent } from './list-loading.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { QListLoadingComponent } from './list-loading.component';
 import { AppModule } from 'src/app/app.module';
 
-describe('ListLoadingComponent', () => {
-  let component: ListLoadingComponent;
-  let fixture: ComponentFixture<ListLoadingComponent>;
+describe('QListLoadingComponent', () => {
+  let component: QListLoadingComponent;
+  let fixture: ComponentFixture<QListLoadingComponent>;
 
   afterEach(() => {
     TestBed.resetTestingModule();
-  }); beforeEach(async(() => {
+  });
+  beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [AppModule],
     }).compileComponents();
-  }));
 
-  afterEach(() => {
-    TestBed.resetTestingModule();
-  }); beforeEach(() => {
-    fixture = TestBed.createComponent(ListLoadingComponent);
+    fixture = TestBed.createComponent(QListLoadingComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
