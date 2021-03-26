@@ -11,6 +11,7 @@ import {
   CasteAuthService,
   CasteUserService,
   CASTE_AUTH_CONFIG,
+  PermissionPublic,
   PermissionUser,
 } from '@qbitartifacts/caste-client-ng';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -27,16 +28,36 @@ import {
   QbitKitBaseModule,
   QBIT_SIDEMENU_ITEMS,
   QSidemenuItem,
+  QLangSelectorModule,
 } from 'projects/qbit-kit-ng/src/public-api';
+import {
+  QbitLocaleConfig,
+  QbitLocaleMetadata,
+  QBIT_LOCALES,
+} from 'projects/qbit-kit-ng/src/lib/components/qbit/components/lang-selector/lang-selector.service';
+import { ComponentsComponent } from './components/components.component';
+
+const locales: QbitLocaleMetadata[] = [
+  {
+    name: 'es',
+    abrev: 'es',
+    icon: 'es',
+  },
+];
+
+const qbitLocales: QbitLocaleConfig = {
+  locales: locales,
+  defaultLocale: locales[0],
+};
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent],
+  declarations: [AppComponent, HomeComponent, ComponentsComponent],
   imports: [
     CommonModule,
     QCommonModule,
     BrowserModule,
-    CasteAuthModule,
-    SaComponentsModule,
+    // CasteAuthModule,
+    // SaComponentsModule,
     QBreadcrumbsModule,
     QSnackBarModule,
     QSidemenuModule,
@@ -52,18 +73,27 @@ import {
         path: 'home',
         component: HomeComponent,
       },
+      {
+        path: 'components',
+        component: ComponentsComponent,
+      },
     ]),
     MatToolbarModule,
+    QLangSelectorModule,
   ],
   providers: [
-    CasteUserService,
-    CasteAuthService,
+    // CasteUserService,
+    // CasteAuthService,
     {
       provide: CASTE_AUTH_CONFIG,
       useValue: {
         realm: 'default',
         url: 'https://api.caste.qbitartifacts.com',
       },
+    },
+    {
+      provide: QBIT_LOCALES,
+      useValue: qbitLocales,
     },
     {
       provide: QBIT_SIDEMENU_ITEMS,
@@ -74,6 +104,13 @@ import {
           label: 'HOME',
           route: '/home',
           permission: PermissionUser,
+        } as QSidemenuItem,
+        {
+          name: 'components',
+          icon: 'home',
+          label: 'components',
+          route: '/components',
+          permission: PermissionPublic,
         } as QSidemenuItem,
         {
           name: 'start',

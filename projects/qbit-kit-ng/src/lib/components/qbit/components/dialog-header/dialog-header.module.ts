@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { QCommonModule } from '../../../../common.module';
-import { QAddButtonComponent } from './add-button.component';
+import { QDialogHeaderComponent } from './dialog-header.component';
 
 @NgModule({
   imports: [QCommonModule, MatButtonModule, MatIconModule],
-  declarations: [QAddButtonComponent],
-  exports: [QAddButtonComponent],
+  declarations: [QDialogHeaderComponent],
+  exports: [QDialogHeaderComponent],
 })
-export class QAddButtonModule {}
+export class QDialogHeaderModule {}

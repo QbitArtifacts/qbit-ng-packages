@@ -4,6 +4,8 @@ export * from './lib/common.module';
 export * from './lib/sa-components.module';
 export * from './lib/components/qbit/components/selector/selector.module';
 export * from './lib/components/qbit/components/add-button/add-button.module';
+export * from './lib/components/qbit/components/dialog-header/dialog-header.module';
+export * from './lib/components/qbit/components/lang-selector/lang-selector.module';
 
 export * from './lib/components/superadmin/selectors/admin-account-selector/admin-account-selector.module';
 export * from './lib/components/superadmin/selectors/current-account-selector/current-account-selector.module';
@@ -14,6 +16,8 @@ export * from './lib/components/qbit/navigation/sidemenu/sidemenu.component';
 export * from './lib/components/qbit/navigation/breadcrumbs/breadcrumbs.component';
 export * from './lib/components/qbit/components/table-header/table-header.component';
 export * from './lib/components/qbit/components/add-button/add-button.component';
+export * from './lib/components/qbit/components/dialog-header/dialog-header.component';
+export * from './lib/components/qbit/components/lang-selector/lang-selector.component';
 
 // Sa components
 export * from './lib/components/qbit/components/selector/selector.component';

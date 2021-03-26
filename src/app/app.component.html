@@ -6,17 +6,4 @@
 <button routerLink="/">Main</button>
 <button routerLink="/home">Home</button> -->
 
-<!-- The following components only render if user is logged in and has User Permissions -->
-<div *ngIf="user.hasUser()" style="height: calc(100vh - 50px)">
-    <qbit-sidemenu>
-        <div header>apsodjalñskjdlñask</div>
-        <router-outlet></router-outlet>
-    </qbit-sidemenu>
-</div>
-
-<!-- This router outlet only used when user is not logged in (for public routes) -->
-<div>
-    <ng-container *ngIf="!user.hasUser()">
-        <router-outlet></router-outlet>
-    </ng-container>
-</div>
+<router-outlet></router-outlet>
