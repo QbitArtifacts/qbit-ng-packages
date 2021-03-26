@@ -1,6 +1,6 @@
-import { QLangSelectorService } from './lang-selector.service';
 import { NgModule } from '@angular/core';
 import { MatMenuModule } from '@angular/material/menu';
+import { QLocalesService } from '../../../../services/locales.service';
 import { QCommonModule } from '../../../../common.module';
 import { QLangSelectorComponent } from './lang-selector.component';
 
@@ -8,6 +8,6 @@ import { QLangSelectorComponent } from './lang-selector.component';
   imports: [QCommonModule, MatMenuModule],
   declarations: [QLangSelectorComponent],
   exports: [QLangSelectorComponent],
-  providers: [QLangSelectorService]
+  providers: [QLocalesService],
 })
 export class QLangSelectorModule {}

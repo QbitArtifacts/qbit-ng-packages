@@ -7,6 +7,7 @@ export * from './lib/components/qbit/components/dialog-header/dialog-header.modu
 export * from './lib/components/qbit/components/lang-selector/lang-selector.module';
 export * from './lib/components/qbit/components/list-loading/list-loading.module';
 export * from './lib/components/qbit/navigation/page-not-found/page-not-found.module';
+export * from './lib/components/qbit/components/loadable-button/loadable-button.module';
 
 // Sa modules
 export * from './lib/sa-components.module';
@@ -21,6 +22,7 @@ export * from './lib/components/qbit/navigation/page-not-found/page-not-found.co
 
 export * from './lib/components/qbit/components/table-header/table-header.component';
 export * from './lib/components/qbit/components/add-button/add-button.component';
+export * from './lib/components/qbit/components/loadable-button/loadable-button.component';
 export * from './lib/components/qbit/components/dialog-header/dialog-header.component';
 export * from './lib/components/qbit/components/lang-selector/lang-selector.component';
 export * from './lib/components/qbit/components/list-loading/list-loading.component';
@@ -39,6 +41,7 @@ export * from './lib/services/events.service';
 export * from './lib/services/breadcrumbs.service';
 export * from './lib/services/snackbar.service';
 export * from './lib/services/sidemenu.service';
+export * from './lib/services/locales.service';
 
 // modules
 export * from './lib/snackbar.module';

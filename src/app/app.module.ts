@@ -29,13 +29,15 @@ import {
   QBIT_SIDEMENU_ITEMS,
   QSidemenuItem,
   QLangSelectorModule,
+  QLoadableButtonModule,
 } from 'projects/qbit-kit-ng/src/public-api';
 import {
   QbitLocaleConfig,
   QbitLocaleMetadata,
   QBIT_LOCALES,
-} from 'projects/qbit-kit-ng/src/lib/components/qbit/components/lang-selector/lang-selector.service';
+} from 'projects/qbit-kit-ng/src/lib/services/locales.service';
 import { ComponentsComponent } from './components/components.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const locales: QbitLocaleMetadata[] = [
   {
@@ -80,6 +82,8 @@ const qbitLocales: QbitLocaleConfig = {
     ]),
     MatToolbarModule,
     QLangSelectorModule,
+    QLoadableButtonModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
     // CasteUserService,
