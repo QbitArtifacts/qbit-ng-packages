@@ -42,6 +42,7 @@ export * from './lib/services/breadcrumbs.service';
 export * from './lib/services/snackbar.service';
 export * from './lib/services/sidemenu.service';
 export * from './lib/services/locales.service';
+export * from './lib/services/request-cache.service';
 
 // modules
 export * from './lib/snackbar.module';
@@ -49,6 +50,7 @@ export * from './lib/sidemenu.module';
 export * from './lib/breadcrumbs.module';
 export * from './lib/components/qbit/components/table-header/table-header.module';
 export * from './lib/qbit-kit-base.module';
+export * from './lib/request-cache.module';
 
 export * from './lib/sa-common.module';
 export * from './lib/sa-components.module';

@@ -5,7 +5,7 @@ import { QLoadableButtonModule } from './loadable-button.module';
 import { TestBed } from '@angular/core/testing';
 
 @Component({
-  template: `<app-loadable-button>LOGIN</app-loadable-button>`,
+  template: `<app-loadable-button><div id="test-content">LOGIN</div></app-loadable-button>`,
 })
 class TestQLoadableButtonComponent {}
 
@@ -29,7 +29,9 @@ describe('QLoadableButtonComponent', () => {
 
   it('should set ng-content correctly', () => {
     const testFixture = TestBed.createComponent(TestQLoadableButtonComponent);
-    const de: DebugElement = testFixture.debugElement.query(By.css('.button-content'));
+    testFixture.detectChanges();
+
+    const de: DebugElement = testFixture.debugElement.query(By.css('#test-content'));
 
     expect(de.nativeElement.textContent).toEqual('LOGIN');
   });

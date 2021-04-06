@@ -1,7 +1,8 @@
+import { QCommonModule } from './../../../../common.module';
 import { QLangSelectorComponent } from './lang-selector.component';
 import { TestBed } from '@angular/core/testing';
-import { AppModule } from 'src/app/app.module';
 import { QLangSelectorModule } from './lang-selector.module';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 describe('QLangSelectorComponent', () => {
   afterEach(() => {
@@ -10,7 +11,7 @@ describe('QLangSelectorComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [QLangSelectorModule],
+      imports: [QLangSelectorModule, TranslateModule.forRoot()],
     }).compileComponents();
   });
 
