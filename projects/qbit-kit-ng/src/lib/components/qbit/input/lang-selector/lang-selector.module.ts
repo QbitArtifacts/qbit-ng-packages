@@ -3,7 +3,6 @@ import { MatMenuModule } from '@angular/material/menu';
 import { QBIT_LOCALES, QLocalesService } from '../../../../services/locales.service';
 import { QCommonModule } from '../../../../common.module';
 import { QLangSelectorComponent } from './lang-selector.component';
-import { TranslateService } from '@ngx-translate/core';
 
 @NgModule({
   imports: [QCommonModule, MatMenuModule],

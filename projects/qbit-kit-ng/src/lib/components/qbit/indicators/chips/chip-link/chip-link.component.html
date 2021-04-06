@@ -1,0 +1,7 @@
+<mat-chip-list>
+    <mat-chip [matTooltip]="tooltip" [routerLink]="link" (click)="$event.stopPropagation()"
+        class="mat-chip app-chip  mat-primary mat-standard-chip marg-h-10 status-bg-{{color}}">
+        <mat-icon *ngIf="icon" class="mat-icon material-icons mat-icon-small marg-right-10">{{icon}}</mat-icon>
+        {{label | translate}}
+    </mat-chip>
+</mat-chip-list>

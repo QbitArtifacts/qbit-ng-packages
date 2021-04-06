@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { MatSelectModule } from '@angular/material/select';
-import { QBreadcrumbsModule } from '../../../../breadcrumbs.module';
+import { QBreadcrumbsModule } from '../../navigation/breadcrumbs/breadcrumbs.module';
 import { QCommonModule } from '../../../../common.module';
 import { QTableHeaderComponent } from './table-header.component';
 

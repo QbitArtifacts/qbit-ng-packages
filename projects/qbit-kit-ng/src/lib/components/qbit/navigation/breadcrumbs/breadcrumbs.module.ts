@@ -1,6 +1,6 @@
-import { QCommonModule } from './common.module';
+import { QCommonModule } from '../../../../common.module';
 import { NgModule } from '@angular/core';
-import { QBreadcrumbsComponent } from './components/qbit/navigation/breadcrumbs/breadcrumbs.component';
+import { QBreadcrumbsComponent } from './breadcrumbs.component';
 import { RouterModule } from '@angular/router';
 
 @NgModule({

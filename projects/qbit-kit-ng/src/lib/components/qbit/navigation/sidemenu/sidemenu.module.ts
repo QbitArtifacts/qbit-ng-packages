@@ -1,8 +1,8 @@
-import { QCommonModule } from './common.module';
+import { QCommonModule } from '../../../../common.module';
 import { NgModule } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { QSidemenuComponent } from './components/qbit/navigation/sidemenu/sidemenu.component';
-import { QSidemenuService } from './services/sidemenu.service';
+import { QSidemenuComponent } from './sidemenu.component';
+import { QSidemenuService } from '../../../../services/sidemenu.service';
 import { RouterModule } from '@angular/router';
 import { CasteUserService } from '@qbitartifacts/caste-client-ng';
 import { MatSidenavModule } from '@angular/material/sidenav';
