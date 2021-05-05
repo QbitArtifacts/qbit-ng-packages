@@ -1,0 +1,17 @@
+<div class="flex-row bordered-bottom center padd-h-20" style="height: 45px; position: relative;">
+    <b class="no-margin no-padding table-title" *ngIf="showLabel">
+        {{label | translate}}
+    </b>
+
+    <ng-container *ngIf="searchMapping && searchMapping.length">
+        <div class="marg-left-15" *ngFor="let mapping of searchMapping">
+            <qbit-debounced-input [query]="filterMap[mapping.property]"
+                (onSearch)="fieldChanged(mapping.property, $event)" [placeholder]="mapping.property">
+            </qbit-debounced-input>
+        </div>
+
+        <button mat-icon-button class="clear-button" *ngIf="filterCount" (click)="clearFilters()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </ng-container>
+</div>

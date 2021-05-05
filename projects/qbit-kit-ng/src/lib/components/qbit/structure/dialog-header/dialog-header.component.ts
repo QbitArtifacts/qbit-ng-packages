@@ -7,5 +7,6 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class QDialogHeaderComponent {
   @Input() public title: string;
   @Input() public status = 'blue';
+  @Input() public canClose: boolean = true;
   @Output() public click: EventEmitter<any> = new EventEmitter();
 }

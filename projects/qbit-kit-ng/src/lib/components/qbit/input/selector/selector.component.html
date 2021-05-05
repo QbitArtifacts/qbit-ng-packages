@@ -1,5 +1,5 @@
 <mat-form-field>
-    <mat-label>{{label|translate}}</mat-label>
+    <mat-label *ngIf="label">{{label|translate}}</mat-label>
     <mat-select [ngModel]="item" (ngModelChange)="select($event)">
         <mat-option *ngFor="let item of items" [value]="item">
             {{item.name}}

@@ -55,6 +55,7 @@ export abstract class QTableBase<T = any> implements OnInit {
   public isAdmin = false;
 
   private stopPolling = new Subject();
+  public searchParams: any = {};
 
   constructor(
     public snackbar: QSnackBar,
@@ -129,25 +130,10 @@ export abstract class QTableBase<T = any> implements OnInit {
   }
 
   /* istanbul ignore next */
-  public getOnSearchObservable(searchParams?: any, owner?: string) {
+  public getOnSearchObservable(owner?: string) {
     this.setIsLoading(true);
 
-    // Get owner
-    if (this.filterByOwner && this.hasOwner()) {
-      this.owner = this.getOwner();
-    }
-
-    const params: any = {
-      ...this.getPaginationParams(),
-      ...this.getSortParams(),
-      ...searchParams,
-    };
-
-    if (this.owner) {
-      params.account_id = this.owner;
-    } else if (owner) {
-      params.account_id = owner;
-    }
+    const params = this.getParams(owner);
 
     let searchObservable = this.getSearchObservable(params, this.listType);
     const applyPipe = (pipe) => (searchObservable = searchObservable.pipe(pipe));
@@ -161,7 +147,8 @@ export abstract class QTableBase<T = any> implements OnInit {
 
   /* istanbul ignore next */
   public async onSearch(searchParams?: any, owner?: string) {
-    this.getOnSearchObservable(searchParams, owner).subscribe({
+    this.searchParams = searchParams;
+    this.getOnSearchObservable(owner).subscribe({
       next: this.onGotSearchData.bind(this),
       error: (error) => {
         this.hasData = false;
@@ -177,11 +164,32 @@ export abstract class QTableBase<T = any> implements OnInit {
 
     // Only set mapping on first load
     if (this.searchMapping && !this.searchMapping.length) {
-      this.searchMapping = resp.search;
+      this.searchMapping = [...new Set(resp.search)];
     }
 
     this.setData(resp.data || []);
     this.setIsLoading(false);
+  }
+
+  private getParams(owner) {
+    // Get owner
+    if (this.filterByOwner && this.hasOwner()) {
+      this.owner = this.getOwner();
+    }
+
+    const params: any = {
+      ...this.getPaginationParams(),
+      ...this.getSortParams(),
+      ...this.getSearchParams(),
+    };
+
+    if (this.owner) {
+      params.account_id = this.owner;
+    } else if (owner) {
+      params.account_id = owner;
+    }
+
+    return params;
   }
 
   /* istanbul ignore next */
@@ -272,6 +280,10 @@ export abstract class QTableBase<T = any> implements OnInit {
     }
 
     return {};
+  }
+
+  public getSearchParams() {
+    return this.searchParams ?? {};
   }
 
   public sortChanged($event: Sort) {

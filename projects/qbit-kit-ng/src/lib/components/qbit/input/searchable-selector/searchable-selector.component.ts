@@ -34,7 +34,6 @@ export class QSearchableSelectorComponent implements OnInit {
 
   /* istanbul ignore next */
   public setupDebouncedSearch(element) {
-    console.log('setupDebouncedSearch');
     fromEvent(element, 'keyup')
       .pipe(
         map((event: any) => event.target.value),

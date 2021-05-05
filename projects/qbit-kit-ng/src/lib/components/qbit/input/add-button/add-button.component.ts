@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'qbit-button',
+  selector: 'qbit-add-button',
   templateUrl: './add-button.component.html',
   styles: [
     `

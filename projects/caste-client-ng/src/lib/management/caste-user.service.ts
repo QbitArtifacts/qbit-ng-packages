@@ -5,6 +5,7 @@ import { Role } from '../entities/role.entity';
 import { Account } from '../entities/account.entity';
 import { LoginResponse } from '../interfaces/login_response.interface';
 import { castRoles, ROLES } from '../roles';
+import { Grants } from '../grants';
 
 @Injectable({
   providedIn: 'root',
@@ -46,25 +47,36 @@ export class CasteUserService {
   }
 
   public isAdmin() {
-    return this.user && this.user.hasRole(ROLES.Admin);
+    return this.hasRole(ROLES.Admin);
   }
 
-  public isTrader() {
-    return (
-      this.user && this.selectedAccount && this.user.hasPermissionForAccount(this.selectedAccount.id, 'ACCOUNT_TRADER')
-    );
+  public isSupport() {
+    return this.hasRole(ROLES.Support);
   }
 
-  public isInvestor() {
-    return (
-      this.user &&
-      this.selectedAccount &&
-      this.user.hasPermissionForAccount(this.selectedAccount.id, 'ACCOUNT_INVESTOR')
-    );
+  public hasRole(role: Role): boolean {
+    return this.user && this.user.hasRole(role);
   }
 
   public isManagerForAccount(accountId: string): boolean {
-    return this.user && this.user.hasPermissionForAccount(accountId, 'ACCOUNT_MANAGER');
+    return this.user && this.user.hasPermissionForAccount(accountId, Grants.MANAGER);
+  }
+
+  public isTrader() {
+    return this.isGrantedInAccount(this.selectedAccount, Grants.TRADER);
+  }
+
+  public isInvestor() {
+    return this.isGrantedInAccount(this.selectedAccount, Grants.INVESTOR);
+  }
+
+  public isPro() {
+    return this.isGrantedInAccount(this.selectedAccount, Grants.PRO);
+  }
+
+  public isGrantedInAccount(account: Account, grant): boolean {
+    if (!account) return false;
+    return this.user && this.user.hasPermissionForAccount(account.id, grant);
   }
 
   public hasUser(): boolean {

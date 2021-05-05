@@ -43,7 +43,7 @@ export class QTableHeaderComponent implements OnInit {
   @Input() public doInitialSearch = true;
 
   @Input() public searchMapping = [];
-  @Input() public defaultSearchName = '';
+  @Input() public defaultSearchName = 'name';
 
   @Output() public onSearch: EventEmitter<any>;
   @Output() public queryChange: EventEmitter<any>;
@@ -103,7 +103,10 @@ export class QTableHeaderComponent implements OnInit {
   /* istanbul ignore next */
   public queryTypeChanged($event) {
     this.queryId = $event;
-    this.search();
+    
+    if (this.query) {
+      this.search();
+    }
   }
 
   /* istanbul ignore next */

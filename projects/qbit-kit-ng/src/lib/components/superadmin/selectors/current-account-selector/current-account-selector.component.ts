@@ -12,6 +12,7 @@ export class SaCurrentAccountSelectorComponent implements OnInit {
   public accounts = [];
   public account = null;
 
+  @Input() label;
   @Input() saveAccount = true;
   @Output() accountSelected = new EventEmitter<any>();
 

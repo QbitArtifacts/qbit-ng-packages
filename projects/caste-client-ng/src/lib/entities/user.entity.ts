@@ -79,6 +79,8 @@ export class User implements IUser {
 
   /* istanbul ignore next */
   public hasPermissionForAccount(account_id: string, grant: string) {
+    if (!this.permissions) return false;
+    
     const perm = this.permissions.find((el: any) => el.account.id === account_id);
     const grants = (perm && perm.grants) || [];
     return grants.includes(grant);

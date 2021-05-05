@@ -1,10 +1,12 @@
 export * from './lib/common.module';
+export * from './lib/rxjs/create-timer';
 
 // qbit modules
 export * from './lib/components/qbit/input/selector/selector.module';
 export * from './lib/components/qbit/input/add-button/add-button.module';
 export * from './lib/components/qbit/input/lang-selector/lang-selector.module';
 export * from './lib/components/qbit/input/loadable-button/loadable-button.module';
+export * from './lib/components/qbit/input/debounced-input/debounced-input.module';
 
 export * from './lib/components/qbit/indicators/list-loading/list-loading.module';
 export * from './lib/components/qbit/indicators/chips/chips.module';
@@ -15,6 +17,7 @@ export * from './lib/components/qbit/navigation/sidemenu/sidemenu.module';
 
 export * from './lib/components/qbit/structure/dialog-header/dialog-header.module';
 export * from './lib/components/qbit/structure/table-header/table-header.module';
+export * from './lib/components/qbit/structure/table-filters/table-filters.module';
 
 // Sa modules
 export * from './lib/sa-components.module';
@@ -31,8 +34,10 @@ export * from './lib/components/qbit/input/add-button/add-button.component';
 export * from './lib/components/qbit/input/loadable-button/loadable-button.component';
 export * from './lib/components/qbit/input/lang-selector/lang-selector.component';
 export * from './lib/components/qbit/input/selector/selector.component';
+export * from './lib/components/qbit/input/debounced-input/debounced-input.component';
 
 export * from './lib/components/qbit/structure/table-header/table-header.component';
+export * from './lib/components/qbit/structure/table-filters/table-filters.component';
 export * from './lib/components/qbit/structure/dialog-header/dialog-header.component';
 
 export * from './lib/components/qbit/indicators/list-loading/list-loading.component';

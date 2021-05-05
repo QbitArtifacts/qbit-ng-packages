@@ -19,7 +19,6 @@ export class QSidemenuComponent implements OnInit, OnDestroy {
 
   /* istanbul ignore next */
   ngOnInit() {
-    console.log('iteaslkjd', this.sidemenuService.items);
     this.sidemenuService.toggleEvent.subscribe(() => {
       this.drawer.toggle();
       this.sidemenuService.setOpened(this.drawer.opened);
