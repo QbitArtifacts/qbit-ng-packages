@@ -9,7 +9,7 @@ import { QApiSelectorComponent } from '../../../../../lib/base/api-selector';
 })
 export class SaApplicationSelectorComponent extends QApiSelectorComponent {
   label: string = 'SELECT_APPLICATION';
-  @Input() public userType: any = 'admin';
+  @Input() public userType: any = 'sadmin';
 
   constructor(public applications$: CasteApplicationService) {
     super();

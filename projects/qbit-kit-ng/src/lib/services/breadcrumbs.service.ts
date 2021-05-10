@@ -45,6 +45,8 @@ export class QBreadcrumbsService {
     }
 
     for (const child of children) {
+      if (!child.snapshot || !child.snapshot.url) return breadcrumbs;
+
       const routeURL: string = child.snapshot.url.map((segment) => segment.path).join('/');
 
       if (routeURL !== '') {

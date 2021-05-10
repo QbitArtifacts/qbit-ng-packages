@@ -10,6 +10,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { PermissionsDirective } from './directives/permissions.directive';
 import { QEventsService } from './services/events.service';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatButtonModule } from '@angular/material/button';
 
 const modules = [
   MatIconModule,
@@ -21,6 +22,7 @@ const modules = [
   MatFormFieldModule,
   FormsModule,
   MatMenuModule,
+  MatButtonModule,
 ];
 
 @NgModule({

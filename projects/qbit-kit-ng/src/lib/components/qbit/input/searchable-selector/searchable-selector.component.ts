@@ -13,6 +13,7 @@ export class QSearchableSelectorComponent implements OnInit {
   @Input() item = null;
   @Input() disabled = false;
   @Input() label = 'Selector';
+  @Input() isLoading = false;
 
   @Output() itemChanged = new EventEmitter<any>();
   @Output() onSearch = new EventEmitter<any>();

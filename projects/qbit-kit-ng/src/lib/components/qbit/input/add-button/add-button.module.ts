@@ -9,4 +9,4 @@ import { QAddButtonComponent } from './add-button.component';
   declarations: [QAddButtonComponent],
   exports: [QAddButtonComponent],
 })
-export class QDebouncedButtonModule {}
+export class QAddButtonModule {}

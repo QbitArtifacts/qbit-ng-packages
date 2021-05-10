@@ -1,3 +1,6 @@
+import { PermissionUser, PermissionPublic } from './../../projects/caste-client-ng/src/public-api';
+import { CASTE_AUTH_CONFIG } from './../../projects/caste-client-ng/src/lib/caste-auth.config';
+import { SaAdminAccountSelectorModule } from './../../projects/qbit-kit-ng/src/lib/components/superadmin/selectors/admin-account-selector/admin-account-selector.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -6,30 +9,21 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import {
-  CasteAuthModule,
-  CasteAuthService,
-  CasteUserService,
-  CASTE_AUTH_CONFIG,
-  PermissionPublic,
-  PermissionUser,
-} from '@qbitartifacts/caste-client-ng';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import {
   QCommonModule,
-  SaComponentsModule,
   QBreadcrumbsModule,
   QSnackBarModule,
   QSidemenuModule,
   QTableHeaderModule,
   QbitKitBaseModule,
   QBIT_SIDEMENU_ITEMS,
-  QSidemenuItem,
   QLangSelectorModule,
   QLoadableButtonModule,
+  SaApplicationSelectorModule,
 } from 'projects/qbit-kit-ng/src/public-api';
 import {
   QbitLocaleConfig,
@@ -38,6 +32,7 @@ import {
 } from 'projects/qbit-kit-ng/src/lib/services/locales.service';
 import { ComponentsComponent } from './components/components.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { HttpClientModule } from '@angular/common/http';
 
 const locales: QbitLocaleMetadata[] = [
   {
@@ -60,16 +55,19 @@ const qbitLocales: QbitLocaleConfig = {
     BrowserModule,
     // CasteAuthModule,
     // SaComponentsModule,
-    QBreadcrumbsModule,
-    QSnackBarModule,
+    // QBreadcrumbsModule,
+    // QSnackBarModule,
     QSidemenuModule,
     QTableHeaderModule,
+    SaAdminAccountSelectorModule,
+    SaApplicationSelectorModule,
     MatPaginatorModule,
     MatTableModule,
     MatSortModule,
     QbitKitBaseModule,
     TranslateModule.forRoot(),
     BrowserAnimationsModule,
+    HttpClientModule,
     RouterModule.forRoot([
       {
         path: 'home',
@@ -82,17 +80,20 @@ const qbitLocales: QbitLocaleConfig = {
     ]),
     MatToolbarModule,
     QLangSelectorModule,
-    QLoadableButtonModule,
+    // QLoadableButtonModule,
     MatProgressSpinnerModule,
   ],
   providers: [
-    // CasteUserService,
-    // CasteAuthService,
     {
       provide: CASTE_AUTH_CONFIG,
       useValue: {
         realm: 'default',
         url: 'https://api.caste.qbitartifacts.com',
+        baseHeaders: {
+          accept: 'application/json',
+          'content-type': 'application/json',
+        },
+        tokenStorageKey: 'qbit:auth:token',
       },
     },
     {
@@ -108,21 +109,21 @@ const qbitLocales: QbitLocaleConfig = {
           label: 'HOME',
           route: '/home',
           permission: PermissionUser,
-        } as QSidemenuItem,
+        },
         {
           name: 'components',
           icon: 'home',
           label: 'components',
           route: '/components',
           permission: PermissionPublic,
-        } as QSidemenuItem,
+        },
         {
           name: 'start',
           icon: 'dashboard',
           label: 'start',
           route: '/',
           permission: PermissionUser,
-        } as QSidemenuItem,
+        },
       ],
     },
   ],

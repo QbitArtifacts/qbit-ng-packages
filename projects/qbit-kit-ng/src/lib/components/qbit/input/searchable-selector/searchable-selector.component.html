@@ -1,5 +1,11 @@
 <mat-form-field>
-    <mat-label>{{label|translate}}</mat-label>
+    <mat-label>
+        <span *ngIf="!isLoading">{{label|translate}}</span>
+        <div style="display: flex; align-items: center" *ngIf="isLoading">
+            <mat-spinner diameter="20" class="primary-spinner marg-right-10"></mat-spinner>
+            <span class="small-text" style="margin-left: 10px">{{'LOADING'|translate}}</span>
+        </div>
+    </mat-label>
     <mat-select [ngModel]="item" (ngModelChange)="selectItem($event)">
         <div class="padd-10 bordered-bottom sticky-top-center bg-white">
             <input #search color="primary" style="margin: 0 15px" class="search-input" [(ngModel)]="query"

@@ -157,20 +157,27 @@ export abstract class QTableBase<T = any> implements OnInit {
     });
   }
 
-  /* istanbul ignore next */
-  private onGotSearchData(resp) {
+  public onGotSearchData(resp) {
     this.totalItems = resp.total || 0;
     this.hasData = this.totalItems > 0;
 
     // Only set mapping on first load
     if (this.searchMapping && !this.searchMapping.length) {
-      this.searchMapping = [...new Set(resp.search)];
+      const props = {};
+      this.searchMapping = [];
+      for (let mapping of resp.search) {
+        if (!props[mapping.property]) {
+          this.searchMapping.push(mapping);
+        }
+
+        props[mapping.property] = mapping;
+      }
     }
 
     this.setData(resp.data || []);
     this.setIsLoading(false);
   }
-
+  
   private getParams(owner) {
     // Get owner
     if (this.filterByOwner && this.hasOwner()) {
