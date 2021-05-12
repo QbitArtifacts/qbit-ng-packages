@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, ActivationEnd, NavigationEnd, Router } from '@angular/router';
 
 export interface Breadcrumb {
   label: string;
@@ -21,7 +21,7 @@ export class QBreadcrumbsService {
   /* istanbul ignore next */
   constructor(public route: ActivatedRoute, public router: Router) {
     this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
+      if (event instanceof NavigationEnd || event instanceof ActivationEnd) {
         this.list = this.createBreadcrumbs(this.route.root);
       }
     });
@@ -37,7 +37,7 @@ export class QBreadcrumbsService {
   }
 
   /* istanbul ignore next */
-  private createBreadcrumbs(route: ActivatedRoute, url: string = '', breadcrumbs: Breadcrumb[] = []): Breadcrumb[] {
+  protected createBreadcrumbs(route: ActivatedRoute, url: string = '', breadcrumbs: Breadcrumb[] = []): Breadcrumb[] {
     const children: ActivatedRoute[] = route.children;
 
     if (children.length === 0) {
