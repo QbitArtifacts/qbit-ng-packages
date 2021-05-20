@@ -1,11 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { fromEvent } from 'rxjs/internal/observable/fromEvent';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 import { distinctUntilChanged } from 'rxjs/internal/operators/distinctUntilChanged';
@@ -25,12 +18,12 @@ export class QDebouncedInput {
   @ViewChild('search', { static: false }) public searchElement: ElementRef;
 
   public ngOnInit() {
-    // Setup debound and params
     setTimeout(() => {
       this.setupDebouncedSearch(this.searchElement.nativeElement);
     });
   }
 
+  /* istanbul ignore next */
   public search() {
     this.onSearch.emit(this.query);
   }
@@ -41,7 +34,7 @@ export class QDebouncedInput {
       .pipe(
         map((event: any) => event.target.value),
         debounceTime(500),
-        distinctUntilChanged()
+        distinctUntilChanged(),
       )
       .subscribe((text: string) => {
         this.query = text;
@@ -49,6 +42,7 @@ export class QDebouncedInput {
       });
   }
 
+  /* istanbul ignore next */
   public clear() {
     this.query = '';
     this.search();

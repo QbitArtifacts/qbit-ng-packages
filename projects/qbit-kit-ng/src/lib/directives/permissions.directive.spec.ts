@@ -1,9 +1,16 @@
-import { MUserAdmin, MUserReadOnly, MUserUser } from './../../../../caste-client-ng/src/testing/users.mock';
 import { PermissionsDirective } from './permissions.directive';
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { Component, TemplateRef, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { CasteUserService, InternalPermission, PermissionAdmin, PermissionUser } from '@qbitartifacts/caste-client-ng';
+import {
+  CasteUserService,
+  InternalPermission,
+  PermissionAdmin,
+  PermissionUser,
+  MUserAdmin,
+  MUserReadOnly,
+  MUserUser,
+} from '@qbitartifacts/caste-client-ng';
 
 @Component({
   template: `<input id="element" type="text" *appPermissions="perm" />`,

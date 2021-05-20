@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { MatDialogRef } from '@angular/material/dialog';
 import { of } from 'rxjs/internal/observable/of';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { QSnackBarModule } from '../../public-api';
 
 @Component({
   template: '',
@@ -30,7 +31,7 @@ class TestPage extends QTableBase<any> {
   displayedColumns: string[];
 }
 
-describe('PageBaseComponent', () => {
+describe('QTableBase', () => {
   let fixture: ComponentFixture<TestPage>;
   let component: TestPage;
 
@@ -40,7 +41,7 @@ describe('PageBaseComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [AppModule, HttpClientTestingModule],
+      imports: [AppModule, HttpClientTestingModule, QSnackBarModule],
       declarations: [TestPage],
     }).compileComponents();
 

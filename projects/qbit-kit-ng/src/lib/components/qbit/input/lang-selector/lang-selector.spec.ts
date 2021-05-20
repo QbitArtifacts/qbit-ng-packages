@@ -1,8 +1,19 @@
+import { QBIT_LOCALES, QLocalesService } from './../../../../services/locales.service';
 import { QCommonModule } from './../../../../common.module';
 import { QLangSelectorComponent } from './lang-selector.component';
 import { TestBed } from '@angular/core/testing';
 import { QLangSelectorModule } from './lang-selector.module';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+const langMetadata = {
+  name: 'string',
+  icon: 'string',
+  abrev: 'string',
+};
+
+const qbitLocaleConfig = {
+  locales: [langMetadata],
+  defaultLocale: langMetadata,
+};
 
 describe('QLangSelectorComponent', () => {
   afterEach(() => {
@@ -12,6 +23,7 @@ describe('QLangSelectorComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [QLangSelectorModule, TranslateModule.forRoot()],
+      providers: [{ provide: QBIT_LOCALES, useValue: qbitLocaleConfig }],
     }).compileComponents();
   });
 
@@ -27,23 +39,12 @@ describe('QLangSelectorComponent', () => {
     expect(fixture.componentInstance).toBeTruthy();
   });
 
-  // it('should set language correctly on init', () => {
-  //   const fixture = TestBed.createComponent(QLangSelectorComponent);
-  //   const app$: AppService = TestBed.get(AppService);
-  //   app$.lang = LOCALES.en;
+  it('should select language', () => {
+    const qlocales = TestBed.inject(QLocalesService);
+    const fixture = TestBed.createComponent(QLangSelectorComponent);
 
-  //   fixture.componentInstance.lang = null;
-  //   fixture.detectChanges();
+    fixture.componentInstance.selectLang(langMetadata);
 
-  //   expect(fixture.componentInstance.lang).toEqual(LANG_METADATA[app$.lang]);
-  // });
-
-  // it('should set language correctly by method', () => {
-  //   const { componentInstance } = TestBed.createComponent(QLangSelectorComponent);
-
-  //   const langString = 'es';
-  //   componentInstance.selectLang(LANG_METADATA[langString]);
-
-  //   expect(componentInstance.lang).toEqual(LANG_METADATA[langString]);
-  // });
+    expect(qlocales.lang).toEqual(langMetadata);
+  });
 });

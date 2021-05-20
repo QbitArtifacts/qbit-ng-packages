@@ -1,6 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MUserUser } from 'projects/caste-client-ng/src/testing/users.mock';
+import { MUserUser } from '@qbitartifacts/caste-client-ng';
 import { AppModule } from 'src/app/app.module';
 import { SaCurrentAccountSelectorComponent } from './current-account-selector.component';
 

@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { Component, Input, EventEmitter, Output, ViewChild, ElementRef, OnInit, AfterContentInit } from '@angular/core';
 import { fromEvent } from 'rxjs/internal/observable/fromEvent';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 import { distinctUntilChanged } from 'rxjs/internal/operators/distinctUntilChanged';
@@ -8,7 +8,7 @@ import { map } from 'rxjs/internal/operators/map';
   selector: 'qbit-searchable-selector',
   templateUrl: './searchable-selector.component.html',
 })
-export class QSearchableSelectorComponent implements OnInit {
+export class QSearchableSelectorComponent implements AfterContentInit {
   @Input() items = [];
   @Input() item = null;
   @Input() disabled = false;
@@ -22,11 +22,11 @@ export class QSearchableSelectorComponent implements OnInit {
 
   public query = '';
 
-  ngOnInit() {
+  ngAfterContentInit() {
     setTimeout(() => {
       this.setupDebouncedSearch(this.searchElement.nativeElement);
+      this.search();
     });
-    this.search();
   }
 
   public selectItem(item) {

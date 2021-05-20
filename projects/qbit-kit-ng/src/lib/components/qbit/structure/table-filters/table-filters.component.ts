@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
-export interface TableFiltersOptions {}
+export interface QTableFiltersOptions {}
 
 @Component({
   selector: 'qbit-table-filters',
@@ -13,7 +13,7 @@ export class QTableFilters {
   @Input() label: string = 'FILTERS';
   @Input() showLabel: boolean = true;
   @Input() searchMapping: any[];
-  @Input() options: TableFiltersOptions = {};
+  @Input() options: QTableFiltersOptions = {};
   @Output() filtersChanged: EventEmitter<Params> = new EventEmitter();
 
   public filterKeys: string[] = [];

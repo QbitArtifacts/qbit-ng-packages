@@ -14,12 +14,7 @@ describe('SaUserSelectorComponent', () => {
     TestBed.configureTestingModule({
       imports: [AppModule, HttpClientTestingModule],
     }).compileComponents();
-  });
 
-  afterEach(() => {
-    TestBed.resetTestingModule();
-  });
-  beforeEach(() => {
     fixture = TestBed.createComponent(SaUserSelectorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -1,20 +1,22 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
-import { TableFiltersComponent } from './table-filters.component';
+import { QTableFilters } from './table-filters.component';
 
-describe('TableFiltersComponent', () => {
-  let component: TableFiltersComponent;
-  let fixture: ComponentFixture<TableFiltersComponent>;
+describe('QTableFilters', () => {
+  let component: QTableFilters;
+  let fixture: ComponentFixture<QTableFilters>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TableFiltersComponent ]
-    })
-    .compileComponents();
+      declarations: [QTableFilters],
+      imports: [RouterModule.forRoot([]), TranslateModule.forRoot()],
+    }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TableFiltersComponent);
+    fixture = TestBed.createComponent(QTableFilters);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
