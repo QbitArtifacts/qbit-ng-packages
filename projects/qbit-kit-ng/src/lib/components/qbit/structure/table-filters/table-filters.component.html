@@ -5,7 +5,7 @@
 
     <ng-container *ngIf="searchMapping && searchMapping.length">
         <div class="marg-left-15" *ngFor="let mapping of searchMapping">
-            <qbit-debounced-input [query]="filterMap[mapping.property]"
+            <qbit-debounced-input [query]="filters[mapping.property]"
                 (onSearch)="fieldChanged(mapping.property, $event)" [placeholder]="mapping.property">
             </qbit-debounced-input>
         </div>

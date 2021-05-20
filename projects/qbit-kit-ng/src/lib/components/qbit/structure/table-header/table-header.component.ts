@@ -6,20 +6,16 @@ import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 import { distinctUntilChanged } from 'rxjs/internal/operators/distinctUntilChanged';
 
 export interface TableListHeaderOptions {
-  input?: boolean;
   refresh?: boolean;
-  search?: boolean;
-  searchBy?: false;
   newItem?: boolean;
   showOptions?: boolean;
   deepLinkQuery?: boolean;
+  showLoading?: boolean;
 }
 
 const defaultOptions: TableListHeaderOptions = {
-  input: true,
-  search: false,
-  searchBy: false,
   refresh: true,
+  showLoading: true,
   newItem: false,
   showOptions: false,
   deepLinkQuery: false,
@@ -29,7 +25,7 @@ const defaultOptions: TableListHeaderOptions = {
   selector: 'qbit-table-header',
   templateUrl: './table-header.html',
 })
-export class QTableHeaderComponent implements OnInit {
+export class QTableHeaderComponent {
   @Input() public options: TableListHeaderOptions = {};
   @Input() public title = 'TableList';
   @Input() public query = '';
@@ -38,88 +34,13 @@ export class QTableHeaderComponent implements OnInit {
 
   @Input() public newItemText = '';
   @Input() public newItemIcon = 'fa-plus';
-  @Input() public searching = false;
+  @Input() public isLoading = false;
   @Input() public showBreadcrumbs = true;
-  @Input() public doInitialSearch = true;
-
-  @Input() public searchMapping = [];
-  @Input() public defaultSearchName = 'name';
-
-  @Output() public onSearch: EventEmitter<any>;
-  @Output() public queryChange: EventEmitter<any>;
-
-  @ViewChild('search', { static: false }) public searchElement: ElementRef;
-
-  public queryId: any = '';
 
   constructor(public router: Router, public route: ActivatedRoute) {
-    this.onSearch = new EventEmitter<string>();
-    this.queryChange = new EventEmitter<string>();
-
     this.options = {
       ...defaultOptions,
       ...this.options,
     };
-  }
-
-  /* istanbul ignore next */
-  public ngOnChanges() {
-    if (this.defaultSearchName) {
-      const defaultMapping = this.searchMapping.find((el) => el.property === this.defaultSearchName);
-      if (defaultMapping && !this.queryId) {
-        this.queryId = defaultMapping;
-      }
-    }
-  }
-
-  public ngOnInit() {
-    // Setup debound and params
-    setTimeout(() => {
-      if (this.options.input) {
-        this.setupDebouncedSearch(this.searchElement.nativeElement);
-      }
-
-      if (this.doInitialSearch) this.search();
-    });
-  }
-
-  /* istanbul ignore next */
-  public search() {
-    this.queryChange.emit(this.query || '');
-    if (this.queryId && this.query) {
-      this.onSearch.emit({
-        [this.queryId.property]: this.query,
-      });
-    } else {
-      this.onSearch.emit();
-    }
-  }
-
-  public clear() {
-    this.query = '';
-    this.search();
-  }
-
-  /* istanbul ignore next */
-  public queryTypeChanged($event) {
-    this.queryId = $event;
-    
-    if (this.query) {
-      this.search();
-    }
-  }
-
-  /* istanbul ignore next */
-  public setupDebouncedSearch(element) {
-    fromEvent(element, 'keyup')
-      .pipe(
-        map((event: any) => event.target.value),
-        debounceTime(500),
-        distinctUntilChanged(),
-      )
-      .subscribe((text: string) => {
-        this.query = text;
-        this.search();
-      });
   }
 }

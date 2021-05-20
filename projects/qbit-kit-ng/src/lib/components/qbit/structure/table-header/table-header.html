@@ -4,21 +4,11 @@
     </b>
     <qbit-breadcrumbs *ngIf="showBreadcrumbs"></qbit-breadcrumbs>
 
-    <div class="flex-row center search-input-wrapper"
-        style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%)">
-        <input color="primary" style="margin: 0 15px; width: 350px" class="search-input" #search *ngIf="options.input"
-            placeholder="{{'SEARCH'|translate}}">
-
-        <mat-select *ngIf="options.searchBy" class="small-text" [ngModel]="queryId"
-            (ngModelChange)="queryTypeChanged($event)">
-            <mat-option value=""><span class="text-small">{{'SEARCH_BY'|translate}}</span></mat-option>
-            <mat-option *ngFor="let id of searchMapping" [value]="id">
-                <span class="text-small">{{'BY'|translate}}: {{id.property}}</span>
-            </mat-option>
-        </mat-select>
-    </div>
-
     <div class="flex-row center">
+        <div style="width: 30px; margin-right: 15px" *ngIf="options.showLoading">
+            <mat-spinner diameter="25" *ngIf="isLoading"></mat-spinner>
+        </div>
+
         <ng-content></ng-content>
     </div>
 </div>

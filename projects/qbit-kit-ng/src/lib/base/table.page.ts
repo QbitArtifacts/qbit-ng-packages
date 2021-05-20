@@ -10,6 +10,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { createTimer } from '../rxjs/create-timer';
 import { MatDialogRef } from '@angular/material/dialog';
 import { DeleteDialogStatus } from '../enums/delete-dialog-status';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 @Component({
   template: '',
@@ -34,8 +35,9 @@ export abstract class QTableBase<T = any> implements OnInit {
   @Input() public listType;
   @Input() public createType;
   @Input() public deleteType;
-  @Input() public searchFilters = {};
   @Input() public showBreadcrumbs = true;
+  @Input() public autoRefresh = true;
+  @Input() public initialSearch = false;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -54,8 +56,9 @@ export abstract class QTableBase<T = any> implements OnInit {
   public isInvestor = false;
   public isAdmin = false;
 
-  private stopPolling = new Subject();
   public searchParams: any = {};
+  private stopPolling = new Subject();
+  private timer: Subscription;
 
   constructor(
     public snackbar: QSnackBar,
@@ -89,10 +92,16 @@ export abstract class QTableBase<T = any> implements OnInit {
       this.sort.active = this.sortId;
       this.paginator.pageIndex = this.pageIndex;
       this.paginator.pageSize = this.pageSize;
+
+      this.searchParams = this.searchParams || {};
+      for (let key in params) {
+        this.searchParams[key] = params[key];
+      }
+
+      if (this.initialSearch) this.onSearch(this.searchParams);
     });
 
-    this.onSearch();
-    this.setUpTimer();
+    if (this.autoRefresh) this.setUpTimer();
   }
 
   ngOnDestroy() {
@@ -111,7 +120,15 @@ export abstract class QTableBase<T = any> implements OnInit {
   abstract getOwner(): string;
 
   public setUpTimer() {
-    createTimer(this.getOnSearchObservable.bind(this), this.stopPolling).subscribe({
+    if (this.timer) {
+      this.timer.unsubscribe();
+    }
+    this.timer = createTimer(
+      this.getOnSearchObservable.bind(this),
+      this.stopPolling,
+      60e3,
+      this.initialSearch ? 1 : 60e3,
+    ).subscribe({
       next: this.onGotSearchData.bind(this),
       error: (error) => {
         this.hasData = false;
@@ -177,7 +194,7 @@ export abstract class QTableBase<T = any> implements OnInit {
     this.setData(resp.data || []);
     this.setIsLoading(false);
   }
-  
+
   private getParams(owner) {
     // Get owner
     if (this.filterByOwner && this.hasOwner()) {
@@ -268,6 +285,11 @@ export abstract class QTableBase<T = any> implements OnInit {
       pageSize: this.pageSize,
     });
     this.onSearch();
+  }
+
+  /* istanbul ignore next */
+  public searchParamsChanged(event) {
+    this.searchParams = event;
   }
 
   /* istanbul ignore next */

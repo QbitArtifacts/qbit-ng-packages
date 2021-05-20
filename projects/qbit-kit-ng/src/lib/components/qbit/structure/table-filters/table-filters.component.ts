@@ -9,51 +9,43 @@ export interface TableFiltersOptions {}
   styleUrls: ['./table-filters.component.scss'],
 })
 export class QTableFilters {
-  filterMap: Params = {};
-  filterKeys: string[] = [];
-
+  @Input() filters: Params = {};
   @Input() label: string = 'FILTERS';
   @Input() showLabel: boolean = true;
   @Input() searchMapping: any[];
   @Input() options: TableFiltersOptions = {};
   @Output() filtersChanged: EventEmitter<Params> = new EventEmitter();
 
+  public filterKeys: string[] = [];
+
   constructor(public router: Router, public route: ActivatedRoute) {}
 
   ngOnChanges() {
     if (this.searchMapping && this.searchMapping.length) {
       this.filterKeys = this.searchMapping.map((e) => e.property);
-      this.route.queryParams.subscribe((params) => {
-        for (let key in params) {
-          if (this.filterKeys.includes(key)) {
-            this.filterMap[key] = params[key];
-          }
-        }
-        this.search();
-      });
     }
   }
 
   search() {
-    this.addToQueryParams(this.filterMap);
-    this.filtersChanged.emit(this.filterMap);
+    this.addToQueryParams(this.filters);
+    this.filtersChanged.emit(this.filters);
   }
 
   fieldChanged(prop, value) {
-    this.filterMap[prop] = value;
+    this.filters[prop] = value;
 
-    if (!value) this.filterMap[prop] = null;
+    if (!value) this.filters[prop] = null;
 
     this.search();
   }
 
   get filterCount() {
-    return Object.getOwnPropertyNames(this.filterMap).filter((k) => this.filterMap[k]).length;
+    return Object.getOwnPropertyNames(this.filters).filter((k) => this.filters[k]).length;
   }
 
   clearFilters() {
-    for (let key in this.filterMap) {
-      this.filterMap[key] = null;
+    for (let key in this.filters) {
+      this.filters[key] = null;
     }
     this.search();
   }
