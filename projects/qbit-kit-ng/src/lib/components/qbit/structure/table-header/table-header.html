@@ -1,8 +1,8 @@
 <div class="flex-row bordered-bottom center space-between padd-h-20" style="height: 45px; position: relative;">
-    <b class="no-margin no-padding table-title" *ngIf="!showBreadcrumbs">
+    <b class="no-margin no-padding table-title" *ngIf="!options.showBreadcrumbs">
         {{title | translate}}
     </b>
-    <qbit-breadcrumbs *ngIf="showBreadcrumbs"></qbit-breadcrumbs>
+    <qbit-breadcrumbs *ngIf="options.showBreadcrumbs"></qbit-breadcrumbs>
 
     <div class="flex-row center">
         <div style="width: 30px; margin-right: 15px" *ngIf="options.showLoading">
