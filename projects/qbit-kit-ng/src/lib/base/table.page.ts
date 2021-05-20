@@ -11,6 +11,7 @@ import { createTimer } from '../rxjs/create-timer';
 import { MatDialogRef } from '@angular/material/dialog';
 import { DeleteDialogStatus } from '../enums/delete-dialog-status';
 import { Subscription } from 'rxjs/internal/Subscription';
+import { QTableListHeaderOptions } from '../../public-api';
 
 @Component({
   template: '',
@@ -24,10 +25,7 @@ export abstract class QTableBase<T = any> implements OnInit {
   public searchPipes: any[] = [];
   public hasData = false;
   public searchMapping = [];
-  public tableOptions = {
-    input: true,
-    searchBy: true,
-  };
+  public tableOptions: QTableListHeaderOptions = {};
 
   @Input() public filterByOwner = false;
   @Input() public owner = null;

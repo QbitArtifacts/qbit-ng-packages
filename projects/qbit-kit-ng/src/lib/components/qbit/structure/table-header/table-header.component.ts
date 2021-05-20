@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-export interface TableListHeaderOptions {
+export interface QTableListHeaderOptions {
   showLoading?: boolean;
   showBreadcrumbs?: boolean;
 }
 
-const defaultOptions: TableListHeaderOptions = {
+const defaultOptions: QTableListHeaderOptions = {
   showLoading: true,
   showBreadcrumbs: false,
 };
@@ -15,7 +15,7 @@ const defaultOptions: TableListHeaderOptions = {
   templateUrl: './table-header.html',
 })
 export class QTableHeaderComponent implements OnInit {
-  @Input() public options: TableListHeaderOptions = {};
+  @Input() public options: QTableListHeaderOptions = {};
   @Input() public title = 'TableList';
   @Input() public isLoading = false;
 
