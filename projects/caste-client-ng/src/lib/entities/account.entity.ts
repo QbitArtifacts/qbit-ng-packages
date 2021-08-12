@@ -4,25 +4,33 @@ import { IBaseEntity } from './base.entity';
 
 export interface IAccount extends IBaseEntity {
   permissions?: string[];
+  messages: string[];
   name: string;
+  enabled: boolean;
   application: Application | string;
 }
 
 export class Account implements IAccount {
-  permissions?: string[];
-  name: string;
-  application: Application;
   id?: string;
   iri?: string;
   created_at?: string;
   updated_at?: string;
+
+  name: string;
+  enabled: boolean;
+  application: Application;
+  permissions?: string[];
+  messages: string[];
+
 
   static fromJson(obj: any): Account {
     const account = new Account();
     account.id = obj.id;
     account.iri = obj['@id'];
     account.name = obj.name;
-    account.application = obj.application;
+    account.enabled = obj.enabled;
+    account.messages = obj.messages;
+    account.application = obj.application ? Application.fromJson(obj.application) : null;
     account.permissions =
       obj.permissions && obj.permissions.length ? obj.permissions.map((el) => AccountPermission.fromJson(el)) : [];
     account.updated_at = obj.updated_at;

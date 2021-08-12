@@ -17,14 +17,10 @@ export class QTableFilters {
   @Input() options: QTableFiltersOptions = {};
   @Output() filtersChanged: EventEmitter<Params> = new EventEmitter();
 
-  public filterKeys: string[] = [];
-
   constructor(public router: Router, public route: ActivatedRoute) {}
 
-  ngOnChanges() {
-    if (this.searchMapping && this.searchMapping.length) {
-      this.filterKeys = this.searchMapping.map((e) => e.property);
-    }
+  ngOnInit(){
+    console.log('hidden', this.hiddenFilters);
   }
 
   search() {

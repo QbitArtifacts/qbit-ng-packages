@@ -1,8 +1,10 @@
+import { Account } from './account.entity';
+import { User } from './user.entity';
 import { IBaseEntity } from './base.entity';
 
 export interface IPermission extends IBaseEntity {
-  user: string;
-  account: string;
+  user: User;
+  account: Account;
   grants: string[];
 }
 
@@ -11,7 +13,8 @@ export class Permission implements IPermission {
   iri?: string;
   created_at?: string;
   updated_at?: string;
-  user: string;
-  account: string;
+  
+  user: User;
+  account: Account;
   grants: string[];
 }

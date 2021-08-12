@@ -10,6 +10,7 @@ export interface IUser extends IBaseEntity {
   roles?: Role[];
   permissions?: Permission[];
   applications?: Application[];
+  application?: Application;
   accounts?: Account[];
 }
 
@@ -18,6 +19,7 @@ export class User implements IUser {
   roles: Role[];
   permissions: Permission[];
   applications: Application[];
+  application: Application;
   accounts: Account[];
   id: string;
   iri: string;
@@ -96,6 +98,8 @@ export class User implements IUser {
     user.roles = data.roles;
     user.permissions = data.permissions;
     user.accounts = data.accounts;
+    user.application = data.application;
+    user.applications = data.applications;
     return user;
   }
 }
