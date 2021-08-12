@@ -14,6 +14,14 @@ export const ROLES = {
   Support: RoleSupport,
 };
 
+export const DEFAULT_ROLES = [
+  RoleReadonly,
+  RoleUser,
+  RoleAdmin,
+  RoleSuperadmin,
+  RoleSupport,
+];
+
 const roleMap = {
   ROLE_USER: ROLES.User,
   ROLE_READONLY: ROLES.Readonly,

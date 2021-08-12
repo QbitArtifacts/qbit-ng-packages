@@ -10,7 +10,7 @@
             </qbit-debounced-input>
         </div>
 
-        <button mat-icon-button class="clear-button" *ngIf="filterCount" (click)="clearFilters()">
+        <button mat-icon-button class="clear-button" *ngIf="filters && filterCount" (click)="clearFilters()">
             <mat-icon>close</mat-icon>
         </button>
     </ng-container>

@@ -26,6 +26,10 @@ export abstract class BaseService<T = {}> {
     this.opts[key] = value;
   }
 
+  public removeConfig(key: ValidConfigKeys<T>) {
+    delete this.opts[key];
+  }
+
   private static cleanObject(obj: object) {
     for (const propName in obj) {
       if (obj[propName] === null || obj[propName] === undefined) {
