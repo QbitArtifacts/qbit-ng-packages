@@ -4,11 +4,13 @@
     </b>
 
     <ng-container *ngIf="searchMapping && searchMapping.length">
-        <div class="marg-left-15" *ngFor="let mapping of searchMapping">
-            <qbit-debounced-input [query]="filters[mapping.property]"
-                (onSearch)="fieldChanged(mapping.property, $event)" [placeholder]="mapping.property | translate">
-            </qbit-debounced-input>
-        </div>
+        <ng-container *ngFor="let mapping of searchMapping">
+            <div class="marg-left-15" *ngIf="!hiddenFilters.includes(mapping.property)">
+                <qbit-debounced-input [query]="filters[mapping.property]"
+                    (onSearch)="fieldChanged(mapping.property, $event)" [placeholder]="mapping.property | translate">
+                </qbit-debounced-input>
+            </div>
+        </ng-container>
 
         <button mat-icon-button class="clear-button" *ngIf="filters && filterCount" (click)="clearFilters()">
             <mat-icon>close</mat-icon>

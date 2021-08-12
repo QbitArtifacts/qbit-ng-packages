@@ -12,4 +12,9 @@ export class Application implements IApplication {
   realm: string;
   grants?: string[];
   default_grants?: string[];
+  
+  id?: string;
+  iri?: string;
+  created_at?: string;
+  updated_at?: string;
 }

@@ -10,6 +10,7 @@ export interface QTableFiltersOptions {}
 })
 export class QTableFilters {
   @Input() filters: Params = {};
+  @Input() hiddenFilters: string[] = [];
   @Input() label: string = 'FILTERS';
   @Input() showLabel: boolean = true;
   @Input() searchMapping: any[];
