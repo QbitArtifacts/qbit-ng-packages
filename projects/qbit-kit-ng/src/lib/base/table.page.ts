@@ -269,7 +269,7 @@ export abstract class QTableBase<T = any> implements OnInit {
   /* istanbul ignore next */
   public onNewItemAdded(resp) {
     if (resp === CreateDialogStatus.CREATED) {
-      this.onSearch(this.query);
+      this.onSearch({ ...this.getParams(this.owner), ...this.searchParams });
     }
   }
 

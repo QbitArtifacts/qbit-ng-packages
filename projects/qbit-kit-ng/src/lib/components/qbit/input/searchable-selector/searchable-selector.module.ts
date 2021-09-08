@@ -7,7 +7,7 @@ import { QSearchableSelectorComponent } from './searchable-selector.component';
 
 @NgModule({
   imports: [QCommonModule, MatFormFieldModule, MatSelectModule, MatProgressSpinnerModule],
-  declarations: [QSearchableSelectorComponent],
+  declarations: [QSearchableSelectorComponent,],
   exports: [QSearchableSelectorComponent],
 })
 export class QSearchableSelectorModule {}

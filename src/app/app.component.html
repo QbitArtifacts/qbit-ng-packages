@@ -1,4 +1,17 @@
 <div style="display: flex; align-items: center; justify-content: center">
-    <sa-admin-account-selector [item]="accountId"></sa-admin-account-selector>
-    <sa-application-selector [item]="appId"></sa-application-selector>
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Selectors</mat-card-title>
+        </mat-card-header>
+
+        <div style="padding: 25px">
+            <sa-admin-account-selector [item]="accountId"></sa-admin-account-selector>
+        </div>
+        <div style="padding: 25px">
+            <sa-application-selector [item]="appId"></sa-application-selector>
+        </div>
+        <div style="padding: 25px">
+            <custom-selector [item]="'aaaa'"></custom-selector>
+        </div>
+    </mat-card>
 </div>

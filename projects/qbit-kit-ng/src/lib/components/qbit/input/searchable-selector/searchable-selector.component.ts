@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output, ViewChild, ElementRef, OnInit, AfterContentInit } from '@angular/core';
+import { Component, Input, EventEmitter, Output, ViewChild, ElementRef, OnInit, AfterContentInit, ContentChild, TemplateRef } from '@angular/core';
 import { fromEvent } from 'rxjs/internal/observable/fromEvent';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 import { distinctUntilChanged } from 'rxjs/internal/operators/distinctUntilChanged';
@@ -19,6 +19,8 @@ export class QSearchableSelectorComponent implements AfterContentInit {
   @Output() onSearch = new EventEmitter<any>();
 
   @ViewChild('search', { static: false }) public searchElement: ElementRef;
+  @ContentChild(TemplateRef) templateRef: TemplateRef<any>;
+  @ContentChild('ng-content') content: ElementRef;
 
   public query = '';
 

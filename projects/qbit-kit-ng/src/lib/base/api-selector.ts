@@ -10,7 +10,7 @@ export abstract class QApiSelectorComponent {
   @Input() public item: any = null;
   @Input() public disabled: boolean = false;
   @Input() public userType: UserType = 'user';
-  @Output() public itemChange: EventEmitter<string> = new EventEmitter();
+  @Output() public itemChange: EventEmitter<any> = new EventEmitter();
 
   public itemQuery: string;
   public isLoading = false;
@@ -24,25 +24,19 @@ export abstract class QApiSelectorComponent {
   public abstract getSearchObservable(query: string): Observable<any>;
 
   /* istanbul ignore next */
-  public setInitialAccount() {
-    const selectedItemId = this.item.id || this.item;
+  public setInitialValue() {
+    const selectedItemId = (this.item && this.item.id) || this.item;
 
     if (selectedItemId !== null) {
-      const account = this.items.find((el) => el.id === selectedItemId);
-      if (account) {
-        return this.setSelectedAccount(account);
+      const item = this.items.find((el) => el.id === selectedItemId);
+      if (item) {
+        return this.setSelectedItem(item);
       }
     }
   }
 
-  /* istanbul ignore next */
-  public selectAccount(account) {
-    this.setSelectedAccount(account);
-    this.itemChange.emit(account);
-  }
-
-  public setSelectedAccount(account) {
-    this.item = account;
+  public setSelectedItem(item) {
+    this.item = item;
   }
 
   /* istanbul ignore next */
@@ -60,8 +54,7 @@ export abstract class QApiSelectorComponent {
           this.items = [];
         }
 
-        console.log('got items', resp);
-        this.setInitialAccount();
+        this.setInitialValue();
       },
       error: (err) => {
         this.isLoading = false;

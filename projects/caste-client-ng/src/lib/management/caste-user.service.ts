@@ -50,6 +50,10 @@ export class CasteUserService {
     return this.hasRole(ROLES.Admin);
   }
 
+  public isSuperadmin() {
+    return this.hasRole(ROLES.Superadmin);
+  }
+
   public isSupport() {
     return this.hasRole(ROLES.Support);
   }

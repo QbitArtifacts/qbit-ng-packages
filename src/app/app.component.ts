@@ -28,14 +28,13 @@ export class AppComponent {
     this.signIn().subscribe((resp) => {
       casteAuth.saveToken(resp.token);
       this.user.setUserFromTokenData(resp);
-
       this.showSelector = true;
     });
   }
 
   public signIn() {
     return this.casteAuth.signIn({
-      username: 'manolo_sa2',
+      username: 'manolo_sa2@gmail.com',
       password: 'AkxED2Ap8e6a',
       realm: 'default',
     });

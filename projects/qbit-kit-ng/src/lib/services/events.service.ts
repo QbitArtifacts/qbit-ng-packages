@@ -14,8 +14,11 @@ export class QEventsService {
   }
 
   public off(name) {
-    this.events[name].unsubscribe();
-    delete this.events[name];
+    const event = this.find(name);
+    if (event) {
+      event.unsubscribe();
+      delete this.events[name];
+    }
   }
 
   public find(name): EventEmitter<any> {

@@ -1,0 +1,7 @@
+<qbit-searchable-selector [label]="label" [isLoading]="isLoading" [items]="items" [item]="item"
+    (itemChanged)="selectItem($event)" (onSearch)="search($event)">
+
+    <ng-template let-item>
+        {{item.fruitName}}
+    </ng-template>
+</qbit-searchable-selector>

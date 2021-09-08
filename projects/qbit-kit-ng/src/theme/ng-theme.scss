@@ -1,0 +1,97 @@
+@import '~@angular/material/theming';
+@import './colors';
+
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$caste-app-primary: mat-palette($mat-purple);
+$caste-app-accent: mat-palette($mat-gray);
+
+// The warn palette is optional (defaults to red).
+$caste-app-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$caste-app-theme: mat-light-theme(
+  $caste-app-primary,
+  $caste-app-accent,
+  $caste-app-warn
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($caste-app-theme);
+
+$primary: mat-color($caste-app-primary);
+$accent: mat-color($caste-app-accent);
+
+.col-green {
+  color: #4caf50;
+}
+.col-red {
+  color: #f44336;
+}
+.col-blue {
+  color: #2196f3;
+}
+
+body {
+  background: $bg;
+}
+
+.admin-badge {
+  background-color: $primary!important;
+}
+
+.svg .mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: inherit;
+}
+
+.white-spinner {
+  stroke: white !important;
+}
+
+.primary-spinner {
+  stroke: $primary !important;
+}
+
+.black-spinner {
+  stroke: black !important;
+}
+
+.bordered-bottom {
+  border-bottom: thin solid $borderColor;
+}
+
+.bordered-top {
+  border-top: thin solid $borderColor;
+}
+
+.bordered {
+  border: thin solid $borderColor;
+  border-radius: 3px;
+}
+
+.toolbar-white,
+.bg-white {
+  background: white;
+}
+
+// this imports must go at the end of the file
+// If not it will not override styles
+@import './kbd';
+@import './structure';
+@import './statuses';
+@import './buttons';
+@import './text';
+@import './inputs';
+@import './lists';
+@import './overrides';

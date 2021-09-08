@@ -12,7 +12,11 @@
                 placeholder="{{'SEARCH'|translate}}">
         </div>
         <mat-option *ngFor="let item of items" [value]="item">
-            {{item.name || item.username}}
+            <ng-template [ngTemplateOutlet]="templateRef" [ngTemplateOutletContext]="{$implicit: item}"></ng-template>
+
+            <span *ngIf="!content">
+                {{item.name || item.username}}
+            </span>
         </mat-option>
     </mat-select>
 </mat-form-field>

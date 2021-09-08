@@ -17,6 +17,6 @@ export class SaUserSelectorComponent extends QApiSelectorComponent {
   }
 
   public getSearchObservable(query: string): Observable<any> {
-    return this.users$.listAll({ username: query }, 'sadmin');
+    return this.users$.listAll({ username: query }, this.userType);
   }
 }

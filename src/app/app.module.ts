@@ -33,6 +33,8 @@ import {
 import { ComponentsComponent } from './components/components.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HttpClientModule } from '@angular/common/http';
+import { CustomSelectorModule } from './components/custom-selector/custom-selector.module';
+import {MatCardModule} from '@angular/material/card';
 
 const locales: QbitLocaleMetadata[] = [
   {
@@ -53,10 +55,6 @@ const qbitLocales: QbitLocaleConfig = {
     CommonModule,
     QCommonModule,
     BrowserModule,
-    // CasteAuthModule,
-    // SaComponentsModule,
-    // QBreadcrumbsModule,
-    // QSnackBarModule,
     QSidemenuModule,
     QTableHeaderModule,
     SaAdminAccountSelectorModule,
@@ -64,10 +62,12 @@ const qbitLocales: QbitLocaleConfig = {
     MatPaginatorModule,
     MatTableModule,
     MatSortModule,
+    MatCardModule,
     QbitKitBaseModule,
     TranslateModule.forRoot(),
     BrowserAnimationsModule,
     HttpClientModule,
+    CustomSelectorModule,
     RouterModule.forRoot([
       {
         path: 'home',
@@ -80,7 +80,6 @@ const qbitLocales: QbitLocaleConfig = {
     ]),
     MatToolbarModule,
     QLangSelectorModule,
-    // QLoadableButtonModule,
     MatProgressSpinnerModule,
   ],
   providers: [
