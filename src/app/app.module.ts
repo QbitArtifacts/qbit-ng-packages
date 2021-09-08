@@ -24,6 +24,8 @@ import {
   QLangSelectorModule,
   QLoadableButtonModule,
   SaApplicationSelectorModule,
+  QTableFiltersModule,
+  QTableFiltersAddableModule,
 } from 'projects/qbit-kit-ng/src/public-api';
 import {
   QbitLocaleConfig,
@@ -34,7 +36,8 @@ import { ComponentsComponent } from './components/components.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HttpClientModule } from '@angular/common/http';
 import { CustomSelectorModule } from './components/custom-selector/custom-selector.module';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
+import { ListTestComponent } from './list-test/list-test.component';
 
 const locales: QbitLocaleMetadata[] = [
   {
@@ -50,7 +53,7 @@ const qbitLocales: QbitLocaleConfig = {
 };
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ComponentsComponent],
+  declarations: [AppComponent, HomeComponent, ComponentsComponent, ListTestComponent],
   imports: [
     CommonModule,
     QCommonModule,
@@ -77,10 +80,17 @@ const qbitLocales: QbitLocaleConfig = {
         path: 'components',
         component: ComponentsComponent,
       },
+      {
+        path: 'list-test',
+        component: ListTestComponent,
+      },
     ]),
     MatToolbarModule,
     QLangSelectorModule,
     MatProgressSpinnerModule,
+    QSnackBarModule,
+    QTableFiltersModule,
+    QTableFiltersAddableModule,
   ],
   providers: [
     {
@@ -89,8 +99,8 @@ const qbitLocales: QbitLocaleConfig = {
         realm: 'default',
         url: 'https://api.caste.qbitartifacts.com',
         baseHeaders: {
-          accept: 'application/json',
-          'content-type': 'application/json',
+          accept: 'application/ld+json',
+          'content-type': 'application/ld+json',
         },
         tokenStorageKey: 'qbit:auth:token',
       },
@@ -115,6 +125,13 @@ const qbitLocales: QbitLocaleConfig = {
           label: 'components',
           route: '/components',
           permission: PermissionPublic,
+        },
+        {
+          name: 'list',
+          icon: 'list',
+          label: 'list',
+          route: '/list',
+          permission: PermissionUser,
         },
         {
           name: 'start',

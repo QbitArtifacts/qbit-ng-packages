@@ -18,6 +18,7 @@ export * from './lib/components/qbit/navigation/sidemenu/sidemenu.module';
 export * from './lib/components/qbit/structure/dialog-header/dialog-header.module';
 export * from './lib/components/qbit/structure/table-header/table-header.module';
 export * from './lib/components/qbit/structure/table-filters/table-filters.module';
+export * from './lib/components/qbit/structure/table-filters-addable/table-filters-addable.module';
 
 // Sa modules
 export * from './lib/sa-components.module';
@@ -39,6 +40,7 @@ export * from './lib/components/qbit/input/debounced-input/debounced-input.compo
 export * from './lib/components/qbit/structure/table-header/table-header.component';
 export * from './lib/components/qbit/structure/table-filters/table-filters.component';
 export * from './lib/components/qbit/structure/dialog-header/dialog-header.component';
+export * from './lib/components/qbit/structure/table-filters-addable/table-filters-addable.component';
 
 export * from './lib/components/qbit/indicators/list-loading/list-loading.component';
 export * from './lib/components/qbit/indicators/chips/chip/chip.component';

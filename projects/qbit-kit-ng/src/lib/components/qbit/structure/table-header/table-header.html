@@ -5,8 +5,8 @@
     <qbit-breadcrumbs *ngIf="options.showBreadcrumbs"></qbit-breadcrumbs>
 
     <div class="flex-row center">
-        <div style="width: 30px; margin-right: 15px" *ngIf="options.showLoading">
-            <mat-spinner diameter="25" *ngIf="isLoading"></mat-spinner>
+        <div style="width: 30px; margin-right: 15px" *ngIf="options.showLoading && isLoading">
+            <mat-spinner color="primary" diameter="25"></mat-spinner>
         </div>
 
         <ng-content></ng-content>

@@ -1,0 +1,34 @@
+<div class="flex-row bordered-bottom center padd-h-20" style="height: 45px; position: relative;">
+    <div class="added-filters flex-row">
+        <div class="flex-row" style="position: relative;overflow: hidden"
+            *ngFor="let filter of shownFilters">
+            <qbit-debounced-input [query]="filters[filter]" (onSearch)="fieldChanged(filter, $event)"
+                [placeholder]="filter | translate">
+            </qbit-debounced-input>
+
+            <button mat-icon-button class="clear-button abs-center-right" (click)="removeFilter(filter)">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </div>
+
+    <div class="abs-center-right">
+        <button mat-button [matMenuTriggerFor]="menu" aria-label="available filters menu"
+            (click)="$event.preventDefault(); $event.stopPropagation()">
+            <mat-icon>add</mat-icon> <span>{{'ADD_FILTER'| translate}}</span>
+        </button>
+        <mat-menu #menu="matMenu">
+            <ng-container *ngFor="let mapping of searchMapping">
+                <button mat-menu-item (click)="addFilter(mapping)"
+                    *ngIf="!hiddenFilters.includes(mapping.property) && !shownFilters.includes(mapping.property)">
+                    <span>{{mapping.property | translate}}</span>
+                </button>
+            </ng-container>
+            <button *ngIf="shownFilters.length == searchMapping.length" mat-menu-item class="small-text">{{'NO_MORE_FILTERS'| translate}}</button>
+        </mat-menu>
+        <button mat-button aria-label="clear all filters"
+            (click)="$event.preventDefault(); $event.stopPropagation(); clearFilters()">
+            <mat-icon>clear</mat-icon> <span>{{'CLEAR_ALL_FILTERS'| translate}}</span>
+        </button>
+    </div>
+</div>

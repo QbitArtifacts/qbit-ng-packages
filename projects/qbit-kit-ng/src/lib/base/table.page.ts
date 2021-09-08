@@ -17,7 +17,7 @@ import { QTableListHeaderOptions } from '../../public-api';
   template: '',
 })
 export abstract class QTableBase<T = any> implements OnInit {
-  abstract displayedColumns: string[] = [];
+  abstract displayedColumns: string[];
   public searchableColumns: string[] = [];
   public dataSource: MatTableDataSource<T>;
   public isLoading = false;

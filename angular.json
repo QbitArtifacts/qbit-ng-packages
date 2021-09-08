@@ -24,7 +24,7 @@
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss"],
+            "styles": ["src/styles.scss", "projects/qbit-kit-ng/src/theme/ng-theme.scss"],
             "scripts": []
           },
           "configurations": {

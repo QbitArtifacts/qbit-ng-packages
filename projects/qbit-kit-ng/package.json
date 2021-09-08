@@ -1,6 +1,6 @@
 {
   "name": "@qbitartifacts/qbit-kit-ng",
-  "version": "0.0.74",
+  "version": "0.0.75",
   "peerDependencies": {
     "@angular/common": "^11.2.2",
     "@angular/router": "^11.2.2",
