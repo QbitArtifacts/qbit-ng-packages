@@ -1,12 +1,17 @@
 <div class="flex-row bordered-bottom center padd-h-20" style="height: 45px; position: relative;">
     <div class="added-filters flex-row">
-        <div class="flex-row" style="position: relative;overflow: hidden"
-            *ngFor="let filter of shownFilters">
-            <qbit-debounced-input [query]="filters[filter]" (onSearch)="fieldChanged(filter, $event)"
-                [placeholder]="filter | translate">
-            </qbit-debounced-input>
+        <div class="flex-row center" *ngFor="let filter of shownFilters">
 
-            <button mat-icon-button class="clear-button abs-center-right" (click)="removeFilter(filter)">
+            <qbit-debounced-input *ngIf="!filter.input_type || filter.input_type == 'text'"
+                [autocompleteValues]="autocomplete[filter.property]" [query]="filters[filter.property]"
+                (onSearch)="fieldChanged(filter.property, $event)" [placeholder]="filter.property | translate">
+            </qbit-debounced-input>
+            
+            <input *ngIf="['datetime-local' ,'datetime' ,'date', 'time'].includes(filter.input_type)" color="primary"
+                [ngModel]="filters[filter.property]" [type]="filter.input_type" class="search-input"
+                (ngModelChange)="fieldChanged(filter.property, $event)" placeholder="{{filter.property | translate}}">
+
+            <button mat-icon-button class="clear-button" (click)="removeFilter(filter.property)">
                 <mat-icon>close</mat-icon>
             </button>
         </div>
@@ -20,13 +25,15 @@
         <mat-menu #menu="matMenu">
             <ng-container *ngFor="let mapping of searchMapping">
                 <button mat-menu-item (click)="addFilter(mapping)"
-                    *ngIf="!hiddenFilters.includes(mapping.property) && !shownFilters.includes(mapping.property)">
+                    *ngIf="!hiddenFilters.includes(mapping.property) && !shownFilters.includes(mapping)">
                     <span>{{mapping.property | translate}}</span>
                 </button>
             </ng-container>
-            <button *ngIf="shownFilters.length == searchMapping.length" mat-menu-item class="small-text">{{'NO_MORE_FILTERS'| translate}}</button>
+            <button *ngIf="shownFilters.length == searchMapping.length" mat-menu-item
+                class="small-text">{{'NO_MORE_FILTERS'| translate}}</button>
         </mat-menu>
-        <button mat-button aria-label="clear all filters"
+
+        <button *ngIf="shownFilters.length > 0" mat-button aria-label="clear all filters"
             (click)="$event.preventDefault(); $event.stopPropagation(); clearFilters()">
             <mat-icon>clear</mat-icon> <span>{{'CLEAR_ALL_FILTERS'| translate}}</span>
         </button>

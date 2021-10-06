@@ -10,6 +10,7 @@ export abstract class QApiSelectorComponent {
   @Input() public item: any = null;
   @Input() public disabled: boolean = false;
   @Input() public userType: UserType = 'user';
+  @Input() public filters: any = {};
   @Output() public itemChange: EventEmitter<any> = new EventEmitter();
 
   public itemQuery: string;

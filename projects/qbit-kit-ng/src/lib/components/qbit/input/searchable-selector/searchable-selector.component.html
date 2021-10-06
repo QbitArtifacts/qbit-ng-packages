@@ -6,7 +6,7 @@
             <span class="small-text" style="margin-left: 10px">{{'LOADING'|translate}}</span>
         </div>
     </mat-label>
-    <mat-select [ngModel]="item" (ngModelChange)="selectItem($event)">
+    <mat-select [ngModel]="item" [disabled]="disabled" (ngModelChange)="selectItem($event)">
         <div class="padd-10 bordered-bottom sticky-top-center bg-white">
             <input #search color="primary" style="margin: 0 15px" class="search-input" [(ngModel)]="query"
                 placeholder="{{'SEARCH'|translate}}">
@@ -18,5 +18,14 @@
                 {{item.name || item.username}}
             </span>
         </mat-option>
+
+        <!-- <mat-select-trigger>
+            <div #ref>
+                <ng-content select="[role=trigger]"></ng-content>
+            </div>
+            <div *ngIf="!ref.hasChildNodes()">
+                {{item && item.name || item.username}}
+            </div>
+        </mat-select-trigger> -->
     </mat-select>
 </mat-form-field>

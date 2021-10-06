@@ -2,8 +2,13 @@ import { QTableFiltersOptions } from './../table-filters/table-filters.component
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
-// TODO: Only show remove on hover, or add outside the input
-// TODO: Only show clear filters, if there is a filter
+export interface AutocompleteItem {
+  display: string;
+  value: any;
+}
+export interface QTableFiltersAutocomplete {
+  [key: string]: AutocompleteItem[];
+}
 
 @Component({
   selector: 'qbit-table-filters-addable',
@@ -15,24 +20,22 @@ export class QTableFiltersAddable {
   @Input() hiddenFilters: string[] = [];
   @Input() label: string = 'FILTERS';
   @Input() showLabel: boolean = true;
+  // TODO: add types for search mappings
   @Input() searchMapping: any[] = [];
   @Input() shownFilters: any[] = [];
+  @Input() autocomplete: QTableFiltersAutocomplete = {};
   @Input() options: QTableFiltersOptions = {};
   @Output() filtersChanged: EventEmitter<Params> = new EventEmitter();
 
   constructor(public router: Router, public route: ActivatedRoute) {}
 
-  ngOnInit() {
-    console.log('hidden', this.hiddenFilters);
-  }
+  ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log('changes', changes);
-
     if ('searchMapping' in changes || 'shownFilters' in changes || 'hiddenFilters' in changes) {
       for (let mapping of changes.searchMapping.currentValue) {
-        if (this.filters[mapping.property] && !this.shownFilters.includes(mapping.property)) {
-          this.shownFilters.push(mapping.property);
+        if (this.filters[mapping.property] && !this.shownFilters.includes(mapping)) {
+          this.shownFilters.push(mapping);
         }
       }
     }
@@ -44,7 +47,7 @@ export class QTableFiltersAddable {
   }
 
   addFilter(mapping) {
-    this.shownFilters.push(mapping.property);
+    this.shownFilters.push(mapping);
   }
 
   removeFilter(filter) {
@@ -57,9 +60,10 @@ export class QTableFiltersAddable {
   }
 
   fieldChanged(prop, value) {
+    console.log(prop, value);
     this.filters[prop] = value;
 
-    if (!value) this.filters[prop] = null;
+    if (value == null) this.filters[prop] = null;
 
     this.search();
   }

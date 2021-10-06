@@ -25,7 +25,7 @@ export class AppComponent {
     public sidemenu: QSidemenuService,
     public user: CasteUserService,
   ) {
-    this.signIn().subscribe((resp) => {
+    this.signInRecogeme().subscribe((resp) => {
       casteAuth.saveToken(resp.token);
       this.user.setUserFromTokenData(resp);
       this.showSelector = true;
@@ -37,6 +37,14 @@ export class AppComponent {
       username: 'manolo_sa2@gmail.com',
       password: 'AkxED2Ap8e6a',
       realm: 'default',
+    });
+  }
+
+  public signInRecogeme() {
+    return this.casteAuth.signIn({
+      username: 'rafa@recogeme.es',
+      password: '29J5hy',
+      realm: 'recogeme',
     });
   }
 }

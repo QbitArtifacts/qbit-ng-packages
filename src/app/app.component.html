@@ -1,19 +1,9 @@
-<!-- <div style="display: flex; align-items: center; justify-content: center">
-    <mat-card>
-        <mat-card-header>
-            <mat-card-title>Selectors</mat-card-title>
-        </mat-card-header>
-
-        <div style="padding: 25px">
-            <sa-admin-account-selector [item]="accountId"></sa-admin-account-selector>
-        </div>
-        <div style="padding: 25px">
-            <sa-application-selector [item]="appId"></sa-application-selector>
-        </div>
-        <div style="padding: 25px">
-            <custom-selector [item]="'aaaa'"></custom-selector>
-        </div>
-    </mat-card>
-</div> -->
-
-<router-outlet></router-outlet>
+<div style="width: 200px">
+    <nav>
+        <button routerLink="/components">Components</button>
+        <button routerLink="/list-test">List test</button>
+    </nav>
+</div>
+<div style="width: 100%">
+    <router-outlet></router-outlet>
+</div>

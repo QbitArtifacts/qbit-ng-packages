@@ -2,6 +2,10 @@
     (itemChanged)="selectItem($event)" (onSearch)="search($event)">
 
     <ng-template let-item>
-        {{item.fruitName}}
+        <mat-icon>home</mat-icon> Item: {{item.fruitName}}
     </ng-template>
+
+    <!-- <div role="trigger">
+        <mat-icon>home</mat-icon> {{item.fruitName}}
+    </div> -->
 </qbit-searchable-selector>

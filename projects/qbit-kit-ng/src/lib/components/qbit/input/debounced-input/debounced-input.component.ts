@@ -1,8 +1,10 @@
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { fromEvent } from 'rxjs/internal/observable/fromEvent';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 import { distinctUntilChanged } from 'rxjs/internal/operators/distinctUntilChanged';
 import { map } from 'rxjs/internal/operators/map';
+import { AutocompleteItem } from '../../structure/table-filters-addable/table-filters-addable.component';
 
 @Component({
   selector: 'qbit-debounced-input',
@@ -11,7 +13,9 @@ import { map } from 'rxjs/internal/operators/map';
 })
 export class QDebouncedInput {
   @Input() public query = '';
+  @Input() public type = 'text';
   @Input() public placeholder = 'SEARCH';
+  @Input() public autocompleteValues: AutocompleteItem[] = [];
   @Output() public onSearch: EventEmitter<any> = new EventEmitter();
   @Output() public queryChange: EventEmitter<any> = new EventEmitter();
 
@@ -26,6 +30,11 @@ export class QDebouncedInput {
   /* istanbul ignore next */
   public search() {
     this.onSearch.emit(this.query);
+  }
+
+  optionSelected(item: MatAutocompleteSelectedEvent) {
+    this.query = item.option.value;
+    this.search();
   }
 
   /* istanbul ignore next */

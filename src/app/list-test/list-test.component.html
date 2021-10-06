@@ -7,6 +7,7 @@
         </qbit-table-header>
         
         <qbit-table-filters-addable [searchMapping]="searchMapping"
+            [autocomplete]="autocompleteData"
             (filtersChanged)="searchParamsChanged($event)" [filters]="searchParams" [hiddenFilters]="hiddenFilters">
         </qbit-table-filters-addable>
     

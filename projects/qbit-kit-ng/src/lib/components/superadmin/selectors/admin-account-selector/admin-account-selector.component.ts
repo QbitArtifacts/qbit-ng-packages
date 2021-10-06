@@ -24,6 +24,6 @@ export class SaAdminAccountSelectorComponent extends QApiSelectorComponent {
   }
 
   public getSearchObservable(query: string): Observable<any> {
-    return this.accounts$.listAll({ name: query }, this.userType);
+    return this.accounts$.listAll({ ...this.filters, name: query }, this.userType);
   }
 }

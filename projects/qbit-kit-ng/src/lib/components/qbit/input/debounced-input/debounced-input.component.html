@@ -1,3 +1,10 @@
 <div>
-    <input color="primary" value="{{query}}" class="search-input" #search placeholder="{{placeholder|translate}}">
+    <input color="primary" value="{{query}}" [type]="type" class="search-input" #search [matAutocomplete]="auto"
+        placeholder="{{placeholder|translate}}">
+
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="optionSelected($event)">
+        <mat-option *ngFor="let autocomplete of autocompleteValues" [value]="autocomplete.value">
+            {{autocomplete.display | translate}}
+        </mat-option>
+    </mat-autocomplete>
 </div>

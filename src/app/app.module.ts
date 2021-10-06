@@ -26,6 +26,7 @@ import {
   SaApplicationSelectorModule,
   QTableFiltersModule,
   QTableFiltersAddableModule,
+  SaUserSelectorModule,
 } from 'projects/qbit-kit-ng/src/public-api';
 import {
   QbitLocaleConfig,
@@ -62,6 +63,7 @@ const qbitLocales: QbitLocaleConfig = {
     QTableHeaderModule,
     SaAdminAccountSelectorModule,
     SaApplicationSelectorModule,
+    SaUserSelectorModule,
     MatPaginatorModule,
     MatTableModule,
     MatSortModule,

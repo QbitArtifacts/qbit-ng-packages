@@ -11,7 +11,7 @@ import { createTimer } from '../rxjs/create-timer';
 import { MatDialogRef } from '@angular/material/dialog';
 import { DeleteDialogStatus } from '../enums/delete-dialog-status';
 import { Subscription } from 'rxjs/internal/Subscription';
-import { QTableListHeaderOptions } from '../../public-api';
+import { QTableFiltersAutocomplete, QTableListHeaderOptions } from '../../public-api';
 
 @Component({
   template: '',
@@ -36,6 +36,7 @@ export abstract class QTableBase<T = any> implements OnInit {
   @Input() public showBreadcrumbs = true;
   @Input() public autoRefresh = true;
   @Input() public initialSearch = false;
+  @Input() public autocompleteData: QTableFiltersAutocomplete = {};
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -178,19 +179,26 @@ export abstract class QTableBase<T = any> implements OnInit {
 
     // Only set mapping on first load
     if (this.searchMapping && !this.searchMapping.length) {
-      const props = {};
-      this.searchMapping = [];
-      for (let mapping of resp.search) {
-        if (!props[mapping.property]) {
-          this.searchMapping.push(mapping);
-        }
-
-        props[mapping.property] = mapping;
-      }
+      this.searchMapping = this.processSearchMapping(resp);
     }
 
     this.setData(resp.data || []);
     this.setIsLoading(false);
+  }
+
+  public processSearchMapping(resp) {
+    const props = {};
+    const searchMapping = [];
+    
+    for (let mapping of resp.search) {
+      if (!props[mapping.property]) {
+        searchMapping.push(mapping);
+      }
+
+      props[mapping.property] = mapping;
+    }
+
+    return searchMapping;
   }
 
   private getParams(owner) {

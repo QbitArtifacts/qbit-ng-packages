@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { CasteUsersService } from '@qbitartifacts/caste-client-ng';
+import { UserType } from '@qbitartifacts/caste-client-ng/lib/types';
 import { Observable } from 'rxjs';
 import { QApiSelectorComponent } from '../../../../../lib/base/api-selector';
-import { UserType } from '@qbitartifacts/caste-client-ng/lib/types';
 
 @Component({
   selector: 'sa-user-selector',
@@ -17,6 +17,6 @@ export class SaUserSelectorComponent extends QApiSelectorComponent {
   }
 
   public getSearchObservable(query: string): Observable<any> {
-    return this.users$.listAll({ username: query }, this.userType);
+    return this.users$.listAll({ ...this.filters, username: query }, this.userType);
   }
 }
