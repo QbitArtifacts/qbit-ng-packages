@@ -32,11 +32,13 @@ export class QTableFiltersAddable {
   ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges) {
-    if ('searchMapping' in changes || 'shownFilters' in changes || 'hiddenFilters' in changes) {
-      for (let mapping of changes.searchMapping.currentValue) {
-        if (this.filters[mapping.property] && !this.shownFilters.includes(mapping)) {
-          this.shownFilters.push(mapping);
-        }
+    const needsProcesing = 'searchMapping' in changes || 'shownFilters' in changes || 'hiddenFilters' in changes;
+
+    if (!needsProcesing) return;
+
+    for (let mapping of changes.searchMapping.currentValue) {
+      if (this.filters[mapping.variable] && !this.shownFilters.includes(mapping)) {
+        this.shownFilters.push(mapping);
       }
     }
   }
@@ -51,7 +53,7 @@ export class QTableFiltersAddable {
   }
 
   removeFilter(filter) {
-    const filterIndex = this.shownFilters.indexOf(filter);
+    const filterIndex = this.shownFilters.find((f) => f.variable == filter);
     if (filterIndex >= 0) {
       this.shownFilters.splice(filterIndex, 1);
     }
@@ -60,7 +62,6 @@ export class QTableFiltersAddable {
   }
 
   fieldChanged(prop, value) {
-    console.log(prop, value);
     this.filters[prop] = value;
 
     if (value == null) this.filters[prop] = null;
@@ -74,6 +75,7 @@ export class QTableFiltersAddable {
 
   clearFilters() {
     this.shownFilters = [];
+    this.filters = {};
     for (let key in this.filters) {
       this.filters[key] = null;
     }

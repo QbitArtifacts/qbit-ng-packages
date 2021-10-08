@@ -12,6 +12,7 @@ export interface IUser extends IBaseEntity {
   applications?: Application[];
   application?: Application;
   accounts?: Account[];
+  data?: any;
 }
 
 export class User implements IUser {
@@ -25,6 +26,7 @@ export class User implements IUser {
   iri: string;
   created_at: string;
   updated_at: string;
+  data?: any;
 
   public hasRole(role: Role | string): boolean {
     if (role instanceof Role) {
@@ -100,6 +102,7 @@ export class User implements IUser {
     user.accounts = data.accounts;
     user.application = data.application;
     user.applications = data.applications;
+    user.data = data.data;
     return user;
   }
 }

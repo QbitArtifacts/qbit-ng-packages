@@ -142,7 +142,7 @@ export abstract class QTableBase<T = any> implements OnInit {
 
   /* istanbul ignore next */
   public onAccountChanged() {
-    this.onSearch();
+    this.onSearch(this.searchParams);
   }
 
   /* istanbul ignore next */
@@ -191,11 +191,11 @@ export abstract class QTableBase<T = any> implements OnInit {
     const searchMapping = [];
     
     for (let mapping of resp.search) {
-      if (!props[mapping.property]) {
+      if (!props[mapping.variable]) {
         searchMapping.push(mapping);
       }
 
-      props[mapping.property] = mapping;
+      props[mapping.variable] = mapping;
     }
 
     return searchMapping;
@@ -266,7 +266,7 @@ export abstract class QTableBase<T = any> implements OnInit {
   /* istanbul ignore next */
   public onItemRemoved() {
     this.snackbar.open('REMOVED_ITEM');
-    this.onSearch(this.query);
+    this.onSearch(this.searchParams);
   }
 
   /* istanbul ignore next */
@@ -290,7 +290,6 @@ export abstract class QTableBase<T = any> implements OnInit {
       pageIndex: this.pageIndex,
       pageSize: this.pageSize,
     });
-    this.onSearch();
   }
 
   /* istanbul ignore next */
@@ -329,7 +328,6 @@ export abstract class QTableBase<T = any> implements OnInit {
       sortId: this.sortId,
       sortDir: this.sortDir,
     });
-    this.onSearch();
   }
 
   private addToQueryParams(data: Params) {

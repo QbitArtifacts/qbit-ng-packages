@@ -99,8 +99,6 @@ export abstract class BaseService<T = {}> {
       ...overwriteOptions,
     };
 
-    console.log(url, 'options!!!!', options);
-
     return this.http
       .get(this.getUrl(url), options)
       .pipe(map(this.extractData), catchError(this.handleError.bind(this)));

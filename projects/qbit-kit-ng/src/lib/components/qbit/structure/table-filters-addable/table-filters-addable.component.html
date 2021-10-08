@@ -1,17 +1,25 @@
-<div class="flex-row bordered-bottom center padd-h-20" style="height: 45px; position: relative;">
+<div class="flex-row bordered-bottom center padd-h-20" style="min-height: 65px; position: relative;">
     <div class="added-filters flex-row">
         <div class="flex-row center" *ngFor="let filter of shownFilters">
-
             <qbit-debounced-input *ngIf="!filter.input_type || filter.input_type == 'text'"
-                [autocompleteValues]="autocomplete[filter.property]" [query]="filters[filter.property]"
-                (onSearch)="fieldChanged(filter.property, $event)" [placeholder]="filter.property | translate">
+                [autocompleteValues]="autocomplete[filter.variable]" [query]="filters[filter.variable]"
+                (onSearch)="fieldChanged(filter.variable, $event)" [placeholder]="filter.variable | translate">
             </qbit-debounced-input>
-            
-            <input *ngIf="['datetime-local' ,'datetime' ,'date', 'time'].includes(filter.input_type)" color="primary"
-                [ngModel]="filters[filter.property]" [type]="filter.input_type" class="search-input"
-                (ngModelChange)="fieldChanged(filter.property, $event)" placeholder="{{filter.property | translate}}">
 
-            <button mat-icon-button class="clear-button" (click)="removeFilter(filter.property)">
+            <mat-form-field appearance="standard"
+                *ngIf="['datetime-local' ,'datetime' ,'date', 'time'].includes(filter.input_type)">
+                <mat-label>{{filter.variable | translate}}</mat-label>
+                <input matInput color="primary" [ngModel]="filters[filter.variable]" [type]="filter.input_type"
+                    id="input-{{filter.variable}}" (ngModelChange)="fieldChanged(filter.variable, $event)"
+                    placeholder="{{filter.variable | translate}}">
+            </mat-form-field>
+
+            <mat-checkbox *ngIf="filter.input_type == 'checkbox'" [checked]="filters[filter.variable]"
+                (change)="fieldChanged(filter.variable, $event.checked)">
+                {{filter.variable | translate}}
+            </mat-checkbox>
+
+            <button mat-icon-button class="clear-button" (click)="removeFilter(filter.variable)">
                 <mat-icon>close</mat-icon>
             </button>
         </div>
@@ -25,8 +33,8 @@
         <mat-menu #menu="matMenu">
             <ng-container *ngFor="let mapping of searchMapping">
                 <button mat-menu-item (click)="addFilter(mapping)"
-                    *ngIf="!hiddenFilters.includes(mapping.property) && !shownFilters.includes(mapping)">
-                    <span>{{mapping.property | translate}}</span>
+                    *ngIf="!hiddenFilters.includes(mapping.variable) && !shownFilters.includes(mapping)">
+                    <span>{{mapping.variable | translate}}</span>
                 </button>
             </ng-container>
             <button *ngIf="shownFilters.length == searchMapping.length" mat-menu-item
