@@ -7,6 +7,8 @@ export class QEventsService {
   public events: { [key: string]: EventEmitter<any> } = {};
 
   public on<T>(name) {
+    if (this.events[name]) return this.events[name];
+
     const event: EventEmitter<T> = new EventEmitter();
     this.events[name] = event;
 

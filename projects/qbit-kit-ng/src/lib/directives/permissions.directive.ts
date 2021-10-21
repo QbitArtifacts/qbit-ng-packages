@@ -1,5 +1,6 @@
-import { Directive, TemplateRef, ViewContainerRef, Input } from '@angular/core';
+import { Directive, TemplateRef, ViewContainerRef, Input, ChangeDetectorRef } from '@angular/core';
 import { CasteUserService, InternalPermission } from '@qbitartifacts/caste-client-ng';
+import { QEventsService } from '../services/events.service';
 
 // This directive should manage wether certain components/elements are shouwn/disabled based on some permissions
 @Directive({
@@ -15,7 +16,7 @@ export class PermissionsDirective {
   ) {}
 
   @Input('appPermissions') set appPermissions(perm: InternalPermission) {
-    if (this.user$.hasUser() && perm.canActivate(this.user$.user)) {
+    if (this.user$.hasUser() && perm.canActivate(this.user$.user, this.user$)) {
       this.permitted = true;
       this.viewContainer.createEmbeddedView(this.templateRef);
     } else {

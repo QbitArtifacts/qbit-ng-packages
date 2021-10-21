@@ -76,10 +76,10 @@ export class QTableFiltersAddable {
   clearFilters() {
     this.shownFilters = [];
     this.filters = {};
-    for (let key in this.filters) {
-      this.filters[key] = null;
-    }
     this.search();
+    this.router.navigate([], {
+      relativeTo: this.route,
+    });
   }
 
   private addToQueryParams(data: Params) {

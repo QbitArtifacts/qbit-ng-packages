@@ -1,11 +1,11 @@
 import { QSnackBar } from './../services/snackbar.service';
 import { CreateDialogStatus } from './../enums/create-dialog-status';
 import { QEventsService } from './../services/events.service';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort, Sort, SortDirection } from '@angular/material/sort';
-import { Observable, Subject, timer } from 'rxjs';
+import { Observable, of, Subject, timer } from 'rxjs';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { createTimer } from '../rxjs/create-timer';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -36,6 +36,7 @@ export abstract class QTableBase<T = any> implements OnInit {
   @Input() public showBreadcrumbs = true;
   @Input() public autoRefresh = true;
   @Input() public initialSearch = false;
+  @Input() public refreshInterval = 60e3;
   @Input() public autocompleteData: QTableFiltersAutocomplete = {};
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -56,8 +57,8 @@ export abstract class QTableBase<T = any> implements OnInit {
   public isAdmin = false;
 
   public searchParams: any = {};
-  private stopPolling = new Subject();
-  private timer: Subscription;
+  protected stopPolling = new Subject();
+  protected timer: Subscription;
 
   constructor(
     public snackbar: QSnackBar,
@@ -100,7 +101,17 @@ export abstract class QTableBase<T = any> implements OnInit {
       if (this.initialSearch) this.onSearch(this.searchParams);
     });
 
-    if (this.autoRefresh) this.setUpTimer();
+    this.startTimer();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (!('autoRefresh' in changes)) return;
+
+    if (!changes.autoRefresh) {
+      this.stopTimer();
+    } else {
+      this.startTimer();
+    }
   }
 
   ngOnDestroy() {
@@ -118,15 +129,14 @@ export abstract class QTableBase<T = any> implements OnInit {
   abstract getRemoveItemDialog(id: string): MatDialogRef<any, any>;
   abstract getOwner(): string;
 
-  public setUpTimer() {
-    if (this.timer) {
-      this.timer.unsubscribe();
-    }
+  public startTimer() {
+    this.stopTimer();
+
     this.timer = createTimer(
-      this.getOnSearchObservable.bind(this),
+      this.timerRefreshObservable.bind(this),
       this.stopPolling,
-      60e3,
-      this.initialSearch ? 1 : 60e3,
+      this.refreshInterval,
+      this.initialSearch ? 1 : this.refreshInterval,
     ).subscribe({
       next: this.onGotSearchData.bind(this),
       error: (error) => {
@@ -134,6 +144,19 @@ export abstract class QTableBase<T = any> implements OnInit {
         this.setIsLoading(false);
       },
     });
+  }
+
+  timerRefreshObservable(): Observable<any> {
+    console.log('timerRefreshObservable', this.autoRefresh);
+
+    if (this.autoRefresh == false) return of(null);
+    return this.getOnSearchObservable();
+  }
+
+  public stopTimer() {
+    if (this.timer) {
+      this.timer.unsubscribe();
+    }
   }
 
   public hasOwner() {
@@ -174,6 +197,8 @@ export abstract class QTableBase<T = any> implements OnInit {
   }
 
   public onGotSearchData(resp) {
+    if (!resp) return;
+
     this.totalItems = resp.total || 0;
     this.hasData = this.totalItems > 0;
 
@@ -189,7 +214,7 @@ export abstract class QTableBase<T = any> implements OnInit {
   public processSearchMapping(resp) {
     const props = {};
     const searchMapping = [];
-    
+
     for (let mapping of resp.search) {
       if (!props[mapping.variable]) {
         searchMapping.push(mapping);

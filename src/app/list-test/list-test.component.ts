@@ -11,6 +11,7 @@ import {
 import { Observable } from 'rxjs';
 import { UserType } from '@qbitartifacts/caste-client-ng/lib/types';
 import { CasteUsersService } from 'projects/caste-client-ng/src/public-api';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-list-test',
@@ -38,6 +39,8 @@ export class ListTestComponent extends QTableBase implements OnInit {
     showBreadcrumbs: false,
   };
 
+  public enableRefresh = false;
+
   constructor(
     public snackbar$: QSnackBar,
     public users$: CasteUsersService,
@@ -47,14 +50,13 @@ export class ListTestComponent extends QTableBase implements OnInit {
   ) {
     super(snackbar$, events, router, route);
     this.initialSearch = true;
+    this.autoRefresh = false;
+    this.refreshInterval = 15e3;
   }
 
-  // public processSearchMapping(resp) {
-  //   return super.processSearchMapping(resp).map((mapping) => {
-  //     mapping.type = 'datetime-local';
-  //     return mapping;
-  //   });
-  // }
+  public enableRefreshChanged($event: MatCheckboxChange) {
+    this.autoRefresh = this.enableRefresh = $event.checked;
+  }
 
   getSearchObservable(queryParams: { [key: string]: string }, userType?: UserType): Observable<any> {
     return this.users$.listAll(queryParams, 'admin');

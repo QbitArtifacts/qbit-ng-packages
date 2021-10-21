@@ -1,3 +1,4 @@
+import { CasteUserService } from '../management/caste-user.service';
 import { InternalPermission } from '../entities/internal-permission.entity';
 import { User } from '../entities/user.entity';
 
@@ -7,7 +8,7 @@ export class PublicPermission extends InternalPermission {
     super('public', subPermissions);
   }
 
-  public canActivate(user: User) {
+  public canActivate(user: User, user$: CasteUserService) {
     return true;
   }
 }

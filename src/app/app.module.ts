@@ -1,3 +1,4 @@
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { PermissionUser, PermissionPublic } from './../../projects/caste-client-ng/src/public-api';
 import { CASTE_AUTH_CONFIG } from './../../projects/caste-client-ng/src/lib/caste-auth.config';
 import { SaAdminAccountSelectorModule } from './../../projects/qbit-kit-ng/src/lib/components/superadmin/selectors/admin-account-selector/admin-account-selector.module';
@@ -90,6 +91,7 @@ const qbitLocales: QbitLocaleConfig = {
     MatToolbarModule,
     QLangSelectorModule,
     MatProgressSpinnerModule,
+    MatCheckboxModule,
     QSnackBarModule,
     QTableFiltersModule,
     QTableFiltersAddableModule,

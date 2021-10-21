@@ -4,13 +4,14 @@
             <button mat-icon-button (click)="onSearch(searchParams)">
                 <mat-icon>refresh</mat-icon>
             </button>
+
+            <mat-checkbox [checked]="enableRefresh" (change)="enableRefreshChanged($event)">Refresh Enabled</mat-checkbox>
         </qbit-table-header>
         
         <qbit-table-filters-addable [searchMapping]="searchMapping"
             [autocomplete]="autocompleteData"
             (filtersChanged)="searchParamsChanged($event)" [filters]="searchParams" [hiddenFilters]="hiddenFilters">
         </qbit-table-filters-addable>
-    
     
         <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortChanged($event)"
             [matSortDirection]="sortDir" [matSortActive]="sortId" [trackBy]="trackById">

@@ -1,8 +1,9 @@
+import { CasteUserService } from '../management/caste-user.service';
 import { User } from './user.entity';
 
 export interface InternalPermission {
   name: string;
-  canActivate(user: User): boolean;
+  canActivate(user: User, user$: CasteUserService): boolean;
 }
 
 /**
@@ -35,10 +36,10 @@ export class InternalPermission implements InternalPermission {
   }
 
   /* istanbul ignore next */
-  public canActivate(user: User): boolean {
+  public canActivate(user: User, user$: CasteUserService): boolean {
     if (this.subPermissions && this.subPermissions.length) {
       for (const subPerm of this.subPermissions) {
-        if (subPerm.canActivate(user)) {
+        if (subPerm.canActivate(user, user$)) {
           return true;
         }
       }
