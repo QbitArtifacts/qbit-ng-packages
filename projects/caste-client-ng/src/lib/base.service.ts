@@ -101,7 +101,7 @@ export abstract class BaseService<T = {}> {
 
     return this.http
       .get(this.getUrl(url), options)
-      .pipe(map(this.extractData), catchError(this.handleError.bind(this)));
+      .pipe(map(this.extractData.bind(this)), catchError(this.handleError.bind(this)));
   }
 
   protected delete<T = any>(url: string | string[], data: any = {}, overwriteHeaders: any = {}): Observable<T> {
@@ -113,7 +113,7 @@ export abstract class BaseService<T = {}> {
 
     return this.http
       .delete(this.getUrl(url), options)
-      .pipe(map(this.extractData), catchError(this.handleError.bind(this)));
+      .pipe(map(this.extractData.bind(this)), catchError(this.handleError.bind(this)));
   }
 
   protected post<T = any>(
@@ -156,7 +156,7 @@ export abstract class BaseService<T = {}> {
 
     return this.http
       .post(this.getUrl(url), params, options)
-      .pipe(map(this.extractData), catchError(this.handleError.bind(this)));
+      .pipe(map(this.extractData.bind(this)), catchError(this.handleError.bind(this)));
   }
 
   protected patch<T = any>(url: string | string[], data: any, overwriteHeaders: any = {}): Observable<T> {
@@ -167,7 +167,7 @@ export abstract class BaseService<T = {}> {
 
     return this.http
       .patch(this.getUrl(url), data, options)
-      .pipe(map(this.extractData), catchError(this.handleError.bind(this)));
+      .pipe(map(this.extractData.bind(this)), catchError(this.handleError.bind(this)));
   }
 
   protected put<T = any>(
@@ -186,7 +186,7 @@ export abstract class BaseService<T = {}> {
 
     return this.http
       .put(this.getUrl(url), data, options)
-      .pipe(map(this.extractData), catchError(this.handleError.bind(this)));
+      .pipe(map(this.extractData.bind(this)), catchError(this.handleError.bind(this)));
   }
 
   public extractData(res: any) {
